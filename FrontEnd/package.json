@@ -1,0 +1,48 @@
+{
+    "name": "finikascruises",
+    "version": "3.0.0",
+    "scripts": {
+        "ng": "ng",
+        "start": "ng serve --hmr --host=127.0.0.1 --ssl --ssl-cert ssl\\localhost.crt --ssl-key ssl\\localhost.key",
+        "build": "ng build",
+        "lint": "eslint ./"
+    },
+    "private": true,
+    "dependencies": {
+        "@angular/animations": "16.2.12",
+        "@angular/common": "16.2.12",
+        "@angular/compiler": "16.2.12",
+        "@angular/core": "16.2.12",
+        "@angular/forms": "16.2.12",
+        "@angular/material": "16.2.12",
+        "@angular/material-moment-adapter": "16.2.12",
+        "@angular/platform-browser": "16.2.12",
+        "@angular/platform-browser-dynamic": "16.2.12",
+        "@angular/router": "16.2.12",
+        "@zxing/browser": "0.1.4",
+        "@zxing/library": "0.20.0",
+        "@zxing/ngx-scanner": "16.1.0",
+        "crypto-js": "4.2.0",
+        "dexie": "3.2.4",
+        "guid-typescript": "1.0.9",
+        "jwt-decode": "4.0.0",
+        "pdfmake": "0.2.8",
+        "pretty-print-json": "2.1.0",
+        "primeng": "16.9.1",
+        "rxjs": "7.8.1",
+        "stylelint": "16.1.0",
+        "tslib": "2.6.2",
+        "zone.js": "0.13.3"
+    },
+    "devDependencies": {
+        "@angular-devkit/build-angular": "16.2.11",
+        "@angular/cli": "16.2.11",
+        "@angular/compiler-cli": "16.2.12",
+        "@types/pdfmake": "0.2.8",
+        "@typescript-eslint/eslint-plugin": "6.16.0",
+        "@typescript-eslint/parser": "6.16.0",
+        "eslint": "8.56.0",
+        "stylelint-config-standard": "36.0.0",
+        "typescript": "5.1.6"
+    }
+}
