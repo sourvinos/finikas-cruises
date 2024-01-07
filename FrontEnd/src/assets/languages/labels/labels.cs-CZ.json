@@ -142,6 +142,10 @@
                 "description": "Aktivní"
             },
             {
+                "id": "headerIsPassportRequired",
+                "description": "Passport"
+            },
+            {
                 "id": "headerAbbreviation",
                 "description": "Zkr."
             },
@@ -169,6 +173,10 @@
             {
                 "id": "description",
                 "description": "Popis"
+            },
+            {
+                "id": "isPassportRequired",
+                "description": "Vyžaduje se pas"
             },
             {
                 "id": "isActive",

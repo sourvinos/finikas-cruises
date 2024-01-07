@@ -142,6 +142,10 @@
                 "description": "Ενεργός"
             },
             {
+                "id": "headerIsPassportRequired",
+                "description": "Διαβατήριο"
+            },
+            {
                 "id": "headerAbbreviation",
                 "description": "Συντ."
             },
@@ -169,6 +173,10 @@
             {
                 "id": "description",
                 "description": "Περιγραφή"
+            },
+            {
+                "id": "isPassportRequired",
+                "description": "Απαιτείται διαβατήριο"
             },
             {
                 "id": "isActive",

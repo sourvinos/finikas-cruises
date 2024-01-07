@@ -91,6 +91,7 @@ export class DestinationFormComponent {
             id: this.form.value.id,
             abbreviation: this.form.value.abbreviation,
             description: this.form.value.description,
+            isPassportRequired: this.form.value.isPassportRequired,
             isActive: this.form.value.isActive,
             putAt: this.form.value.putAt
         }
@@ -126,6 +127,7 @@ export class DestinationFormComponent {
             id: 0,
             abbreviation: ['', [Validators.required, Validators.maxLength(5)]],
             description: ['', [Validators.required, Validators.maxLength(128)]],
+            isPassportRequired: false,
             isActive: true,
             postAt: [''],
             postUser: [''],
@@ -140,6 +142,7 @@ export class DestinationFormComponent {
                 id: this.record.id,
                 abbreviation: this.record.abbreviation,
                 description: this.record.description,
+                isPassportRequired: this.record.isPassportRequired,
                 isActive: this.record.isActive,
                 postAt: this.record.postAt,
                 postUser: this.record.postUser,

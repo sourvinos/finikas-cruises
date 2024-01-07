@@ -142,6 +142,10 @@
                 "description": "Aktiv"
             },
             {
+                "id": "headerIsPassportRequired",
+                "description": "Reisepass"
+            },
+            {
                 "id": "headerAbbreviation",
                 "description": "Abk."
             },
@@ -169,6 +173,10 @@
             {
                 "id": "description",
                 "description": "Beschreibung"
+            },
+            {
+                "id": "isPassportRequired",
+                "description": "Reisepass erforderlich"
             },
             {
                 "id": "isActive",

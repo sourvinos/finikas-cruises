@@ -12,6 +12,7 @@ namespace API.Features.Reservations.Destinations {
         // Fields
         public string Description { get; set; }
         public string Abbreviation { get; set; }
+        public bool IsPassportRequired { get; set; }
         public bool IsActive { get; set; }
         // Metadata
         public string PostAt { get; set; }

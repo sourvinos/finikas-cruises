@@ -23,6 +23,10 @@
             </mat-form-field>
             <div class="stacked-checkboxes">
                 <!-- Active -->
+                <mat-checkbox formControlName="isPassportRequired">
+                    <span>{{ getLabel("isPassportRequired") }}</span>
+                </mat-checkbox>
+                <!-- Active -->
                 <mat-checkbox formControlName="isActive">
                     <span>{{ getLabel("isActive") }}</span>
                 </mat-checkbox>

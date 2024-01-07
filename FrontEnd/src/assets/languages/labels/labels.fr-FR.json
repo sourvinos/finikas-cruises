@@ -142,6 +142,10 @@
                 "description": "Actif"
             },
             {
+                "id": "headerIsPassportRequired",
+                "description": "Passeport"
+            },
+            {
                 "id": "headerAbbreviation",
                 "description": "Abr."
             },
@@ -169,6 +173,10 @@
             {
                 "id": "description",
                 "description": "Description"
+            },
+            {
+                "id": "isPassportRequired",
+                "description": "Passeport requis"
             },
             {
                 "id": "isActive",
