@@ -31,7 +31,6 @@ export class ShortcutsMenuComponent {
             { icon: environment.featuresIconDirectory + 'boarding' + '.svg', url: 'boarding' },
             { icon: environment.featuresIconDirectory + 'customers' + '.svg', url: 'customers' },
             { icon: environment.featuresIconDirectory + 'schedules' + '.svg', url: 'schedules' },
-            { icon: environment.featuresIconDirectory + 'prices' + '.svg', url: 'prices' },
             { icon: environment.featuresIconDirectory + 'ledgers' + '.svg', url: 'reservation-ledgers' },
         ]
     }

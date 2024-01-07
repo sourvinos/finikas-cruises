@@ -1,6 +1,6 @@
 <div *ngIf=isAdmin() id="button-wrapper">
     <button [matMenuTriggerFor]="menu" class="fab fab-with-no-background" mat-icon-button>
-        <mat-icon class="material-icons-outlined">blur_circular</mat-icon>
+        <mat-icon class="material-icons-outlined">menu</mat-icon>
     </button>
     <mat-menu #menu="matMenu" class="primary">
         <button (click)="doNavigation('reservations')" mat-menu-item><span>{{ getLabel('calendar') }}</span></button>
@@ -11,6 +11,7 @@
         <button (click)="doNavigation('registrars')" mat-menu-item>{{ getLabel("registrars") }}</button>
         <button (click)="doNavigation('ports')" mat-menu-item>{{ getLabel("ports") }}</button>
         <button (click)="doNavigation('drivers')" mat-menu-item>{{ getLabel("drivers") }}</button>
+        <button (click)="doNavigation('taxOffices')" mat-menu-item>{{ getLabel("taxOffices") }}</button>
         <button (click)="doNavigation('customers')" mat-menu-item>{{ getLabel("customers") }}</button>
         <button (click)="doNavigation('shipCrews')" mat-menu-item>{{ getLabel("shipCrews") }}</button>
         <button (click)="doNavigation('ships')" mat-menu-item>{{ getLabel("ships") }}</button>
