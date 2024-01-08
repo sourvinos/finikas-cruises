@@ -1156,6 +1156,14 @@
                 "description": "Geschlecht"
             },
             {
+                "id": "passportNo",
+                "description": "Reisepass Nr."
+            },
+            {
+                "id": "passportExpireDate",
+                "description": "Ablaufdatum des Reisepasses"
+            },
+            {
                 "id": "specialCare",
                 "description": "Spezialbehandlung"
             },

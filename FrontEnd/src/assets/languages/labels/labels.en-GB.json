@@ -1156,6 +1156,14 @@
                 "description": "Gender"
             },
             {
+                "id": "passportNo",
+                "description": "Passport No"
+            },
+            {
+                "id": "passportExpireDate",
+                "description": "Passport expire date"
+            },
+            {
                 "id": "specialCare",
                 "description": "Special care"
             },

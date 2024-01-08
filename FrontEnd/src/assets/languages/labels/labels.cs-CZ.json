@@ -1156,6 +1156,14 @@
                 "description": "Rod"
             },
             {
+                "id": "passportNo",
+                "description": "Číslo pasu."
+            },
+            {
+                "id": "passportExpireDate",
+                "description": "Datum vypršení platnosti pasu"
+            },
+            {
                 "id": "specialCare",
                 "description": "Speciální péče"
             },

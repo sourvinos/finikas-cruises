@@ -12,7 +12,6 @@ import { CachedReservationDialogComponent } from '../cached-reservation-dialog/c
 import { CryptoService } from 'src/app/shared/services/crypto.service'
 import { CustomerAutoCompleteVM } from '../../../customers/classes/view-models/customer-autocomplete-vm'
 import { DateHelperService } from 'src/app/shared/services/date-helper.service'
-import { DestinationAutoCompleteVM } from '../../../destinations/classes/view-models/destination-autocomplete-vm'
 import { DexieService } from 'src/app/shared/services/dexie.service'
 import { DialogService } from 'src/app/shared/services/modal-dialog.service'
 import { DriverAutoCompleteVM } from '../../../drivers/classes/view-models/driver-autocomplete-vm'
@@ -33,6 +32,7 @@ import { ReservationReadDto } from '../../classes/dtos/form/reservation-read-dto
 import { ReservationWriteDto } from '../../classes/dtos/form/reservation-write-dto'
 import { SessionStorageService } from 'src/app/shared/services/session-storage.service'
 import { ValidationService } from './../../../../../shared/services/validation.service'
+import { DestinationAutoCompleteVM } from '../../../destinations/classes/view-models/destination-autocomplete-vm'
 
 @Component({
     selector: 'reservation-form',
@@ -260,6 +260,10 @@ export class ReservationFormComponent {
         })
     }
 
+    public updateFieldsAfterDestinationSelection(value: DestinationAutoCompleteVM): void {
+        this.sessionStorageService.saveItem('isPassportRequired', value.isPassportRequired.toString())
+    }
+
     public updateFieldsAfterPickupPointSelection(value: PickupPointAutoCompleteVM): void {
         this.form.patchValue({
             exactPoint: value.exactPoint,
@@ -304,6 +308,7 @@ export class ReservationFormComponent {
             this.populateFields()
             this.getPassengerDifferenceColor()
             this.cloneRecord()
+            this.storeIsPasswordRequiredOnGetRecord()
         }
     }
 
@@ -451,7 +456,7 @@ export class ReservationFormComponent {
             reservationId: this.record.reservationId,
             date: this.record.date,
             refNo: this.record.refNo,
-            destination: { 'id': this.record.destination.id, 'description': this.record.destination.description },
+            destination: { 'id': this.record.destination.id, 'description': this.record.destination.description, 'isPassportRequired': this.record.destination.isPassportRequired },
             customer: { 'id': this.record.customer.id, 'description': this.record.customer.description },
             pickupPoint: { 'id': this.record.pickupPoint.id, 'description': this.record.pickupPoint.description },
             exactPoint: this.record.pickupPoint.exactPoint,
@@ -549,6 +554,16 @@ export class ReservationFormComponent {
                     port: ''
                 })
             }
+        })
+    }
+
+    private storeIsPasswordRequiredOnGetRecord(): void {
+        this.sessionStorageService.saveItem('isPassportRequired', this.form.value.destination.isPassportRequired)
+    }
+
+    private storeIsPassportRequiredAfterDestinationSelection(): void {
+        this.form.get('destination').valueChanges.subscribe(value => {
+            this.sessionStorageService.saveItem('isPassportRequired', this.form.value(value.isPassportRequired))
         })
     }
 

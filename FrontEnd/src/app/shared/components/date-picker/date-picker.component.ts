@@ -21,6 +21,7 @@ export class DatePickerComponent {
     @Input() parentDate: string
     @Input() readOnly: boolean
     @Input() showHint: boolean
+    @Input() required: boolean
     @Output() outputValue = new EventEmitter()
 
     public feature = 'date-picker'
@@ -66,7 +67,7 @@ export class DatePickerComponent {
 
     private initForm(): void {
         this.form = this.formBuilder.group({
-            date: [this.parentDate, [Validators.required]]
+            date: [this.parentDate, this.required ? Validators.required : null]
         })
     }
 

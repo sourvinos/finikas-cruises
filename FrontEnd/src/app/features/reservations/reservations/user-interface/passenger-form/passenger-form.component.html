@@ -45,18 +45,26 @@
                 <mat-error *ngIf="!gender.hasError('required') && gender.hasError('incorrect')">{{ getHint("invalid") }}</mat-error>
             </mat-form-field>
             <!-- Birthdate -->
-            <date-picker (outputValue)="patchFormWithSelectedDate($event)" [dataTabIndex]="5" [isAdminOrNewRecord]=true [label]="getLabel('birthdate')" [parentDate]="getDate()" [readOnly]=false [showHint]=false></date-picker>
+            <date-picker (outputValue)="patchFormWithSelectedDate($event,'birthdate',false)" [dataTabIndex]="5" [isAdminOrNewRecord]=true [label]="getLabel('birthdate')" [parentDate]="getDate('birthdate')" [readOnly]=false [required]="true" [showHint]=false></date-picker>
+            <!-- Passport No -->
+            <mat-form-field *ngIf="isPassportRequired()">
+                <mat-label>{{ getLabel('passportNo') }}</mat-label>
+                <input [inputTabStop]="input" dataTabIndex="6" formControlName="passportNo" matInput>
+                <mat-error *ngIf="passportNo.hasError('required')">{{ getHint("required") }}</mat-error>
+            </mat-form-field>
+            <!-- Passport Expire date -->
+            <date-picker *ngIf="isPassportRequired()" (outputValue)="patchFormWithSelectedDate($event,'passportExpireDate',true)" [dataTabIndex]="7" [isAdminOrNewRecord]=true [label]="getLabel('passportExpireDate')" [parentDate]="getDate('passportExpireDate')" [readOnly]=false [required]="isPassportRequired()" [showHint]=false></date-picker>
             <!-- Special care -->
             <mat-form-field>
                 <mat-label>{{ getLabel('specialCare') }}</mat-label>
-                <input [inputTabStop]="input" dataTabIndex="6" formControlName="specialCare" matInput>
+                <input [inputTabStop]="input" [attr.dataTabIndex]="getTabIndex(8,6)" formControlName="specialCare" matInput>
                 <mat-error *ngIf="specialCare.hasError('required')">{{ getHint("required") }}</mat-error>
                 <mat-error *ngIf="specialCare.hasError('maxlength')">{{ getHint("maxLength", specialCare.errors.maxlength.requiredLength) }}</mat-error>
             </mat-form-field>
             <!-- Remarks -->
             <mat-form-field>
                 <mat-label>{{ getLabel('remarks') }}</mat-label>
-                <input [inputTabStop]="input" dataTabIndex="7" formControlName="remarks" matInput>
+                <input [inputTabStop]="input" [attr.dataTabIndex]="getTabIndex(9,7)" formControlName="remarks" matInput>
                 <mat-error *ngIf="remarks.hasError('required')">{{ getHint("required") }}</mat-error>
                 <mat-error *ngIf="remarks.hasError('maxlength')">{{ getHint("maxLength", remarks.errors.maxlength.requiredLength) }}</mat-error>
             </mat-form-field>

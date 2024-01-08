@@ -15,6 +15,8 @@ namespace API.Features.Reservations.Reservations {
         public string Firstname { get; set; }
         public string Birthdate { get; set; }
         public string Remarks { get; set; }
+        public string PassportNo { get; set; }
+        public string PassportExpireDate { get; set; }
         public string SpecialCare { get; set; }
         public bool IsBoarded { get; set; }
         // Navigation

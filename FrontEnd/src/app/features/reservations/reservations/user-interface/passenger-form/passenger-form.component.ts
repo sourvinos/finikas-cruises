@@ -84,8 +84,8 @@ export class PassengerFormComponent {
         this.isAutoCompleteDisabled = this.helperService.enableOrDisableAutoComplete(event)
     }
 
-    public getDate(): string {
-        return this.form.value.birthdate
+    public getDate(field: string): string {
+        return this.form.value[field]
     }
 
     public getHint(id: string, minmax = 0): string {
@@ -96,8 +96,16 @@ export class PassengerFormComponent {
         return this.messageLabelService.getDescription(this.feature, id)
     }
 
+    public getTabIndex(normal: number, exception: number): number {
+        return this.sessionStorageService.getItem('isPassportRequired').toString() == 'true' ? normal : exception
+    }
+
     public isAdmin(): boolean {
         return this.cryptoService.decrypt(this.sessionStorageService.getItem('isAdmin')) == 'true' ? true : false
+    }
+
+    public isPassportRequired(): boolean {
+        return this.sessionStorageService.getItem('isPassportRequired').toString() == 'true' ? true : false
     }
 
     public openOrCloseAutoComplete(trigger: MatAutocompleteTrigger, element: any): void {
@@ -113,9 +121,11 @@ export class PassengerFormComponent {
         this.closeDialog()
     }
 
-    public patchFormWithSelectedDate(event: any): void {
+    public patchFormWithSelectedDate(event: any, field: string, futureDateAllowed: boolean): void {
         this.form.patchValue({
-            birthdate: this.dateHelperService.gotoPreviousCenturyIfFutureDate(event.value.date)
+            [field]: (futureDateAllowed)
+                ? event.value.date
+                : this.dateHelperService.gotoPreviousCenturyIfFutureDate(event.value.date)
         })
     }
 
@@ -161,6 +171,8 @@ export class PassengerFormComponent {
             'firstname': this.form.value.firstname,
             'occupantId': 2,
             'birthdate': this.dateHelperService.formatDateToIso(new Date(this.form.value.birthdate)),
+            'passportNo': this.form.value.passportNo,
+            'passportExpireDate': this.dateHelperService.formatDateToIso(new Date(this.form.value.passportExpireDate)),
             'nationality': this.form.value.nationality,
             'gender': this.form.value.gender,
             'specialCare': this.form.value.specialCare,
@@ -198,7 +210,9 @@ export class PassengerFormComponent {
             nationality: ['', [Validators.required, ValidationService.RequireAutocomplete]],
             lastname: ['', [Validators.required, Validators.maxLength(128)]],
             firstname: ['', [Validators.required, Validators.maxLength(128)]],
-            birthdate: ['', [Validators.required]],
+            birthdate: ['', Validators.required],
+            passportNo: ['', this.isPassportRequired() ? Validators.required : null],
+            passportExpireDate: ['', this.isPassportRequired() ? Validators.required : null],
             specialCare: ['', Validators.maxLength(128)],
             remarks: ['', Validators.maxLength(128)],
             isBoarded: [{ value: false, disabled: !this.isAdmin }],
@@ -227,6 +241,8 @@ export class PassengerFormComponent {
                 lastname: this.record.lastname,
                 firstname: this.record.firstname,
                 birthdate: this.record.birthdate,
+                passportNo: this.record.passportNo,
+                passportExpireDate: this.record.passportExpireDate,
                 specialCare: this.record.specialCare,
                 remarks: this.record.remarks,
                 isBoarded: this.record.isBoarded
@@ -264,6 +280,14 @@ export class PassengerFormComponent {
 
     get birthdate(): AbstractControl {
         return this.form.get('birthdate')
+    }
+
+    get passportNo(): AbstractControl {
+        return this.form.get('passportNo')
+    }
+
+    get passportExpireDate(): AbstractControl {
+        return this.form.get('passportExpireDate')
     }
 
     get specialCare(): AbstractControl {

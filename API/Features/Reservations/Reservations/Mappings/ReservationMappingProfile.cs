@@ -1,4 +1,5 @@
 using System.Linq;
+using API.Features.Reservations.Destinations;
 using API.Features.Reservations.PickupPoints;
 using API.Features.Reservations.Ports;
 using API.Infrastructure.Classes;
@@ -31,7 +32,11 @@ namespace API.Features.Reservations.Reservations {
             CreateMap<Reservation, ReservationReadDto>()
                 .ForMember(x => x.Date, x => x.MapFrom(x => DateHelpers.DateToISOString(x.Date)))
                 .ForMember(x => x.Customer, x => x.MapFrom(x => new SimpleEntity { Id = x.Customer.Id, Description = x.Customer.Description }))
-                .ForMember(x => x.Destination, x => x.MapFrom(x => new SimpleEntity { Id = x.Destination.Id, Description = x.Destination.Description }))
+                .ForMember(x => x.Destination, x => x.MapFrom(x => new DestinationAutoCompleteVM {
+                    Id = x.Destination.Id,
+                    Description = x.Destination.Description,
+                    IsPassportRequired = x.Destination.IsPassportRequired
+                }))
                 .ForMember(x => x.Driver, x => x.MapFrom(x => x.Driver == null ? new SimpleEntity { Id = 0, Description = "(EMPTY)" } : new SimpleEntity { Id = x.Driver.Id, Description = x.Driver.Description }))
                 .ForMember(x => x.Ship, x => x.MapFrom(x => x.Ship == null ? new SimpleEntity { Id = 0, Description = "(EMPTY)" } : new SimpleEntity { Id = x.Ship.Id, Description = x.Ship.Description }))
                 .ForMember(x => x.PickupPoint, x => x.MapFrom(x => new PickupPointAutoCompleteVM {
@@ -61,7 +66,9 @@ namespace API.Features.Reservations.Reservations {
                     Gender = new SimpleEntity {
                         Id = passenger.Gender.Id,
                         Description = passenger.Gender.Description
-                    }
+                    },
+                    PassportNo = passenger.PassportNo,
+                    PassportExpireDate = DateHelpers.DateToISOString(passenger.PassportExpireDate),
                 })));
             // Read passenger
             CreateMap<Passenger, PassengerReadDto>()
@@ -70,7 +77,8 @@ namespace API.Features.Reservations.Reservations {
                     Id = x.Nationality.Id,
                     Description = x.Nationality.Description,
                     Code = x.Nationality.Code
-                }));
+                }))
+                .ForMember(x => x.PassportExpireDate, x => x.MapFrom(x => DateHelpers.DateToISOString(x.PassportExpireDate)));
             // Write reservation
             CreateMap<ReservationWriteDto, Reservation>()
                 .ForMember(x => x.TicketNo, x => x.MapFrom(x => x.TicketNo.Trim()))

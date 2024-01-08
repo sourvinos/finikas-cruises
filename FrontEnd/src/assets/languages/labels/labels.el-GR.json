@@ -1156,6 +1156,14 @@
                 "description": "Φύλο"
             },
             {
+                "id": "passportNo",
+                "description": "Αριθμός διαβατηρίου"
+            },
+            {
+                "id": "passportExpireDate",
+                "description": "Ημερομηνία λήξης διαβατηρίου"
+            },
+            {
                 "id": "specialCare",
                 "description": "Ειδική φροντίδα"
             },

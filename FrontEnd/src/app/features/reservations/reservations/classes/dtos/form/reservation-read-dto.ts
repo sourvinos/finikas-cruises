@@ -1,5 +1,6 @@
 import { Guid } from 'guid-typescript'
 // Custom
+import { DestinationAutoCompleteVM } from 'src/app/features/reservations/destinations/classes/view-models/destination-autocomplete-vm'
 import { Metadata } from 'src/app/shared/classes/metadata'
 import { PassengerReadDto } from './passenger-read-dto'
 import { PickupPointAutoCompleteVM } from '../../../../pickupPoints/classes/view-models/pickupPoint-autocomplete-vm'
@@ -11,7 +12,7 @@ export interface ReservationReadDto extends Metadata {
     reservationId: Guid
     // Object fields
     customer: SimpleEntity
-    destination: SimpleEntity
+    destination: DestinationAutoCompleteVM
     driver: SimpleEntity
     pickupPoint: PickupPointAutoCompleteVM
     port: SimpleEntity

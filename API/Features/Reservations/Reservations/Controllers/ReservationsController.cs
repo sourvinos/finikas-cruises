@@ -90,7 +90,7 @@ namespace API.Features.Reservations.Reservations {
         [Authorize(Roles = "user, admin")]
         [ServiceFilter(typeof(ModelValidationAttribute))]
         public async Task<ResponseWithBody> Post([FromBody] ReservationWriteDto reservation) {
-            UpdateDriverIdWithNull(reservation);
+            UpdateDriverIdWithNull(reservation);    
             UpdateShipIdWithNull(reservation);
             AttachNewRefNoToDto(reservation);
             var z = reservationValidation.IsValidAsync(null, reservation, scheduleRepo);

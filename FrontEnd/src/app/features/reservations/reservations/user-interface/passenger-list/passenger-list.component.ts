@@ -93,6 +93,8 @@ export class PassengerListComponent {
                 lastname: passenger.lastname,
                 firstname: passenger.firstname,
                 birthdate: passenger.birthdate,
+                passportNo: passenger.passportNo,
+                passportExpireDate: passenger.passportExpireDate,
                 remarks: passenger.remarks,
                 specialCare: passenger.specialCare,
                 isBoarded: passenger.isBoarded,
@@ -106,6 +108,8 @@ export class PassengerListComponent {
                 passenger.nationality = result.nationality
                 passenger.birthdate = result.birthdate
                 passenger.gender = result.gender
+                passenger.passportNo = result.passportNo
+                passenger.passportExpireDate = result.passportExpireDate
                 passenger.specialCare = result.specialCare
                 passenger.remarks = result.remarks
                 passenger.isBoarded = result.isBoarded
@@ -124,6 +128,8 @@ export class PassengerListComponent {
                 nationality: { 'id': 1, 'description': '' },
                 gender: { 'id': 1, 'description': '' },
                 birthdate: '',
+                passportNo: '',
+                passportExpireDate: '',
                 specialCare: '',
                 remarks: '',
                 isBoarded: false

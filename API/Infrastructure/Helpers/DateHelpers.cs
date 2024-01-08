@@ -29,6 +29,11 @@ namespace API.Infrastructure.Helpers {
             return DateTime.TryParseExact(date, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out _);
         }
 
+        public static bool BeEmptyOrValidDate(string date) {
+            return date != "" || DateTime.TryParseExact(date, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out _);
+        }
+
+
         public static DateTime GetLocalDateTime() {
             var x = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.Now, "E. Europe Standard Time");
             return x;

@@ -1156,6 +1156,14 @@
                 "description": "Sexe"
             },
             {
+                "id": "passportNo",
+                "description": "Numéro de passeport"
+            },
+            {
+                "id": "passportExpireDate",
+                "description": "Date d'expiration du passeport"
+            },
+            {
                 "id": "specialCare",
                 "description": "Traitement special"
             },
