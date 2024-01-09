@@ -45,12 +45,12 @@ namespace API.Infrastructure.Users {
                 "key",
                 LoadNewUserEmailTemplateFromFile(),
                 new UserDetailsForEmailVM {
+                    Logo = "Finikas Cruises",
                     Username = model.Username,
                     Displayname = model.Displayname,
                     Email = model.Email,
                     Url = model.Url,
                     CompanyPhones = this.parametersRepo.GetAsync().Result.Phones,
-                    LogoTextBase64 = SetLogoTextAsBackground()
                 });
         }
 

@@ -81,12 +81,12 @@ export class PickupPointPdfService {
             type: 'none',
             margin: [0, 0, 0, 0],
             ul: [
-                { text: '.', fontSize: 14, style: 'Prompt' },
-                { text: '..' },
-                { text: '...' },
-                { text: '....' },
-                { text: '.....' },
-                { text: '......' }
+                { text: '', fontSize: 14, style: 'Prompt' },
+                { text: '' },
+                { text: '' },
+                { text: '' },
+                { text: '' },
+                { text: '' }
             ]
         }
     }

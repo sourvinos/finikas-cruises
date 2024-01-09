@@ -147,6 +147,14 @@ export class PassengerFormComponent {
         return Math.round(Math.random() * new Date().getMilliseconds())
     }
 
+    private assignPassportExpireDate(): string {
+        if (this.isPassportRequired()) {
+            return this.dateHelperService.formatDateToIso(new Date(this.form.value.passportExpireDate))
+        } else {
+            return '9999-12-31'
+        }
+    }
+
     private closeDialog(): void {
         this.ngZone.run(() => {
             this.dialogRef.close(this.flattenForm())
@@ -172,17 +180,13 @@ export class PassengerFormComponent {
             'occupantId': 2,
             'birthdate': this.dateHelperService.formatDateToIso(new Date(this.form.value.birthdate)),
             'passportNo': this.form.value.passportNo,
-            'passportExpireDate': this.dateHelperService.formatDateToIso(new Date(this.form.value.passportExpireDate)),
+            'passportExpireDate': this.assignPassportExpireDate(),
             'nationality': this.form.value.nationality,
             'gender': this.form.value.gender,
             'specialCare': this.form.value.specialCare,
             'remarks': this.form.value.remarks,
             'isBoarded': this.form.value.isBoarded
         }
-    }
-
-    private focusOnField(): void {
-        this.helperService.focusOnField()
     }
 
     private getNationalityFromStorage(): void {

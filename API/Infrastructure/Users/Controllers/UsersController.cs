@@ -123,13 +123,13 @@ namespace API.Infrastructure.Users {
         public Task<Response> EmailUserDetails([FromBody] UserDetailsForEmailVM model) {
             string baseUrl = environmentSettings.BaseUrl;
             var userDetails = new UserDetailsForEmailVM {
+                Logo = "Finikas Cruises",
                 Email = model.Email,
                 Username = model.Username,
                 Displayname = model.Displayname,
                 Url = baseUrl,
                 Subject = "Your new account is ready!",
                 CompanyPhones = this.parametersRepo.GetAsync().Result.Phones,
-                LogoTextBase64 = SetLogoTextAsBackground()
             };
             var response = emailSender.EmailUserDetails(userDetails);
             if (response.Exception == null) {

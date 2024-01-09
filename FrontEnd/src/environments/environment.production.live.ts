@@ -1,11 +1,11 @@
 // ng build --output-path="release" --configuration=production-live
 
 export const environment = {
-    apiUrl: '',
-    url: '',
-    appName: '',
-    clientUrl: '',
-    defaultLanguage: 'en-GB',
+    apiUrl: 'https://appfinikascruises.com/api',
+    url: 'https://appfinikascruises.com',
+    appName: 'Finikas Cruises',
+    clientUrl: 'https://appfinikascruises.com',
+    defaultLanguage: 'el-GR',
     featuresIconDirectory: 'assets/images/features/',
     nationalitiesIconDirectory: 'assets/images/nationalities/',
     portStopOrdersDirectory: 'assets/images/port-stop-orders/',
