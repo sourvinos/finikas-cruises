@@ -81,6 +81,8 @@ namespace API.Features.Reservations.Manifest {
                     Firstname = passenger.Firstname.Trim().ToUpper(),
                     Birthdate = DateHelpers.DateToISOString(passenger.Birthdate),
                     Phones = passenger.Reservation.Phones.Trim(),
+                    PassportNo = passenger.PassportNo,
+                    PassportExpireDate = ReplaceYearWithSpace(DateHelpers.DateToISOString(passenger.PassportExpireDate)),
                     Remarks = passenger.Remarks.Trim(),
                     SpecialCare = passenger.SpecialCare.Trim(),
                     Gender = new SimpleEntity {
@@ -97,6 +99,10 @@ namespace API.Features.Reservations.Manifest {
                         Description = passenger.Occupant.Description
                     }
                 }).OrderBy(x => x.Lastname).ThenBy(x => x.Firstname).ThenBy(x => x.Birthdate)));
+        }
+
+        private static string ReplaceYearWithSpace(string date) {
+            return date[..4] == "9999" ? "" : date;
         }
 
     }

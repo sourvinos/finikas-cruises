@@ -54,9 +54,9 @@ export class ManifestPdfService {
                     },
                     [
                         this.createTable(this.pdfVM,
-                            ['', '', '', '', '', 'date', '', '', '', ''],
-                            ['', 'lastname', 'firstname', 'gender', 'nationality', 'birthdate', 'occupant', 'specialCare', 'phones', 'remarks'],
-                            ['right', 'left', 'left', 'center', 'center', 'center', 'left', 'left', 'left', 'left'])
+                            ['', '', '', '', '', 'date', '', '', '', 'date', '', ''],
+                            ['', 'lastname', 'firstname', 'gender', 'nationality', 'birthdate', 'occupant', 'specialCare', 'passportNo', 'passportExpireDate', 'phones', 'remarks'],
+                            ['right', 'left', 'left', 'center', 'center', 'center', 'left', 'left', 'left', 'center', 'left', 'left'])
                     ],
                     {
                         table: {
@@ -69,8 +69,8 @@ export class ManifestPdfService {
                     }
                 ],
             styles: {
-                AkaAcidCanterBold: {
-                    font: 'AkaAcidCanterBold',
+                Prompt: {
+                    font: 'Prompt',
                 },
                 PFHandbookPro: {
                     font: 'PFHandbookPro',
@@ -103,7 +103,7 @@ export class ManifestPdfService {
             type: 'none',
             margin: [0, 0, 0, 0],
             ul: [
-                { text: manifest.ship.shipOwner.description, fontSize: 14, style: 'AkaAcidCanterBold' },
+                { text: manifest.ship.shipOwner.description, fontSize: 14 },
                 { text: manifest.ship.shipOwner.profession },
                 { text: manifest.ship.shipOwner.address },
                 { text: manifest.ship.shipOwner.city },
@@ -119,7 +119,7 @@ export class ManifestPdfService {
             margin: [0, 0, 0, 0],
             ul: [
                 { text: 'ΗΜΕΡΟΜΗΝΙΑ ' + this.dateHelperService.formatISODateToLocale(manifest.date, false, true) },
-                { text: 'ΚΑΤΑΣΤΑΣΗ ΕΠΙΒΑΙΝΟΝΤΩΝ', fontSize: 13, style: 'AkaAcidCanterBold' },
+                { text: 'ΚΑΤΑΣΤΑΣΗ ΕΠΙΒΑΙΝΟΝΤΩΝ', fontSize: 13 },
                 { text: 'ΠΛΟΙΟ: ' + manifest.ship.description },
                 { text: 'ΤΕΛΙΚΟΣ ΠΡΟΟΡΙΣΜΟΣ: ' + manifest.destination.description },
             ]
@@ -131,7 +131,7 @@ export class ManifestPdfService {
             type: 'none',
             margin: [0, 0, 0, 0],
             ul: [
-                { text: 'ΣΤΟΙΧΕΙΑ ΠΛΟΙΟΥ', fontSize: 9, style: 'AkaAcidCanterBold' },
+                { text: 'ΣΤΟΙΧΕΙΑ ΠΛΟΙΟΥ', fontSize: 9 },
                 { text: 'ΟΝΟΜΑ: ' + manifest.ship.description },
                 { text: 'ΣΗΜΑΙΑ: ' + manifest.ship.flag },
                 { text: 'ΑΡΙΘΜΟΣ ΝΗΟΛΟΓΙΟΥ: ' + manifest.ship.registryNo },
@@ -145,7 +145,7 @@ export class ManifestPdfService {
             type: 'none',
             margin: [0, 0, 0, 0],
             ul: [
-                { text: 'ΣΤΟΙΧΕΙΑ ΕΤΑΙΡΙΑΣ', fontSize: 9, style: 'AkaAcidCanterBold' },
+                { text: 'ΣΤΟΙΧΕΙΑ ΕΤΑΙΡΙΑΣ', fontSize: 9 },
                 { text: 'ΥΠΕΥΘΥΝΟΣ ΔΙΑΧΕΙΡΙΣΤΗΣ: ' + manifest.ship.manager },
                 { text: 'ΔΙΑΧΕΙΡΙΣΤΗΣ ΣΤΗΝ ΕΛΛΑΔΑ: ' + manifest.ship.managerInGreece },
                 { text: 'ΥΠΕΥΘΥΝΟΙ ΝΑΥΤΙΚΟΙ ΠΡΑΚΤΟΡΕΣ: ' + manifest.ship.agent }
@@ -158,7 +158,7 @@ export class ManifestPdfService {
             type: 'none',
             margin: [0, 0, 0, 0],
             ul: [
-                { text: 'ΛΙΜΕΝΕΣ', fontSize: 9, style: 'AkaAcidCanterBold' },
+                { text: 'ΛΙΜΕΝΕΣ', fontSize: 9 },
                 { text: 'ΛΙΜΕΝΑΣ ΑΠΟΠΛΟΥ: ' + manifest.shipRoute.fromPort + ' ΩΡΑ ' + manifest.shipRoute.fromTime },
                 { text: 'ΕΝΔΙΑΜΕΣΟΙ ΛΙΜΕΝΕΣ ΠΡΟΣΕΓΓΙΣΗΣ: ' + this.buildViaPorts(manifest) },
                 { text: 'ΛΙΜΕΝΑΣ ΚΑΤΑΠΛΟΥ: ' + manifest.shipRoute.toPort + ' ΩΡΑ ' + manifest.shipRoute.toTime }
@@ -171,7 +171,7 @@ export class ManifestPdfService {
             type: 'none',
             margin: [0, 0, 0, 0],
             ul: [
-                { text: 'ΥΠΕΥΘΥΝΟΣ ΚΑΤΑΓΡΑΦΗΣ', fontSize: 9, style: 'AkaAcidCanterBold' },
+                { text: 'ΥΠΕΥΘΥΝΟΣ ΚΑΤΑΓΡΑΦΗΣ', fontSize: 9 },
                 { text: 'ΟΝΟΜΑΤΕΠΩΝΥΜΟ: ' + manifest.ship.registrars[0].fullname },
                 { text: 'ΤΗΛΕΦΩΝΑ: ' + manifest.ship.registrars[0].phones },
                 { text: 'EMAIL: ' + manifest.ship.registrars[0].email },
@@ -187,7 +187,7 @@ export class ManifestPdfService {
             type: 'none',
             margin: [0, 0, 0, 0],
             ul: [
-                { text: 'ΑΝΤΙΚΑΤΑΣΤΑΤΗΣ ΥΠΕΥΘΥΝΟΥ ΚΑΤΑΓΡΑΦΗΣ', fontSize: 9, style: 'AkaAcidCanterBold' },
+                { text: 'ΑΝΤΙΚΑΤΑΣΤΑΤΗΣ ΥΠΕΥΘΥΝΟΥ ΚΑΤΑΓΡΑΦΗΣ', fontSize: 9 },
                 { text: 'ΟΝΟΜΑΤΕΠΩΝΥΜΟ: ' + manifest.ship.registrars[1].fullname },
                 { text: 'ΤΗΛΕΦΩΝΑ: ' + manifest.ship.registrars[1].phones },
                 { text: 'EMAIL: ' + manifest.ship.registrars[1].email },
@@ -208,6 +208,8 @@ export class ManifestPdfService {
             { text: 'ΗΜΕΡΟΜΗΝΙΑ ΓΕΝΝΗΣΗΣ', style: 'tableHeader', alignment: 'center' },
             { text: 'ΙΔΙΟΤΗΤΑ', style: 'tableHeader', alignment: 'center' },
             { text: 'ΕΙΔΙΚΗ ΦΡΟΝΤΙΔΑ', style: 'tableHeader', alignment: 'center' },
+            { text: 'Νο ΔΙΑΒΑΤΗΡΙΟΥ', style: 'tableHeader', alignment: 'center' },
+            { text: 'ΗΜΕΡΟΜΗΝΙΑ ΛΗΞΗΣ', style: 'tableHeader', alignment: 'center' },
             { text: 'ΤΗΛΕΦΩΝΑ', style: 'tableHeader', alignment: 'center' },
             { text: 'ΠΑΡΑΤΗΡΗΣΕΙΣ', style: 'tableHeader', alignment: 'center' },
         ]
@@ -221,7 +223,7 @@ export class ManifestPdfService {
                 body: this.createTableRows(data, columnTypes, columns, align),
                 bold: false,
                 style: 'table',
-                widths: [15, 120, 120, 30, 30, 35, 30, 80, 100, 120],
+                widths: [15, 120, 120, 30, 30, 35, 30, 80, 40, 35, 50, 50],
             },
             layout: {
                 hLineColor: function (): string {
@@ -254,7 +256,7 @@ export class ManifestPdfService {
                 { text: ' ' },
                 { text: 'ΒΕΒΑΙΩΝΕΤΑΙ Η ΑΚΡΙΒΕΙΑ ΤΩΝ ΣΤΟΙΧΕΙΩΝ' },
                 { text: 'ΚΑΙ ΠΛΗΡΟΦΟΡΙΩΝ ΑΠΟ ΤΟΝ / ΤΗΝ' },
-                { text: manifest.ship.manager, fontSize: 9, style: 'AkaAcidCanterBold' },
+                { text: manifest.ship.manager, fontSize: 9 },
                 { text: 'ΠΟΥ ΕΧΕΙ ΟΡΙΣΤΕΙ ΑΠΟ ΤΗΝ ΕΤΑΙΡΙΑ ΓΙΑ ΤΗ ΔΙΑΒΙΒΑΣΗ ΤΟΥΣ ΣΤΗΝ ΑΡΧΗ' }
             ]
         }
@@ -282,7 +284,9 @@ export class ManifestPdfService {
     private formatField(type: any, field: string | number | Date): string {
         switch (type) {
             case 'date':
-                return this.dateHelperService.formatISODateToLocale(field.toString(), false, true)
+                return field.toString() != ''
+                    ? this.dateHelperService.formatISODateToLocale(field.toString(), false, true)
+                    : ''
             default:
                 return field != undefined ? field.toString() : ''
         }
@@ -302,10 +306,10 @@ export class ManifestPdfService {
     }
 
     private setFonts(): void {
-        pdfFonts.pdfMake.vfs['AkaAcidCanterBold'] = strPrompt
+        pdfFonts.pdfMake.vfs['Prompt'] = strPrompt
         pdfFonts.pdfMake.vfs['PFHandbookPro'] = strPFHandbookPro
         pdfMake.fonts = {
-            AkaAcidCanterBold: { normal: 'AkaAcidCanterBold' },
+            Prompt: { normal: 'Prompt' },
             PFHandbookPro: { normal: 'PFHandbookPro' }
         }
     }

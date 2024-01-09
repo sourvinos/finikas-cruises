@@ -11,6 +11,8 @@ export interface ManifestPassengerVM {
     gender: SimpleEntity,
     nationality: ManifestNationalityVM,
     occupant: SimpleEntity,
+    passportNo: string
+    passportExpireDate: string
     remarks: string
     specialCare: string
 
