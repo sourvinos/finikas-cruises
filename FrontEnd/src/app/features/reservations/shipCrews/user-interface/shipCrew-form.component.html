@@ -22,7 +22,7 @@
                 <mat-error *ngIf="firstname.hasError('maxlength')">{{ getHint("maxLength", firstname.errors.maxlength.requiredLength) }}</mat-error>
             </mat-form-field>
             <!-- Birthdate -->
-            <date-picker (outputValue)="patchFormWithSelectedDate($event)" [dataTabIndex]="3" [isAdminOrNewRecord]=true [label]="getLabel('birthdate')" [parentDate]="getDate()" [readOnly]=false [showHint]=false></date-picker>
+            <date-picker (outputValue)="patchFormWithSelectedBirthdate($event)" [dataTabIndex]="3" [isAdminOrNewRecord]=true [label]="getLabel('birthdate')" [parentDate]="getBirthdate()" [readOnly]=false [showHint]=false></date-picker>
             <!-- Ship -->
             <mat-form-field>
                 <mat-label>{{ getLabel('ship') }}</mat-label>
@@ -59,6 +59,13 @@
                 <mat-error *ngIf="gender.hasError('required')">{{ getHint("required") }}</mat-error>
                 <mat-error *ngIf="!gender.hasError('required') && gender.hasError('incorrect')">{{ getHint("invalid") }}</mat-error>
             </mat-form-field>
+            <!-- Passport No -->
+            <mat-form-field>
+                <mat-label>{{ getLabel('passportNo') }}</mat-label>
+                <input [inputTabStop]="input" dataTabIndex="7" formControlName="passportNo" matInput>
+            </mat-form-field>
+            <!-- Passport Expire date -->
+            <date-picker (outputValue)="patchFormWithSelectedPassportExpireDate($event)" [dataTabIndex]="8" [isAdminOrNewRecord]=true [label]="getLabel('passportExpireDate')" [parentDate]="getPassportExpireDate()" [readOnly]=false [showHint]=false></date-picker>
             <div class="stacked-checkboxes">
                 <!-- Active -->
                 <mat-checkbox formControlName="isActive">

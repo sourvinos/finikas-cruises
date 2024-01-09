@@ -1929,6 +1929,14 @@
                 "description": "Initial entry"
             },
             {
+                "id": "passportNo",
+                "description": "Passport No"
+            },
+            {
+                "id": "passportExpireDate",
+                "description": "Passport expire date"
+            },
+            {
                 "id": "put",
                 "description": "Last update"
             },

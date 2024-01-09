@@ -1929,6 +1929,14 @@
                 "description": "Erstmalige Registrierung"
             },
             {
+                "id": "passportNo",
+                "description": "Reisepass Nr."
+            },
+            {
+                "id": "passportExpireDate",
+                "description": "Ablaufdatum des Reisepasses"
+            },
+            {
                 "id": "put",
                 "description": "Letzte Aktualisierung"
             },

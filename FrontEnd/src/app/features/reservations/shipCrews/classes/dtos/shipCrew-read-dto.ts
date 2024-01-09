@@ -15,6 +15,8 @@ export interface ShipCrewReadDto extends Metadata {
     lastname: string
     firstname: string
     birthdate: string
+    passportNo: string
+    passportExpireDate: string
     isActive: boolean
 
 }

@@ -95,7 +95,7 @@ export class ShipCrewFormComponent {
         this.isAutoCompleteDisabled = this.helperService.enableOrDisableAutoComplete(event)
     }
 
-    public getDate(): string {
+    public getBirthdate(): string {
         return this.form.value.birthdate
     }
 
@@ -105,6 +105,10 @@ export class ShipCrewFormComponent {
 
     public getLabel(id: string): string {
         return this.messageLabelService.getDescription(this.feature, id)
+    }
+
+    public getPassportExpireDate(): string {
+        return this.form.value.passportExpireDate
     }
 
     public onDelete(): void {
@@ -130,15 +134,29 @@ export class ShipCrewFormComponent {
         this.helperService.openOrCloseAutocomplete(this.form, element, trigger)
     }
 
-    public patchFormWithSelectedDate(event: any): void {
+    public patchFormWithSelectedBirthdate(event: any): void {
         this.form.patchValue({
             birthdate: this.dateHelperService.gotoPreviousCenturyIfFutureDate(event.value.date)
+        })
+    }
+
+    public patchFormWithSelectedPassportExpireDate(event: any): void {
+        this.form.patchValue({
+            passportExpireDate: event.value.date
         })
     }
 
     //#endregion
 
     //#region private methods
+
+    private assignPassportExpireDate(date: string): string {
+        if (date != '') {
+            return this.dateHelperService.formatDateToIso(new Date(this.form.value.passportExpireDate))
+        } else {
+            return '9999-12-31'
+        }
+    }
 
     private filterAutocomplete(array: string, field: string, value: any): any[] {
         if (typeof value !== 'object') {
@@ -157,6 +175,8 @@ export class ShipCrewFormComponent {
             lastname: this.form.value.lastname,
             firstname: this.form.value.firstname,
             birthdate: this.dateHelperService.formatDateToIso(new Date(this.form.value.birthdate)),
+            passportNo: this.form.value.passportNo,
+            passportExpireDate: this.assignPassportExpireDate(this.form.value.passportExpireDate),
             isActive: this.form.value.isActive,
             putAt: this.form.value.putAt
         }
@@ -196,6 +216,8 @@ export class ShipCrewFormComponent {
             ship: ['', [Validators.required, ValidationService.RequireAutocomplete]],
             nationality: ['', [Validators.required, ValidationService.RequireAutocomplete]],
             gender: ['', [Validators.required, ValidationService.RequireAutocomplete]],
+            passportNo: [''],
+            passportExpireDate: [''],
             isActive: true,
             postAt: [''],
             postUser: [''],
@@ -227,6 +249,8 @@ export class ShipCrewFormComponent {
                 ship: { 'id': this.record.ship.id, 'description': this.record.ship.description },
                 nationality: { 'id': this.record.nationality.id, 'description': this.record.nationality.description },
                 gender: { 'id': this.record.gender.id, 'description': this.record.gender.description },
+                passportNo: this.record.passportNo,
+                passportExpireDate: this.record.passportExpireDate,
                 isActive: this.record.isActive,
                 postAt: this.record.postAt,
                 postUser: this.record.postUser,
@@ -294,6 +318,14 @@ export class ShipCrewFormComponent {
 
     get gender(): AbstractControl {
         return this.form.get('gender')
+    }
+
+    get passportNo(): AbstractControl {
+        return this.form.get('passportNo')
+    }
+
+    get passportExpireDate(): AbstractControl {
+        return this.form.get('passportExpireDate')
     }
 
     get postAt(): AbstractControl {

@@ -122,7 +122,7 @@ export class ManifestListComponent {
     private addCrewToList(): void {
         if (this.records.passengers.length > 0) {
             this.records.ship.crew.forEach(crew => {
-                // this.records.passengers.push(crew)
+                this.records.passengers.push(crew)
             })
         }
     }

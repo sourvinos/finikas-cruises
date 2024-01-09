@@ -1929,6 +1929,14 @@
                 "description": "Prvotní zadání"
             },
             {
+                "id": "passportNo",
+                "description": "Číslo pasu."
+            },
+            {
+                "id": "passportExpireDate",
+                "description": "Datum vypršení platnosti pasu"
+            },
+            {
                 "id": "put",
                 "description": "Poslední aktualizace"
             },

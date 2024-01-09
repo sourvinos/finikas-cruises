@@ -20,6 +20,7 @@ namespace API.Features.Reservations.ShipCrews {
             CreateMap<ShipCrewWriteDto, ShipCrew>()
                 .ForMember(x => x.Lastname, x => x.MapFrom(x => x.Lastname.Trim()))
                 .ForMember(x => x.Firstname, x => x.MapFrom(x => x.Firstname.Trim()))
+                .ForMember(x => x.PassportExpireDate, x => x.MapFrom(x => x.PassportExpireDate ?? null))
                 .ForMember(x => x.OccupantId, x => x.MapFrom(x => 1));
         }
 

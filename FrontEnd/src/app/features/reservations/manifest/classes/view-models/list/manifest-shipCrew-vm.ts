@@ -10,7 +10,9 @@ export interface ManifestShipCrewVM {
     phones: string
     gender: SimpleEntity,
     nationality: ManifestNationalityVM,
-    occupant: SimpleEntity,
+    occupant: SimpleEntity
+    passportNo: string
+    passportExpireDate: string
     remarks: string
     specialCare: string
 

@@ -10,6 +10,8 @@ export interface ShipCrewWriteDto {
     lastname: string
     firstname: string
     birthdate: string
+    passportNo: string
+    passportExpireDate: string
     isActive: boolean
     // Rowversion
     putAt: string

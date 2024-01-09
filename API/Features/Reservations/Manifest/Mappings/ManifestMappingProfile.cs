@@ -49,6 +49,8 @@ namespace API.Features.Reservations.Manifest {
                             Firstname = crew.Firstname.ToUpper(),
                             Birthdate = DateHelpers.DateToISOString(crew.Birthdate),
                             Phones = "",
+                            PassportNo = crew.PassportNo,
+                            PassportExpireDate = ReplaceYearWithSpace(DateHelpers.DateToISOString(crew.PassportExpireDate)),
                             Gender = new SimpleEntity {
                                 Id = crew.Gender.Id,
                                 Description = crew.Gender.Description
