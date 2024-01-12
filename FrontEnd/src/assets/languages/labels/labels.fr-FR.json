@@ -1123,6 +1123,10 @@
                 "description": "Nationalite"
             },
             {
+                "id": "importPassengersButton",
+                "description": "Importer des passagers"
+            },
+            {
                 "id": "newPassengerButton",
                 "description": "Nouveau passager"
             }
@@ -1182,6 +1186,27 @@
             {
                 "id": "okButton",
                 "description": "OK"
+            }
+        ]
+    },
+    {
+        "feature": "passengerImport",
+        "labels": [
+            {
+                "id": "header",
+                "description": "Importer des passagers"
+            },
+            {
+                "id": "remarks",
+                "description": "Copiez les lignes de la feuille de calcul et collez-les ici!"
+            },
+            {
+                "id": "cancelButton",
+                "description": "Annuler"
+            },
+            {
+                "id": "okButton",
+                "description": "ΟΚ"
             }
         ]
     },

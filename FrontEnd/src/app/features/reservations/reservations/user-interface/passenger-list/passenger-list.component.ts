@@ -9,6 +9,7 @@ import { MessageLabelService } from 'src/app/shared/services/message-label.servi
 import { PassengerFormComponent } from '../passenger-form/passenger-form.component'
 import { PassengerReadDto } from '../../classes/dtos/form/passenger-read-dto'
 import { environment } from 'src/environments/environment'
+import { PassengerImportComponent } from '../passenger-import/passenger-import.component'
 
 @Component({
     selector: 'passenger-list',
@@ -41,14 +42,7 @@ export class PassengerListComponent {
         }
     }
 
-    public deleteRow(record: PassengerReadDto): void {
-        const index = this.passengers.indexOf(record)
-        this.passengers.splice(index, 1)
-        this.outputPassengerCount.emit(this.passengers.length)
-        this.outputPassengers.emit(this.passengers)
-    }
-
-    public editRecord(record: any): void {
+    public onEditRecord(record: any): void {
         this.showPassengerForm(record)
     }
 
@@ -70,12 +64,30 @@ export class PassengerListComponent {
         }
     }
 
-    public highlightRow(id: any): void {
+    public onDeleteRow(record: PassengerReadDto): void {
+        const index = this.passengers.indexOf(record)
+        this.passengers.splice(index, 1)
+        this.outputPassengerCount.emit(this.passengers.length)
+        this.outputPassengers.emit(this.passengers)
+    }
+
+    public onHighlightRow(id: any): void {
         this.helperService.highlightRow(id)
     }
 
-    public newRow(): void {
+    public onNewRow(): void {
         this.showPassengerForm()
+    }
+
+    public onShowImportDialog(): void {
+        const dialog = this.dialog.open(PassengerImportComponent, {
+            data: {
+                reservationId: this.reservationId
+            }
+        })
+        dialog.afterClosed().subscribe(() => {
+            // Run checks
+        })
     }
 
     //#endregion

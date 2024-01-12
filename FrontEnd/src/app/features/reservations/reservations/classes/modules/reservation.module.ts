@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core'
 // Custom
 import { CachedReservationDialogComponent } from '../../user-interface/cached-reservation-dialog/cached-reservation-dialog.component'
 import { PassengerFormComponent } from '../../user-interface/passenger-form/passenger-form.component'
+import { PassengerImportComponent } from '../../user-interface/passenger-import/passenger-import.component'
 import { PassengerListComponent } from '../../user-interface/passenger-list/passenger-list.component'
 import { ReservationAssignDialogComponent } from '../../user-interface/reservation-assign-dialog/reservation-assign-dialog.component'
 import { ReservationCalendarComponent } from '../../user-interface/calendar/reservation-calendar.component'
@@ -15,6 +16,7 @@ import { SharedModule } from '../../../../../shared/modules/shared.module'
         CachedReservationDialogComponent,
         PassengerFormComponent,
         PassengerListComponent,
+        PassengerImportComponent,
         ReservationAssignDialogComponent,
         ReservationCalendarComponent,
         ReservationFormComponent,

@@ -1123,6 +1123,10 @@
                 "description": "Nationalität"
             },
             {
+                "id": "importPassengersButton",
+                "description": "Passagiere importieren"
+            },
+            {
                 "id": "newPassengerButton",
                 "description": "Neuer Passagier"
             }
@@ -1174,6 +1178,27 @@
             {
                 "id": "isBoarded",
                 "description": "Einchecken"
+            },
+            {
+                "id": "cancelButton",
+                "description": "Abbrechen"
+            },
+            {
+                "id": "okButton",
+                "description": "OK"
+            }
+        ]
+    },
+    {
+        "feature": "passengerImport",
+        "labels": [
+            {
+                "id": "header",
+                "description": "Passagiere importieren"
+            },
+            {
+                "id": "remarks",
+                "description": "Kopieren Sie die Zeilen aus dem Arbeitsblatt und fügen Sie sie hier ein!"
             },
             {
                 "id": "cancelButton",

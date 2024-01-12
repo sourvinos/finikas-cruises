@@ -1123,6 +1123,10 @@
                 "description": "Národnost"
             },
             {
+                "id": "importPassengersButton",
+                "description": "Import cestujících"
+            },
+            {
                 "id": "newPassengerButton",
                 "description": "Nový pasažér"
             }
@@ -1182,6 +1186,27 @@
             {
                 "id": "okButton",
                 "description": "OK"
+            }
+        ]
+    },
+    {
+        "feature": "passengerImport",
+        "labels": [
+            {
+                "id": "header",
+                "description": "Import cestujících"
+            },
+            {
+                "id": "remarks",
+                "description": "Zkopírujte řádky z tabulky a vložte je sem!"
+            },
+            {
+                "id": "cancelButton",
+                "description": "Zrušit"
+            },
+            {
+                "id": "okButton",
+                "description": "Συνεχεια"
             }
         ]
     },

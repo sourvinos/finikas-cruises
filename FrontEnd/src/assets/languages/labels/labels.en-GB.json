@@ -1123,6 +1123,10 @@
                 "description": "Nationality"
             },
             {
+                "id": "importPassengersButton",
+                "description": "Import passengers"
+            },
+            {
                 "id": "newPassengerButton",
                 "description": "New passenger"
             }
@@ -1182,6 +1186,27 @@
             {
                 "id": "okButton",
                 "description": "OK"
+            }
+        ]
+    },
+    {
+        "feature": "passengerImport",
+        "labels": [
+            {
+                "id": "header",
+                "description": "Import passengers"
+            },
+            {
+                "id": "remarks",
+                "description": "Copy the rows from the spreadsheet and paste them here!"
+            },
+            {
+                "id": "cancelButton",
+                "description": "Cancel"
+            },
+            {
+                "id": "okButton",
+                "description": "ΟΚ"
             }
         ]
     },

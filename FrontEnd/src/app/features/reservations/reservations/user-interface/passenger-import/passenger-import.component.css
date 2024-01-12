@@ -1,0 +1,34 @@
+#dialog-wrapper {
+    background-color: var(--color-background);
+    display: flex;
+    flex-direction: column;
+    height: 30rem;
+    padding: 2rem 2rem 2rem 2rem;
+    row-gap: 1.5rem;
+    width: 60rem;
+}
+
+#dialog-header {
+    margin: 0 0 0 0;
+}
+
+#dialog-content {
+    height: 100%;
+}
+
+#remarks {
+    height: 13.43rem;
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+    resize: none;
+}
+
+#dialog-footer {
+    margin: 0 1rem 0 1rem;
+}
+
+#dialog-footer #align-right {
+    column-gap: 0.5rem;
+    display: flex;
+    justify-content: flex-end;
+}
