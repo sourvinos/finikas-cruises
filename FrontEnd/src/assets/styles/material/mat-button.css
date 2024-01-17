@@ -84,7 +84,7 @@ button.transparent:hover {
 }
 
 button.transparent > .mdc-button__label {
-    color: var(--color-transparent-button) !important;
+    color: var(--color-text) !important;
 }
 
 button:disabled {

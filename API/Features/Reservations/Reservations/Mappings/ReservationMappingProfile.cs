@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using API.Features.Reservations.Destinations;
 using API.Features.Reservations.PickupPoints;
@@ -86,11 +87,12 @@ namespace API.Features.Reservations.Reservations {
                 .ForMember(x => x.Remarks, x => x.MapFrom(x => x.Remarks.Trim()));
             // Write passenger
             CreateMap<PassengerWriteDto, Passenger>()
+                .ForMember(x => x.OccupantId, x => x.MapFrom(x => 2))
                 .ForMember(x => x.Lastname, x => x.MapFrom(x => x.Lastname.Trim()))
                 .ForMember(x => x.Firstname, x => x.MapFrom(x => x.Firstname.Trim()))
                 .ForMember(x => x.SpecialCare, x => x.MapFrom(x => x.SpecialCare.Trim()))
                 .ForMember(x => x.Remarks, x => x.MapFrom(x => x.Remarks.Trim()))
-                .ForMember(x => x.OccupantId, x => x.MapFrom(x => 2));
+                .ForMember(x => x.PassportNo, x => x.MapFrom(x => x.PassportNo.Trim()));
             // Boarding pass
             CreateMap<Reservation, BoardingPassReservationVM>()
                .ForMember(x => x.Date, x => x.MapFrom(x => DateHelpers.DateToISOString(x.Date)))

@@ -17,6 +17,8 @@ namespace API.Features.Reservations.ShipCrews {
             entity.Property(x => x.Lastname).HasMaxLength(128).IsRequired(true);
             entity.Property(x => x.Firstname).HasMaxLength(128).IsRequired(true);
             entity.Property(p => p.Birthdate).HasColumnType("date").IsRequired(true);
+            entity.Property(x => x.PassportNo).HasMaxLength(32).IsRequired(true);
+            entity.Property(x => x.PassportExpireDate).HasColumnType("date").HasMaxLength(10).IsRequired(true);
             entity.Property(x => x.IsActive);
             // Metadata
             entity.Property(x => x.PostAt).HasMaxLength(19).IsRequired(true);

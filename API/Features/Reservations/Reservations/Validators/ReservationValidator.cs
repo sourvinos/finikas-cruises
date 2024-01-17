@@ -24,7 +24,8 @@ namespace API.Features.Reservations.Reservations {
                 passenger.RuleFor(x => x.Lastname).NotEmpty().MaximumLength(128);
                 passenger.RuleFor(x => x.Firstname).NotEmpty().MaximumLength(128);
                 passenger.RuleFor(x => x.Birthdate).Must(DateHelpers.BeCorrectFormat);
-                passenger.RuleFor(x => x.PassportExpireDate).Must(DateHelpers.BeEmptyOrValidDate);
+                passenger.RuleFor(x => x.PassportNo).NotNull().MaximumLength(32);
+                passenger.RuleFor(x => x.PassportExpireDate).Must(DateHelpers.BeCorrectFormat);
                 passenger.RuleFor(x => x.Remarks).MaximumLength(128);
                 passenger.RuleFor(x => x.SpecialCare).MaximumLength(128);
             });

@@ -12,7 +12,8 @@ namespace API.Features.Reservations.ShipCrews {
             RuleFor(x => x.Lastname).NotEmpty().MaximumLength(128);
             RuleFor(x => x.Firstname).NotEmpty().MaximumLength(128);
             RuleFor(x => x.Birthdate).Must(DateHelpers.BeCorrectFormat);
-            RuleFor(x => x.PassportExpireDate).Must(DateHelpers.BeEmptyOrValidDate);
+            RuleFor(x => x.PassportNo).NotNull().MaximumLength(32);
+            RuleFor(x => x.PassportExpireDate).Must(DateHelpers.BeCorrectFormat);
         }
 
     }

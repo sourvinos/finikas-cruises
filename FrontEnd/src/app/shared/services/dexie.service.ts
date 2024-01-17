@@ -35,7 +35,7 @@ export class DexieService extends Dexie {
         })
     }
 
-    public getById(table: string, id: any): Promise<any> {
+    public getById(table: string, id: number): Promise<any> {
         return new Promise((resolve) => {
             this.table(table).where({ id: id }).first().then(response => {
                 resolve(response)

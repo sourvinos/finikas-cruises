@@ -47,13 +47,13 @@
             <!-- Birthdate -->
             <date-picker (outputValue)="patchFormWithSelectedDate($event,'birthdate',false)" [dataTabIndex]="5" [isAdminOrNewRecord]=true [label]="getLabel('birthdate')" [parentDate]="getDate('birthdate')" [readOnly]=false [required]="true" [showHint]=false></date-picker>
             <!-- Passport No -->
-            <mat-form-field *ngIf="isPassportRequired()">
+            <mat-form-field>
                 <mat-label>{{ getLabel('passportNo') }}</mat-label>
-                <input [inputTabStop]="input" dataTabIndex="6" formControlName="passportNo" matInput>
+                <input [inputTabStop]="input" dataTabIndex="6" formControlName="passportNo" matInput [readonly]="!isPassportRequired()">
                 <mat-error *ngIf="passportNo.hasError('required')">{{ getHint("required") }}</mat-error>
             </mat-form-field>
             <!-- Passport Expire date -->
-            <date-picker *ngIf="isPassportRequired()" (outputValue)="patchFormWithSelectedDate($event,'passportExpireDate',true)" [dataTabIndex]="7" [isAdminOrNewRecord]=true [label]="getLabel('passportExpireDate')" [parentDate]="getDate('passportExpireDate')" [readOnly]=false [required]="isPassportRequired()" [showHint]=false></date-picker>
+            <date-picker (outputValue)="patchFormWithSelectedDate($event,'passportExpireDate',true)" [dataTabIndex]="7" [isAdminOrNewRecord]=true [label]="getLabel('passportExpireDate')" [parentDate]="getDate('passportExpireDate')" [readOnly]="!isPassportRequired()" [required]="isPassportRequired()" [showHint]=false></date-picker>
             <!-- Special care -->
             <mat-form-field>
                 <mat-label>{{ getLabel('specialCare') }}</mat-label>

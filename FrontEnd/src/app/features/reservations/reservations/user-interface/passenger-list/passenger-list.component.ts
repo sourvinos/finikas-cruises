@@ -10,6 +10,7 @@ import { PassengerFormComponent } from '../passenger-form/passenger-form.compone
 import { PassengerReadDto } from '../../classes/dtos/form/passenger-read-dto'
 import { environment } from 'src/environments/environment'
 import { PassengerImportComponent } from '../passenger-import/passenger-import.component'
+import { PassengerClipboard } from '../../classes/view-models/passenger/passenger-clipboard-vm'
 
 @Component({
     selector: 'passenger-list',
@@ -85,14 +86,40 @@ export class PassengerListComponent {
                 reservationId: this.reservationId
             }
         })
-        dialog.afterClosed().subscribe(() => {
-            // Run checks
+        dialog.afterClosed().subscribe((passengers) => {
+            if (passengers != undefined) {
+                this.replaceExistingPassengersWithClipboardPassengers(passengers)
+                this.outputPassengerCount.emit(this.passengers.length)
+                this.outputPassengers.emit(this.passengers)
+            }
         })
     }
 
     //#endregion
 
     //#region private methods
+
+    private replaceExistingPassengersWithClipboardPassengers(clipboardPassengers: PassengerClipboard[]): void {
+        this.passengers = []
+        clipboardPassengers.forEach(record => {
+            const x: PassengerReadDto = {
+                id: record.id,
+                reservationId: this.reservationId,
+                gender: { 'id': record.gender.id, 'description': record.gender.description, 'isActive': true },
+                nationality: { 'id': record.nationality.id, 'code': record.nationality.code, 'description': record.nationality.description, 'isActive': true },
+                occupant: { 'id': 2, 'description': '', 'isActive': true },
+                lastname: record.lastname,
+                firstname: record.firstname,
+                birthdate: record.birthdate,
+                passportNo: record.passportNo,
+                passportExpireDate: record.passportExpireDate,
+                remarks: record.remarks,
+                specialCare: record.specialCare,
+                isBoarded: false,
+            }
+            this.passengers.push(x)
+        })
+    }
 
     private sendPassengerToForm(passenger: PassengerReadDto): void {
         const dialog = this.dialog.open(PassengerFormComponent, {

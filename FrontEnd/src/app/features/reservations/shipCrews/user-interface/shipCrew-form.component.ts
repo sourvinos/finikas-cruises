@@ -151,7 +151,7 @@ export class ShipCrewFormComponent {
     //#region private methods
 
     private assignPassportExpireDate(date: string): string {
-        if (date != '') {
+        if (date != null) {
             return this.dateHelperService.formatDateToIso(new Date(this.form.value.passportExpireDate))
         } else {
             return '9999-12-31'

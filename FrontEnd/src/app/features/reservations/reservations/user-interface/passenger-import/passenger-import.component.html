@@ -19,7 +19,10 @@
             <button (click)="onClose()" class="transparent" mat-flat-button tabindex="-1">
                 <span>{{ getLabel("cancelButton") | uppercase }}</span>
             </button>
-            <button (click)="onProcess()" [disabled]="!form.valid" class="primary" mat-flat-button tabindex="-1">
+            <button (click)="onDoValidationTasks()"  class="secondary" mat-flat-button tabindex="-1">
+                <span>{{ getLabel("validateButton") | uppercase }}</span>
+            </button>
+            <button (click)="onContinue()" [disabled]="!form.valid" class="primary" mat-flat-button tabindex="-1">
                 <mat-icon *ngIf="!form.valid" class="material-icons-outlined">lock</mat-icon>
                 <span>{{ getLabel("okButton") | uppercase }}</span>
             </button>

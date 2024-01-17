@@ -1205,6 +1205,10 @@
                 "description": "Abbrechen"
             },
             {
+                "id": "validateButton",
+                "description": "Prüfen"
+            },
+            {
                 "id": "okButton",
                 "description": "OK"
             }

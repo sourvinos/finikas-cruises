@@ -113,6 +113,16 @@ export class DateHelperService {
         }
     }
 
+    public createISODateFromString(date: string): Date {
+        const day = date.substring(0, 2)
+        const month = date.substring(3, 5)
+        const year = date.substring(6, 10)
+        return new Date(
+            parseInt(year),
+            parseInt(month) - 1,
+            parseInt(day), 0, 0, 0, 0)
+    }
+
     //#endregion
 
     //#region private methods
@@ -123,7 +133,7 @@ export class DateHelperService {
      * @param showYear include the year in the return string or not
      * @returns a string representing a date formatted as 'YYYY-MM-DD'
      */
-    private addLeadingZerosToDateParts(date: string, showYear: boolean): string {
+    public addLeadingZerosToDateParts(date: string, showYear: boolean): string {
         const seperator = this.getDateLocaleSeperator()
         const parts = date.split(seperator)
         parts[0].replace(' ', '').length == 1 ? parts[0] = '0' + parts[0].replace(' ', '') : parts[0]

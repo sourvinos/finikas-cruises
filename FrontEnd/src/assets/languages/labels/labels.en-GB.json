@@ -1205,6 +1205,10 @@
                 "description": "Cancel"
             },
             {
+                "id": "validateButton",
+                "description": "Validate"
+            },
+            {
                 "id": "okButton",
                 "description": "ΟΚ"
             }
