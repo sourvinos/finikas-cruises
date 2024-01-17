@@ -165,6 +165,10 @@
             {
                 "id": "errorsInRegistrars",
                 "message": "Les registres des passagers de ce navire ne sont pas corrects. Pour chaque navire, il devrait y avoir deux bureaux d'enregistrement actifs, dont l'un devrait être déclaré comme actif."
+            },
+            {
+                "id": "invalidClipboardPassengers",
+                "message": "La ligne xx n'est pas correcte"
             }
         ]
     }

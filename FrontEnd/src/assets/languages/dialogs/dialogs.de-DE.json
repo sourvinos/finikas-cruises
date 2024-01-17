@@ -165,6 +165,10 @@
             {
                 "id": "errorsInRegistrars",
                 "message": "Die Fahrgastregistriereren für dieses Schiff sind nicht korrekt. Für jedes Schiff sollte es zwei aktive Fahrgastregistriereren geben, von denen einer als aktiv angegeben werden sollte."
+            },
+            {
+                "id": "invalidClipboardPassengers",
+                "message": "Zeile xx ist nicht korrekt"
             }
         ]
     }

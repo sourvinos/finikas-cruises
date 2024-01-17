@@ -165,6 +165,10 @@
             {
                 "id": "errorsInRegistrars",
                 "message": "Údaje o cestujících na této lodi nejsou správné. Pro každou loď by měli existovat dva aktivní registrátoři, z nichž jeden by měl být deklarován jako aktivní."
+            },
+            {
+                "id": "invalidClipboardPassengers",
+                "message": "Řádek xx není správný"
             }
         ]
     }

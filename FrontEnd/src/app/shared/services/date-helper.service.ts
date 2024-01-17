@@ -103,9 +103,7 @@ export class DateHelperService {
      * @returns a moment.js object
      */
     public gotoPreviousCenturyIfFutureDate(date: any): Date {
-        // const given = date
         const today = new Date()
-        // const past = given
         if (date > today) {
             return date.add(-100, 'years')
         } else {
@@ -114,13 +112,21 @@ export class DateHelperService {
     }
 
     public createISODateFromString(date: string): Date {
-        const day = date.substring(0, 2)
-        const month = date.substring(3, 5)
-        const year = date.substring(6, 10)
-        return new Date(
-            parseInt(year),
-            parseInt(month) - 1,
-            parseInt(day), 0, 0, 0, 0)
+        try {
+            const day = date.substring(0, 2)
+            const month = date.substring(3, 5)
+            const year = date.substring(6, 10)
+            return new Date(
+                parseInt(year),
+                parseInt(month) - 1,
+                parseInt(day), 0, 0, 0, 0)
+        }
+        catch (e) {
+            return new Date(
+                9999,
+                12,
+                31)
+        }
     }
 
     //#endregion
@@ -134,15 +140,19 @@ export class DateHelperService {
      * @returns a string representing a date formatted as 'YYYY-MM-DD'
      */
     public addLeadingZerosToDateParts(date: string, showYear: boolean): string {
-        const seperator = this.getDateLocaleSeperator()
-        const parts = date.split(seperator)
-        parts[0].replace(' ', '').length == 1 ? parts[0] = '0' + parts[0].replace(' ', '') : parts[0]
-        parts[1].replace(' ', '').length == 1 ? parts[1] = '0' + parts[1].replace(' ', '') : parts[1]
-        parts[2] = parts[2].replace(' ', '')
-        if (showYear) {
-            return parts[0] + seperator + parts[1] + seperator + parts[2]
-        } else {
-            return parts[0] + seperator + parts[1]
+        try {
+            const seperator = this.getDateLocaleSeperator()
+            const parts = date.split(seperator)
+            parts[0].replace(' ', '').length == 1 ? parts[0] = '0' + parts[0].replace(' ', '') : parts[0]
+            parts[1].replace(' ', '').length == 1 ? parts[1] = '0' + parts[1].replace(' ', '') : parts[1]
+            parts[2] = parts[2].replace(' ', '')
+            if (showYear) {
+                return parts[0] + seperator + parts[1] + seperator + parts[2]
+            } else {
+                return parts[0] + seperator + parts[1]
+            }
+        } catch (e) {
+            return ''
         }
     }
 

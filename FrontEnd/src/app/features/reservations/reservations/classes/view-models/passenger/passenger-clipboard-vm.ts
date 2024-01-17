@@ -4,6 +4,7 @@ import { SimpleEntity } from 'src/app/shared/classes/simple-entity'
 export interface PassengerClipboard {
 
     id: number
+    rowId: string
     lastname: string
     firstname: string
     birthdate: string

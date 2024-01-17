@@ -165,6 +165,10 @@
             {
                 "id": "errorsInRegistrars",
                 "message": "The passenger registrars for this ship are not correct. For each ship there should be two active registrars, one of which should be declared as active."
+            },
+            {
+                "id": "invalidClipboardPassengers",
+                "message": "Line xx has errors"
             }
         ]
     }

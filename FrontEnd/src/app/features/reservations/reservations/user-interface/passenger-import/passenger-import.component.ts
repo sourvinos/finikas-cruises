@@ -2,12 +2,13 @@ import { Component, NgZone } from '@angular/core'
 import { FormBuilder, FormGroup, AbstractControl, Validators } from '@angular/forms'
 import { MatDialogRef } from '@angular/material/dialog'
 // Custom
+import { DateHelperService } from 'src/app/shared/services/date-helper.service'
+import { DialogService } from 'src/app/shared/services/modal-dialog.service'
 import { InputTabStopDirective } from 'src/app/shared/directives/input-tabstop.directive'
+import { MessageDialogService } from 'src/app/shared/services/message-dialog.service'
 import { MessageInputHintService } from 'src/app/shared/services/message-input-hint.service'
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
 import { PassengerClipboard } from '../../classes/view-models/passenger/passenger-clipboard-vm'
-import { DexieService } from 'src/app/shared/services/dexie.service'
-import { DateHelperService } from 'src/app/shared/services/date-helper.service'
 
 @Component({
     selector: 'passenger-import',
@@ -30,7 +31,14 @@ export class PassengerImportComponent {
 
     //#endregion
 
-    constructor(private dateHelperService: DateHelperService, private dexieService: DexieService, private dialogRef: MatDialogRef<PassengerImportComponent>, private formBuilder: FormBuilder, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private ngZone: NgZone) { }
+    //#region variables
+
+    private invalidRowIndex = 0
+    private areRecordsValid: boolean
+
+    //#endregion
+
+    constructor(private dateHelperService: DateHelperService, private dialogRef: MatDialogRef<PassengerImportComponent>, private dialogService: DialogService, private formBuilder: FormBuilder, private messageDialogService: MessageDialogService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private ngZone: NgZone) { }
 
     //#region lifecycle hooks
 
@@ -54,6 +62,10 @@ export class PassengerImportComponent {
         return this.form.value.remarks != null ? this.form.value.remarks.length : 0
     }
 
+    public getPassengersValidity(): boolean {
+        return this.areRecordsValid ? true : false
+    }
+
     public onClose(): void {
         this.dialogRef.close()
     }
@@ -61,6 +73,8 @@ export class PassengerImportComponent {
     public onDoValidationTasks(): void {
         this.createPassengerClipboardObjects()
         this.validatePassengerClipboardObjects()
+        this.scanPassengerClipboardObjects()
+        this.showScanReport()
     }
 
     public onContinue(): void {
@@ -79,7 +93,7 @@ export class PassengerImportComponent {
 
     private initForm(): void {
         this.form = this.formBuilder.group({
-            remarks: ['', Validators.maxLength(32768)]
+            remarks: ['', [Validators.required, Validators.maxLength(32768)]]
         })
     }
 
@@ -91,6 +105,7 @@ export class PassengerImportComponent {
             if (line != '') {
                 const record: PassengerClipboard = {
                     id: Math.round(Math.random() * new Date().getMilliseconds()),
+                    rowId: x[0],
                     lastname: x[1],
                     firstname: x[2],
                     birthdate: x[3],
@@ -123,8 +138,29 @@ export class PassengerImportComponent {
             this.validateString(record, 'firstname', 1, 128)
             this.validateObjectById(record, 'gender')
             this.validateObjectById(record, 'nationality')
-            this.validateDate(record, 'birthdate')
+            this.validateDate(record, 'birthdate', false)
+            this.validateDate(record, 'passportExpireDate', true)
         })
+    }
+
+    private scanPassengerClipboardObjects(): void {
+        this.areRecordsValid = true
+        this.records.forEach((record) => {
+            if (this.areRecordsValid) {
+                if (record.isValid == false) {
+                    this.invalidRowIndex = parseInt(record.rowId)
+                    this.areRecordsValid = false
+                }
+            }
+        })
+    }
+
+    private showScanReport(): void {
+        if (this.areRecordsValid) {
+            this.dialogService.open(this.messageDialogService.success(), 'ok', ['ok'])
+        } else {
+            this.dialogService.open(this.messageDialogService.invalidClipboardPassengers(this.invalidRowIndex), 'error', ['ok'])
+        }
     }
 
     private validateNumber(record: PassengerClipboard, field: string): void {
@@ -139,13 +175,19 @@ export class PassengerImportComponent {
         record.isValid = record.isValid ? (!isNaN(record[field].id) ? true : false) : record.isValid
     }
 
-    private validateDate(record: PassengerClipboard, field: string): void {
+    private validateDate(record: PassengerClipboard, field: string, allowEmptyString: boolean): void {
         if (record.isValid) {
-            const x = this.dateHelperService.addLeadingZerosToDateParts(record.birthdate, true)
-            const z = this.dateHelperService.createISODateFromString(x)
-            const i = this.dateHelperService.formatDateToIso(z)
-            record[field] = i
-            record.isValid = true
+            if (allowEmptyString && record[field] == '') {
+                record[field] = '9999-12-31'
+            } else {
+                if (allowEmptyString == false || record[field] != '') {
+                    const x = this.dateHelperService.addLeadingZerosToDateParts(record[field], true)
+                    const z = this.dateHelperService.createISODateFromString(x)
+                    const i = this.dateHelperService.formatDateToIso(z)
+                    record[field] = i
+                    record.isValid = i != 'NaN-NaN-NaN' ? true : false
+                }
+            }
         }
     }
 

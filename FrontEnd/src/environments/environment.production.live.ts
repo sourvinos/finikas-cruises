@@ -1,4 +1,5 @@
 // ng build --output-path="release" --configuration=production-live
+// 2ba13d31-c66f-43c0-952d-605be7e85983
 
 export const environment = {
     apiUrl: 'https://appfinikascruises.com/api',
