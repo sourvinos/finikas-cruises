@@ -1,3 +1,11 @@
+.mdc-button .mat-icon.big {
+    font-size: 22px !important;
+    top: -2px;
+    left: -5px;
+    width: 21px !important;
+    height: 22px !important;
+}
+
 .mdc-button .mat-icon {
     font-size: 0.75rem !important;
     height: 0.75rem !important;
@@ -85,6 +93,17 @@ button.transparent:hover {
 
 button.transparent > .mdc-button__label {
     color: var(--color-text) !important;
+}
+
+button.no-right-border-radius {
+    border-radius: 0.25rem 0 0 0.25rem !important;
+}
+
+button.no-left-border-radius {
+    border-radius: 0 0.25rem 0.25rem 0 !important;
+    margin-left: -0.5rem !important;
+    background-color: var(--color-button-primary-altered) !important;
+    padding: 0 0 0 18px !important;
 }
 
 button:disabled {

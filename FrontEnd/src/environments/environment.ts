@@ -15,7 +15,7 @@ export const environment = {
     login: {
         username: 'john',
         email: 'johnsourvinos@hotmail.com',
-        password: 'Ec11fc8c16db#',
+        password: '%7d23aaf-9665-47f7-a646-c887d5139fE6',
         noRobot: true
     },
     production: false

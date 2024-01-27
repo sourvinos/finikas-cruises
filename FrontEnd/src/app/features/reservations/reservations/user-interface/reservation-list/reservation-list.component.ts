@@ -188,6 +188,7 @@ export class ReservationListComponent {
     public editRecord(id: string): void {
         this.storeScrollTop()
         this.storeSelectedId(id)
+        this.storeIsRepeatedEntry(false)
         this.gotoEditForm(id)
     }
 
@@ -231,7 +232,8 @@ export class ReservationListComponent {
         return this.records.length == 0
     }
 
-    public newRecord(): void {
+    public newRecord(isRepeatedEntry: boolean): void {
+        this.sessionStorageService.saveItem('isRepeatedEntry', isRepeatedEntry.toString())
         this.router.navigate([this.parentUrl, 'new'])
     }
 
@@ -393,6 +395,10 @@ export class ReservationListComponent {
         if (this.records.length > 0) {
             this.sessionStorageService.saveItem('date', this.records[0].date)
         }
+    }
+
+    private storeIsRepeatedEntry(isRepeatedEntry: boolean): void {
+        this.sessionStorageService.saveItem('isRepeatedEntry', isRepeatedEntry.toString())
     }
 
     private storeScrollTop(): void {

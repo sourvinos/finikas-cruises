@@ -51,7 +51,10 @@
 
     <div id="footer">
         <div id="align-right">
-            <button (click)="newRecord()" class="primary" mat-flat-button>{{ getLabel("newRecord") | uppercase }}</button>
+            <button (click)="newRecord(false)" class="no-right-border-radius primary" mat-flat-button>{{ getLabel('newRecord') | uppercase }}</button>
+            <button (click)="newRecord(true)" class="no-left-border-radius secondary" mat-flat-button>
+                <mat-icon class="big material-symbols-outlined">cycle</mat-icon>
+            </button>
         </div>
     </div>
 

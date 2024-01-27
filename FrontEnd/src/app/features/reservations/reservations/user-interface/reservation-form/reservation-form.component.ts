@@ -61,6 +61,7 @@ export class ReservationFormComponent {
     private mustGoBackAfterSave = true
     public isNewRecord: boolean
     public isPassengersTabVisible: boolean
+    public isRepeatedEntry: boolean
     public isReservationTabVisible: boolean
     public passengerDifferenceColor: string
 
@@ -90,6 +91,7 @@ export class ReservationFormComponent {
         this.doNewOrEditTasks()
         this.doPostInitTasks()
         this.setTabTitle()
+        this.setIsRepeatedEntry()
     }
 
     ngAfterViewInit(): void {
@@ -136,6 +138,10 @@ export class ReservationFormComponent {
 
     public getHint(id: string, minmax = 0): string {
         return this.messageHintService.getDescription(id, minmax)
+    }
+
+    public getIsRepeatedEntry(): string {
+        return this.isRepeatedEntry ? 'green' : 'red'
     }
 
     public getLabel(id: string): string {
@@ -429,6 +435,20 @@ export class ReservationFormComponent {
         })
     }
 
+    private clearFormPartially(): void {
+        setTimeout(() => {
+            this.form.patchValue({
+                reservationId: '',
+                refNo: 'RefNo: New',
+                passengers: [],
+                postAt: '',
+                postUser: '',
+                putAt: '',
+                putUser: ''
+            })
+        }, 1000)
+    }
+
     private patchFormWithPassengers(passengers: any): void {
         this.form.patchValue({
             passengers: passengers
@@ -487,13 +507,16 @@ export class ReservationFormComponent {
                 const date = this.dateHelperService.formatDateToIso(new Date(this.form.value.date))
                 this.sessionStorageService.saveItem('date', date)
                 this.parentUrl = '/reservations/date/' + date
-                this.helperService.doPostSaveFormTasks('RefNo: ' + response.message, 'ok', this.parentUrl, this.mustGoBackAfterSave)
+                this.helperService.doPostSaveFormTasks('RefNo: ' + response.message, 'ok', this.parentUrl, this.mustGoBackAfterSave, this.isRepeatedEntry)
                 this.form.patchValue({
                     putAt: response.body
                 })
                 this.mirrorRecord = this.form.value
                 this.localStorageService.deleteItems([{ 'item': 'reservation', 'when': 'always' },])
                 this.sessionStorageService.deleteItems([{ 'item': 'nationality', 'when': 'always' }])
+                if (this.isNewRecord && this.isRepeatedEntry == true) {
+                    this.clearFormPartially()
+                }
             },
             error: (errorFromInterceptor) => {
                 this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
@@ -555,6 +578,10 @@ export class ReservationFormComponent {
                 })
             }
         })
+    }
+
+    private setIsRepeatedEntry(): void {
+        this.isRepeatedEntry = JSON.parse(this.sessionStorageService.getItem('isRepeatedEntry'))
     }
 
     private storeIsPasswordRequiredOnGetRecord(): void {

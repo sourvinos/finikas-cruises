@@ -187,6 +187,9 @@
     </div>
 
     <div id="footer">
+        <div id="is-repeated-entry">
+            <mat-icon [ngClass]="getIsRepeatedEntry()" class="material-symbols-outlined">cycle</mat-icon>
+        </div>
         <div id="align-right">
             <button *ngIf="form.value.reservationId != ''" (click)="onDelete()" [disabled]="!isAdmin()" class="delete" mat-flat-button>
                 <mat-icon *ngIf="!isAdmin()" class="material-icons-outlined">lock</mat-icon>

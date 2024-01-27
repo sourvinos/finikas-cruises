@@ -143,8 +143,9 @@ export class ReservationCalendarComponent {
         return date == new Date().toISOString().substring(0, 10)
     }
 
-    public newRecord(): void {
+    public newRecord(isRepeatedEntry: boolean): void {
         this.sessionStorageService.saveItem('returnUrl', '/reservations')
+        this.sessionStorageService.saveItem('isRepeatedEntry', isRepeatedEntry.toString())
         this.router.navigate(['/reservations/new'])
     }
 

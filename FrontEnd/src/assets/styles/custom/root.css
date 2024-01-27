@@ -107,6 +107,14 @@ ul {
     pointer-events: all;
 }
 
+.green {
+    color: #a9dc76;
+}
+
+.red {
+    color: #e23a5d;
+}
+
 ::-webkit-scrollbar {
     height: 0;
     width: 0.25rem;
