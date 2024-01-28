@@ -409,7 +409,7 @@ export class ReservationFormComponent {
         this.form = this.formBuilder.group({
             reservationId: '',
             date: ['', [Validators.required]],
-            refNo: '',
+            refNo: 'RefNo',
             destination: ['', [Validators.required, ValidationService.RequireAutocomplete]],
             customer: ['', [Validators.required, ValidationService.RequireAutocomplete]],
             pickupPoint: ['', [Validators.required, ValidationService.RequireAutocomplete]],
@@ -439,7 +439,7 @@ export class ReservationFormComponent {
         setTimeout(() => {
             this.form.patchValue({
                 reservationId: '',
-                refNo: 'RefNo: New',
+                refNo: 'RefNo',
                 passengers: [],
                 postAt: '',
                 postUser: '',

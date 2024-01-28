@@ -69,14 +69,14 @@ export class ReservationHelperService {
             const passengerDifference = totalPax - totalPassengers
             switch (true) {
                 case passengerDifference == 0:
-                    return 'green-box'
+                    return 'ok'
                 case passengerDifference < 0:
-                    return 'red-box'
+                    return 'error'
                 case passengerDifference > 0:
-                    return 'yellow-box'
+                    return 'warning'
             }
         } else {
-            return 'yellow-box'
+            return 'warning'
         }
     }
 
