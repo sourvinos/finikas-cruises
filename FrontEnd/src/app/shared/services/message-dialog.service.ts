@@ -68,7 +68,7 @@ export class MessageDialogService {
     public resolutionWarning(): string { return this.getDescription(this.feature, 'resolutionWarning') }
     public reservationNotFound(): string { return this.getDescription(this.feature, 'reservationNotFound') }
     public helpDialog(): string { return this.getDescription(this.feature, 'helpDialog') }
-    public twoPointReervationValidation(): string { return this.getDescription(this.feature, 'twoPointReservationValidation') }
+    public twoPointReservationValidation(): string { return this.getDescription(this.feature, 'twoPointReservationValidation') }
     public threePointReservationValidation(): string { return this.getDescription(this.feature, 'threePointReservationValidation') }
     public errorsInRegistrars(): string { return this.getDescription(this.feature, 'errorsInRegistrars') }
     public invalidClipboardPassengers(rowIndex: number): string { return this.getDescription(this.feature, 'invalidClipboardPassengers', rowIndex) }

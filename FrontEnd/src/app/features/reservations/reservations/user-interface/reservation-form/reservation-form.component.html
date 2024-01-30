@@ -10,17 +10,11 @@
                     <mat-button-toggle (click)="onShowReservationTab()" checked class="primary">{{ getLabel("toggle-button-general") | uppercase }}</mat-button-toggle>
                     <mat-button-toggle (click)="onShowPassengersTab()">{{ getLabel("toggle-button-passengers") | uppercase }}</mat-button-toggle>
                 </mat-button-toggle-group>
-                <button [matMenuTriggerFor]="menu" class="fab fab-with-no-background" mat-icon-button>
-                    <mat-icon class="material-icons-outlined">more_vert</mat-icon>
-                </button>
-                <mat-menu #menu="matMenu" class="primary">
-                    <ng-container *ngTemplateOutlet="boardingPassMenu"></ng-container>
-                </mat-menu>
             </div>
         </div>
 
         <form [formGroup]="form" id="form">
-            <div *ngIf="isReservationTabVisible" id="reservation-tab">
+            <div *ngIf="isTabReservationVisible" id="reservation-tab">
                 <div class="group-input-field">
                     <!-- RefNo -->
                     <div id="ref-no" style="width: 20% !important;">
@@ -179,7 +173,7 @@
                     <metadata-panel [feature]="feature" [postAt]="form.value.postAt" [postUser]="form.value.postUser" [putAt]="form.value.putAt" [putUser]="form.value.putUser"></metadata-panel>
                 </div>
             </div>
-            <div *ngIf="isPassengersTabVisible" id="passengers-tab">
+            <div *ngIf="isTabPassengersVisible" id="passengers-tab">
                 <passenger-list [passengers]="form.value.passengers" [reservationId]="form.value.reservationId" [totalPax]="form.value.totalPax" (outputPassengerCount)="getPassengerDifferenceColor()" (outputPassengers)="doTasksAfterPassengerFormIsClosed($event)"></passenger-list>
             </div>
         </form>
@@ -195,60 +189,74 @@
                 <mat-icon *ngIf="!isAdmin()" class="material-icons-outlined">lock</mat-icon>
                 <span>{{ getLabel('deleteButton') | uppercase }}</span>
             </button>
-            <button (click)="onSave()" [disabled]="!form.valid || !checkForDifferenceBetweenTotalPaxAndPassengers()" class="primary" mat-flat-button>
+            <button (click)="onSave()" [disabled]="!form.valid || !checkForDifferenceBetweenTotalPaxAndPassengers()" class="no-right-border-radius primary" mat-flat-button>
                 <mat-icon *ngIf="!form.valid || !checkForDifferenceBetweenTotalPaxAndPassengers()" class="material-icons-outlined">lock</mat-icon>
                 <span>{{ getLabel("saveButton") | uppercase }}</span>
             </button>
+            <button [matMenuTriggerFor]="saveMenu" class="no-left-border-radius secondary" mat-flat-button>
+                <mat-icon class="big material-symbols-outlined">expand_less</mat-icon>
+            </button>
+            <mat-menu #saveMenu="matMenu" class="primary">
+                <ng-container *ngTemplateOutlet="saveMenuTemplate"></ng-container>
+            </mat-menu>
         </div>
     </div>
 
 </div>
 
-<mat-autocomplete #destinations="matAutocomplete" (optionSelected)="updateFieldsAfterDestinationSelection($event.option.value)" [displayWith]="autocompleteFields.bind(this, 'description')" autoActiveFirstOption>
-    <mat-option *ngFor="let option of dropdownDestinations | async" [value]="option">
-        {{ option.description }}
-    </mat-option>
-</mat-autocomplete>
+<div id="autocompletes">
 
-<mat-autocomplete #customers="matAutocomplete" [displayWith]="autocompleteFields.bind(this, 'description')" autoActiveFirstOption>
-    <mat-option *ngFor="let option of dropdownCustomers | async" [value]="option">
-        {{ option.description }}
-    </mat-option>
-</mat-autocomplete>
+    <mat-autocomplete #destinations="matAutocomplete" (optionSelected)="updateFieldsAfterDestinationSelection($event.option.value)" [displayWith]="autocompleteFields.bind(this, 'description')" autoActiveFirstOption>
+        <mat-option *ngFor="let option of dropdownDestinations | async" [value]="option">
+            {{ option.description }}
+        </mat-option>
+    </mat-autocomplete>
 
-<mat-autocomplete #pickupPoints="matAutocomplete" (optionSelected)="updateFieldsAfterPickupPointSelection($event.option.value)" [displayWith]="autocompleteFields.bind(this, 'description')" autoActiveFirstOption>
-    <mat-option *ngFor="let option of dropdownPickupPoints | async" [value]="option">
-        <div class="autocomplete-pickup-point">
-            <span>{{ option.description }}</span>
-            <span>{{ option.exactPoint }}</span>
-            <span>{{ option.time }}</span>
-        </div>
-    </mat-option>
-</mat-autocomplete>
+    <mat-autocomplete #customers="matAutocomplete" [displayWith]="autocompleteFields.bind(this, 'description')" autoActiveFirstOption>
+        <mat-option *ngFor="let option of dropdownCustomers | async" [value]="option">
+            {{ option.description }}
+        </mat-option>
+    </mat-autocomplete>
 
-<mat-autocomplete #drivers="matAutocomplete" [displayWith]="autocompleteFields.bind(this, 'description')" autoActiveFirstOption>
-    <mat-option *ngFor="let option of dropdownDrivers | async" [value]="option">
-        {{ option.description }}
-    </mat-option>
-</mat-autocomplete>
+    <mat-autocomplete #pickupPoints="matAutocomplete" (optionSelected)="updateFieldsAfterPickupPointSelection($event.option.value)" [displayWith]="autocompleteFields.bind(this, 'description')" autoActiveFirstOption>
+        <mat-option *ngFor="let option of dropdownPickupPoints | async" [value]="option">
+            <div class="autocomplete-pickup-point">
+                <span>{{ option.description }}</span>
+                <span>{{ option.exactPoint }}</span>
+                <span>{{ option.time }}</span>
+            </div>
+        </mat-option>
+    </mat-autocomplete>
 
-<mat-autocomplete #ships="matAutocomplete" [displayWith]="autocompleteFields.bind(this, 'description')" autoActiveFirstOption>
-    <mat-option *ngFor="let option of dropdownShips | async" [value]="option">
-        {{ option.description }}
-    </mat-option>
-</mat-autocomplete>
+    <mat-autocomplete #drivers="matAutocomplete" [displayWith]="autocompleteFields.bind(this, 'description')" autoActiveFirstOption>
+        <mat-option *ngFor="let option of dropdownDrivers | async" [value]="option">
+            {{ option.description }}
+        </mat-option>
+    </mat-autocomplete>
 
-<mat-autocomplete #ports="matAutocomplete" [displayWith]="autocompleteFields.bind(this, 'description')" autoActiveFirstOption>
-    <mat-option *ngFor="let option of dropdownPorts | async" [value]="option">
-        {{ option.description }}
-    </mat-option>
-</mat-autocomplete>
+    <mat-autocomplete #ships="matAutocomplete" [displayWith]="autocompleteFields.bind(this, 'description')" autoActiveFirstOption>
+        <mat-option *ngFor="let option of dropdownShips | async" [value]="option">
+            {{ option.description }}
+        </mat-option>
+    </mat-autocomplete>
 
-<ng-template #boardingPassMenu xPosition="before">
-    <button (click)="onPrintBoardingPass()" mat-menu-item>
-        <span>{{ getLabel('printBoardingPass') }}</span>
-    </button>
-    <button (click)="onEmailBoardingPass()" mat-menu-item>
-        <span>{{ getLabel('emailBoardingPass') }}</span>
-    </button>
-</ng-template>
+    <mat-autocomplete #ports="matAutocomplete" [displayWith]="autocompleteFields.bind(this, 'description')" autoActiveFirstOption>
+        <mat-option *ngFor="let option of dropdownPorts | async" [value]="option">
+            {{ option.description }}
+        </mat-option>
+    </mat-autocomplete>
+
+</div>
+
+<div id="menus">
+
+    <ng-template #saveMenuTemplate xPosision="before">
+        <button (click)="onSave('printBoardingPass')" mat-menu-item>
+            <span>{{ getLabel('saveAndPrintBoardingPassButton') }}</span>
+        </button>
+        <button (click)="onSave('emailBoardingPass')" mat-menu-item>
+            <span>{{ getLabel('saveAndEmailBoardingPassButton') }}</span>
+        </button>
+    </ng-template>
+
+</div>

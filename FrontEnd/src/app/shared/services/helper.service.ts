@@ -41,10 +41,10 @@ export class HelperService {
 
     //#region public methods
 
-    public doPostSaveFormTasks(message: string, iconType: string, returnUrl: string, mustGoBackAfterSave: boolean, isRepeatedEntry = false): Promise<any> {
+    public doPostSaveFormTasks(message: string, iconType: string, returnUrl: string, isRepeatedEntry = false): Promise<any> {
         const promise = new Promise((resolve) => {
             this.dialogService.open(message, iconType, ['ok']).subscribe(() => {
-                mustGoBackAfterSave == true && isRepeatedEntry == false
+                isRepeatedEntry == false
                     ? this.router.navigate([returnUrl])
                     : null
                 resolve(null)

@@ -859,6 +859,14 @@
             {
                 "id": "saveButton",
                 "description": "Αποθηκευση"
+            },
+            {
+                "id": "saveAndPrintBoardingPassButton",
+                "description": "Αποθήκευση και εκτύπωση κάρτας επιβίβασης"
+            },
+            {
+                "id": "saveAndEmailBoardingPassButton",
+                "description": "Αποθήκευση και αποστολή κάρτας επιβίβασης στο email"
             }
         ]
     },

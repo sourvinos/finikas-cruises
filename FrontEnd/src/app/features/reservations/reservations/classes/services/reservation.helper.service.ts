@@ -118,6 +118,12 @@ export class ReservationHelperService {
         }
     }
 
+    public doDateTasks(formValue: any): string {
+        const date = this.dateHelperService.formatDateToIso(new Date(formValue.date))
+        this.sessionStorageService.saveItem('date', date)
+        return '/reservations/date/' + date
+    }
+
     //#endregion
 
     //#region private methods

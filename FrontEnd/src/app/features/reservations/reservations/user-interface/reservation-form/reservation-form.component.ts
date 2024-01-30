@@ -12,6 +12,7 @@ import { CachedReservationDialogComponent } from '../cached-reservation-dialog/c
 import { CryptoService } from 'src/app/shared/services/crypto.service'
 import { CustomerAutoCompleteVM } from '../../../customers/classes/view-models/customer-autocomplete-vm'
 import { DateHelperService } from 'src/app/shared/services/date-helper.service'
+import { DestinationAutoCompleteVM } from '../../../destinations/classes/view-models/destination-autocomplete-vm'
 import { DexieService } from 'src/app/shared/services/dexie.service'
 import { DialogService } from 'src/app/shared/services/modal-dialog.service'
 import { DriverAutoCompleteVM } from '../../../drivers/classes/view-models/driver-autocomplete-vm'
@@ -32,7 +33,6 @@ import { ReservationReadDto } from '../../classes/dtos/form/reservation-read-dto
 import { ReservationWriteDto } from '../../classes/dtos/form/reservation-write-dto'
 import { SessionStorageService } from 'src/app/shared/services/session-storage.service'
 import { ValidationService } from './../../../../../shared/services/validation.service'
-import { DestinationAutoCompleteVM } from '../../../destinations/classes/view-models/destination-autocomplete-vm'
 
 @Component({
     selector: 'reservation-form',
@@ -58,11 +58,10 @@ export class ReservationFormComponent {
     //#region specific #7
 
     private mirrorRecord: ReservationReadDto
-    private mustGoBackAfterSave = true
     public isNewRecord: boolean
-    public isPassengersTabVisible: boolean
     public isRepeatedEntry: boolean
-    public isReservationTabVisible: boolean
+    public isTabPassengersVisible: boolean
+    public isTabReservationVisible: boolean
     public passengerDifferenceColor: string
 
     //#endregion
@@ -85,7 +84,7 @@ export class ReservationFormComponent {
 
     ngOnInit(): void {
         this.initForm()
-        this.updateFieldsAfterEmptyPickupPoint()
+        this.updatePickupPointDetails()
         this.setRecordId()
         this.setNewRecord()
         this.doNewOrEditTasks()
@@ -194,13 +193,11 @@ export class ReservationFormComponent {
 
     public onEmailBoardingPass(): void {
         if (this.helperService.deepEqual(this.form.value, this.mirrorRecord) == false || this.arePassengersMissing() || this.form.value.email == '') {
-            this.mustGoBackAfterSave = false
             this.dialogService.open(this.messageDialogService.threePointReservationValidation(), 'error', ['ok'])
         } else {
             this.boardingPassService.emailBoardingPass(this.form.value.reservationId).subscribe({
                 next: () => {
                     this.helperService.doPostSaveFormTasks(this.messageDialogService.emailSent(), 'ok', this.parentUrl, false)
-                    this.mustGoBackAfterSave = true
                 },
                 error: (errorFromInterceptor) => {
                     this.helperService.doPostSaveFormTasks(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', this.parentUrl, false)
@@ -211,8 +208,7 @@ export class ReservationFormComponent {
 
     public onPrintBoardingPass(): void {
         if (this.helperService.deepEqual(this.form.value, this.mirrorRecord) == false || this.arePassengersMissing()) {
-            this.mustGoBackAfterSave = false
-            this.dialogService.open(this.messageDialogService.twoPointReervationValidation(), 'error', ['ok'])
+            this.dialogService.open(this.messageDialogService.twoPointReservationValidation(), 'error', ['ok'])
         } else {
             this.boardingPassService.getCompanyData().then(response => {
                 this.boardingPassService.printBoardingPass(this.boardingPassService.createBoardingPass(this.form.value, response.body.phones, response.body.email))
@@ -220,8 +216,54 @@ export class ReservationFormComponent {
         }
     }
 
-    public onSave(): void {
-        this.saveRecord(this.flattenForm())
+    public onSave(action = ''): void {
+        switch (action) {
+            case '': {
+                this.saveRecord(this.flattenForm()).then((response) => {
+                    this.parentUrl = this.reservationHelperService.doDateTasks(this.form.value)
+                    this.localStorageService.deleteItems([{ 'item': 'reservation', 'when': 'always' }])
+                    this.sessionStorageService.deleteItems([{ 'item': 'nationality', 'when': 'always' }])
+                    this.helperService.doPostSaveFormTasks('RefNo: ' + response.message, 'ok', this.parentUrl, this.isRepeatedEntry)
+                })
+                return
+            }
+            case 'printBoardingPass': {
+                if (this.arePassengersMissing()) {
+                    this.dialogService.open(this.messageDialogService.twoPointReservationValidation(), 'error', ['ok'])
+                } else {
+                    this.saveRecord(this.flattenForm()).then((response) => {
+                        this.parentUrl = this.reservationHelperService.doDateTasks(this.form.value)
+                        this.localStorageService.deleteItems([{ 'item': 'reservation', 'when': 'always' }])
+                        this.sessionStorageService.deleteItems([{ 'item': 'nationality', 'when': 'always' }])
+                        this.helperService.doPostSaveFormTasks('RefNo: ' + response.message, 'ok', this.parentUrl, this.isRepeatedEntry)
+                        this.boardingPassService.getCompanyData().then(response => {
+                            this.boardingPassService.printBoardingPass(this.boardingPassService.createBoardingPass(this.form.value, response.body.phones, response.body.email))
+                        })
+                    })
+                }
+                return
+            }
+            case 'emailBoardingPass': {
+                if (this.arePassengersMissing() || this.form.value.email == '') {
+                    this.dialogService.open(this.messageDialogService.threePointReservationValidation(), 'error', ['ok'])
+                } else {
+                    this.saveRecord(this.flattenForm()).then(() => {
+                        this.parentUrl = this.reservationHelperService.doDateTasks(this.form.value)
+                        this.localStorageService.deleteItems([{ 'item': 'reservation', 'when': 'always' }])
+                        this.sessionStorageService.deleteItems([{ 'item': 'nationality', 'when': 'always' }])
+                        this.boardingPassService.emailBoardingPass(this.form.value.reservationId).subscribe({
+                            next: () => {
+                                this.helperService.doPostSaveFormTasks(this.messageDialogService.emailSent(), 'ok', this.parentUrl, false)
+                            },
+                            error: (errorFromInterceptor) => {
+                                this.helperService.doPostSaveFormTasks(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', this.parentUrl, false)
+                            }
+                        })
+                    })
+                }
+                return
+            }
+        }
     }
 
     public onShowCachedReservationDialog(): void {
@@ -247,13 +289,13 @@ export class ReservationFormComponent {
     }
 
     public onShowPassengersTab(): void {
-        this.isReservationTabVisible = false
-        this.isPassengersTabVisible = true
+        this.isTabReservationVisible = false
+        this.isTabPassengersVisible = true
     }
 
     public onShowReservationTab(): void {
-        this.isReservationTabVisible = true
-        this.isPassengersTabVisible = false
+        this.isTabReservationVisible = true
+        this.isTabPassengersVisible = false
     }
 
     public openOrCloseAutoComplete(trigger: MatAutocompleteTrigger, element: any): void {
@@ -314,7 +356,7 @@ export class ReservationFormComponent {
             this.populateFields()
             this.getPassengerDifferenceColor()
             this.cloneRecord()
-            this.storeIsPasswordRequiredOnGetRecord()
+            this.storeIsPassportRequiredOnGetRecord()
         }
     }
 
@@ -440,13 +482,25 @@ export class ReservationFormComponent {
             this.form.patchValue({
                 reservationId: '',
                 refNo: 'RefNo',
+                ticketNo: '',
+                pickupPoint: '',
+                exactPoint: '',
+                time: '',
+                adults: 0,
+                kids: 0,
+                free: 0,
+                totalPax: 0,
+                email: '',
+                phones: '',
+                remarks: '',
                 passengers: [],
                 postAt: '',
                 postUser: '',
                 putAt: '',
                 putUser: ''
             })
-        }, 1000)
+            this.form.markAsUntouched()
+        }, 2000)
     }
 
     private patchFormWithPassengers(passengers: any): void {
@@ -501,26 +555,17 @@ export class ReservationFormComponent {
         })
     }
 
-    private saveRecord(reservation: ReservationWriteDto): void {
-        this.reservationService.saveReservation(reservation).subscribe({
-            next: (response) => {
-                const date = this.dateHelperService.formatDateToIso(new Date(this.form.value.date))
-                this.sessionStorageService.saveItem('date', date)
-                this.parentUrl = '/reservations/date/' + date
-                this.helperService.doPostSaveFormTasks('RefNo: ' + response.message, 'ok', this.parentUrl, this.mustGoBackAfterSave, this.isRepeatedEntry)
-                this.form.patchValue({
-                    putAt: response.body
-                })
-                this.mirrorRecord = this.form.value
-                this.localStorageService.deleteItems([{ 'item': 'reservation', 'when': 'always' },])
-                this.sessionStorageService.deleteItems([{ 'item': 'nationality', 'when': 'always' }])
-                if (this.isNewRecord && this.isRepeatedEntry == true) {
-                    this.clearFormPartially()
+    private saveRecord(reservation: ReservationWriteDto): Promise<any> {
+        return new Promise((resolve) => {
+            this.reservationService.saveReservation(reservation).subscribe({
+                next: (response) => {
+                    // this.helperService.doPostSaveFormTasks('RefNo: ' + response.message, 'ok', this.parentUrl, this.isRepeatedEntry)
+                    resolve(response)
+                },
+                error: (errorFromInterceptor) => {
+                    this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
                 }
-            },
-            error: (errorFromInterceptor) => {
-                this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
-            }
+            })
         })
     }
 
@@ -568,7 +613,7 @@ export class ReservationFormComponent {
         })
     }
 
-    private updateFieldsAfterEmptyPickupPoint(): void {
+    private updatePickupPointDetails(): void {
         this.form.get('pickupPoint').valueChanges.subscribe(value => {
             if (value == '') {
                 this.form.patchValue({
@@ -584,19 +629,13 @@ export class ReservationFormComponent {
         this.isRepeatedEntry = JSON.parse(this.sessionStorageService.getItem('isRepeatedEntry'))
     }
 
-    private storeIsPasswordRequiredOnGetRecord(): void {
+    private storeIsPassportRequiredOnGetRecord(): void {
         this.sessionStorageService.saveItem('isPassportRequired', this.form.value.destination.isPassportRequired)
     }
 
-    private storeIsPassportRequiredAfterDestinationSelection(): void {
-        this.form.get('destination').valueChanges.subscribe(value => {
-            this.sessionStorageService.saveItem('isPassportRequired', this.form.value(value.isPassportRequired))
-        })
-    }
-
     private updateTabVisibility(): void {
-        this.isReservationTabVisible = true
-        this.isPassengersTabVisible = false
+        this.isTabReservationVisible = true
+        this.isTabPassengersVisible = false
     }
 
     //#endregion

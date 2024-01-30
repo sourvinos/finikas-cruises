@@ -859,6 +859,14 @@
             {
                 "id": "saveButton",
                 "description": "Speichern"
+            },
+            {
+                "id": "saveAndPrintBoardingPassButton",
+                "description": ""
+            },
+            {
+                "id": "saveAndEmailBoardingPassButton",
+                "description": ""
             }
         ]
     },
