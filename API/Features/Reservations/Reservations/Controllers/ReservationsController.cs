@@ -99,7 +99,7 @@ namespace API.Features.Reservations.Reservations {
                 return new ResponseWithBody {
                     Code = 200,
                     Icon = Icons.Success.ToString(),
-                    Body = x.PutAt,
+                    Body = x.ReservationId,
                     Message = reservation.RefNo
                 };
             } else {

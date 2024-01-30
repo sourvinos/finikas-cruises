@@ -156,11 +156,11 @@
             },
             {
                 "id": "twoPointReservationValidation",
-                "message": "Make sure that no passenger details are missing and that the reservation has been saved."
+                "message": "To continue you must have provided the details of all passengers."
             },
             {
                 "id": "threePointReservationValidation",
-                "message": "Make sure that no passenger details are missing, that you have provided the email and that the reservation has been saved."
+                "message": "To continue you must have provided the details of all passengers and a valid email."
             },
             {
                 "id": "errorsInRegistrars",

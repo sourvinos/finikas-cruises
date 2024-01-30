@@ -156,11 +156,11 @@
             },
             {
                 "id": "twoPointReservationValidation",
-                "message": "Vergewissern Sie sich, dass keine Passagierdaten fehlen und dass die Reservierung gespeichert wurde."
+                "message": "Um fortzufahren, müssen Sie die Angaben zu allen Passagieren gemacht haben."
             },
             {
                 "id": "threePointReservationValidation",
-                "message": "Vergewissern Sie sich, dass keine Passagierdaten fehlen, dass Sie die E-Mail angegeben haben und dass die Reservierung gespeichert wurde."
+                "message": "Um fortzufahren, müssen Sie die Daten aller Passagiere und eine gültige E-Mail-Adresse angegeben haben."
             },
             {
                 "id": "errorsInRegistrars",

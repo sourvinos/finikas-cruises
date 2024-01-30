@@ -156,11 +156,11 @@
             },
             {
                 "id": "twoPointReservationValidation",
-                "message": "Assurez-vous qu'il ne manque aucune information sur le passager et que la réservation a été enregistrée."
+                "message": "Pour continuer, vous devez avoir fourni les détails de tous les passagers."
             },
             {
                 "id": "threePointReservationValidation",
-                "message": "Assurez-vous qu'il ne manque aucune information sur le passager, que vous avez fourni l'adresse électronique et que la réservation a été enregistrée."
+                "message": "Pour continuer, vous devez avoir fourni les détails de tous les passagers et un courriel valide."
             },
             {
                 "id": "errorsInRegistrars",

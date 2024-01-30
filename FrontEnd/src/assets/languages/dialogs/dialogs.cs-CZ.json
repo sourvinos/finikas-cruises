@@ -156,11 +156,11 @@
             },
             {
                 "id": "twoPointReservationValidation",
-                "message": "Zkontrolujte, zda nechybí žádné údaje o cestujícím a zda byla rezervace uložena."
+                "message": "Chcete-li pokračovat, musíte zadat údaje o všech cestujících."
             },
             {
                 "id": "threePointReservationValidation",
-                "message": "Zkontrolujte, zda nechybí žádné údaje o cestujícím, zda jste zadali e-mail a zda byla rezervace uložena."
+                "message": "Chcete-li pokračovat, musíte zadat údaje o všech cestujících a platný e-mail."
             },
             {
                 "id": "errorsInRegistrars",
