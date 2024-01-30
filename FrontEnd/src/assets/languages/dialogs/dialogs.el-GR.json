@@ -169,6 +169,10 @@
             {
                 "id": "invalidClipboardPassengers",
                 "message": "Η γραμμή xx δεν είναι σωστή."
+            },
+            {
+                "id": "saveReservationMustBeDoneFromOverviewTab",
+                "message": "Όταν είναι ενεργοποιημένη η επαναλαμβανόμενη καταχώρηση, η αποθήκευση πρέπει να γίνεται από την καρτέλα 'γενικά'."
             }
         ]
     }

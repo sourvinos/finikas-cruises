@@ -28,10 +28,10 @@ export class BoardingPassService extends HttpDataService {
 
     //#region public methods
 
-    public createBoardingPass(form: any, companyPhones: string, companyEmail: string): BoardingPassVM {
+    public createBoardingPass(body: any, form: any, companyData: any): BoardingPassVM {
         const boardingPass = {
             'date': this.dateHelperService.formatISODateToLocale(form.date),
-            'refNo': form.refNo,
+            'refNo': body.refNo,
             'destinationDescription': form.destination.description,
             'customerDescription': form.customer.description,
             'pickupPointDescription': form.pickupPoint.description,
@@ -44,10 +44,10 @@ export class BoardingPassService extends HttpDataService {
             'driverDescription': form.driver.description,
             'ticketNo': form.ticketNo,
             'remarks': form.remarks,
-            'barcode': form.refNo,
+            'barcode': body.refNo,
             'passengers': this.mapBoardingPassPassengers(form.passengers),
-            'companyPhones': companyPhones,
-            'companyEmail': companyEmail,
+            'companyPhones': companyData.phones,
+            'companyEmail': companyData.email,
         }
         return boardingPass
     }

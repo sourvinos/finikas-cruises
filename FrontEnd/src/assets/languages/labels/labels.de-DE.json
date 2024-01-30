@@ -846,7 +846,7 @@
             },
             {
                 "id": "toggle-button-general",
-                "description": "Allgemeine"
+                "description": "Allgemein"
             },
             {
                 "id": "toggle-button-passengers",
@@ -862,11 +862,11 @@
             },
             {
                 "id": "saveAndPrintBoardingPassButton",
-                "description": ""
+                "description": "Datensatz speichern und Bordkarte drucken"
             },
             {
                 "id": "saveAndEmailBoardingPassButton",
-                "description": ""
+                "description": "Datensatz speichern und Bordkarte per E-Mail versenden"
             }
         ]
     },

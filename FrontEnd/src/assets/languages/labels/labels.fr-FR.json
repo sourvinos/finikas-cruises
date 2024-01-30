@@ -846,7 +846,7 @@
             },
             {
                 "id": "toggle-button-general",
-                "description": "Générales"
+                "description": "Général"
             },
             {
                 "id": "toggle-button-passengers",
@@ -862,11 +862,11 @@
             },
             {
                 "id": "saveAndPrintBoardingPassButton",
-                "description": ""
+                "description": "Sauvegarder l'enregistrement et imprimer la carte d'embarquement"
             },
             {
                 "id": "saveAndEmailBoardingPassButton",
-                "description": ""
+                "description": "Enregistrer l'enregistrement et envoyer la carte d'embarquement par e-mail"
             }
         ]
     },

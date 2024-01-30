@@ -169,6 +169,10 @@
             {
                 "id": "invalidClipboardPassengers",
                 "message": "Zeile xx ist nicht korrekt"
+            },
+            {
+                "id": "saveReservationMustBeDoneFromOverviewTab",
+                "message": "Wenn die wiederholte Eingabe aktiviert ist, muss die Speicherung über die Registerkarte 'Allgemein' erfolgen."
             }
         ]
     }

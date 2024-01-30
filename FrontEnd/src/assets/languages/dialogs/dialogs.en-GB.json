@@ -169,6 +169,10 @@
             {
                 "id": "invalidClipboardPassengers",
                 "message": "Line xx has errors"
+            },
+            {
+                "id": "saveReservationMustBeDoneFromOverviewTab",
+                "message": "When repeated entry is enabled, saving must be done from the 'overview' tab"
             }
         ]
     }

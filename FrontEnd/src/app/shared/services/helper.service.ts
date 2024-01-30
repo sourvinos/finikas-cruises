@@ -269,8 +269,8 @@ export class HelperService {
         }
     }
 
-    public generateRandomString(): string {
-        return Math.floor(Math.random() * Date.now()).toString(36)
+    public generateRandomString(length: number): string {
+        return Math.floor(Math.random() * Date.now()).toString(length)
     }
 
     //#endregion

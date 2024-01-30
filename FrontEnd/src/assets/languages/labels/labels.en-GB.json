@@ -846,7 +846,7 @@
             },
             {
                 "id": "toggle-button-general",
-                "description": "Overview"
+                "description": " General"
             },
             {
                 "id": "toggle-button-passengers",
@@ -862,11 +862,11 @@
             },
             {
                 "id": "saveAndPrintBoardingPassButton",
-                "description": ""
+                "description": "Save record and print boarding pass"
             },
             {
                 "id": "saveAndEmailBoardingPassButton",
-                "description": ""
+                "description": "Save record and send boarding pass to email"
             }
         ]
     },

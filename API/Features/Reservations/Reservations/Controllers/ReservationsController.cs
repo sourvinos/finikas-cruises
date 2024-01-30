@@ -90,7 +90,7 @@ namespace API.Features.Reservations.Reservations {
         [Authorize(Roles = "user, admin")]
         [ServiceFilter(typeof(ModelValidationAttribute))]
         public async Task<ResponseWithBody> Post([FromBody] ReservationWriteDto reservation) {
-            UpdateDriverIdWithNull(reservation);    
+            UpdateDriverIdWithNull(reservation);
             UpdateShipIdWithNull(reservation);
             AttachNewRefNoToDto(reservation);
             var z = reservationValidation.IsValidAsync(null, reservation, scheduleRepo);
@@ -99,7 +99,10 @@ namespace API.Features.Reservations.Reservations {
                 return new ResponseWithBody {
                     Code = 200,
                     Icon = Icons.Success.ToString(),
-                    Body = x.ReservationId,
+                    Body = new {
+                        x.RefNo,
+                        x.ReservationId
+                    },
                     Message = reservation.RefNo
                 };
             } else {
@@ -124,7 +127,10 @@ namespace API.Features.Reservations.Reservations {
                         return new ResponseWithBody {
                             Code = 200,
                             Icon = Icons.Success.ToString(),
-                            Body = i.PutAt,
+                            Body = new {
+                                i.RefNo,
+                                i.ReservationId
+                            },
                             Message = reservation.RefNo
                         };
                     } else {

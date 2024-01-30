@@ -862,11 +862,11 @@
             },
             {
                 "id": "saveAndPrintBoardingPassButton",
-                "description": ""
+                "description": "Uložení záznamu a tisk palubního lístku"
             },
             {
                 "id": "saveAndEmailBoardingPassButton",
-                "description": ""
+                "description": "Uložit záznam a odeslat palubní vstupenku e-mailem"
             }
         ]
     },

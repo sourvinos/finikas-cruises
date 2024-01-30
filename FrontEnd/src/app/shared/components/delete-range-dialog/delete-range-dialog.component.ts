@@ -60,7 +60,7 @@ export class DeleteRangeDialogComponent {
     //#region private methods
 
     private createRandomString(): void {
-        this.randomString = this.helperService.generateRandomString()
+        this.randomString = this.helperService.generateRandomString(36)
     }
 
     private initForm(): void {

@@ -72,6 +72,7 @@ export class MessageDialogService {
     public threePointReservationValidation(): string { return this.getDescription(this.feature, 'threePointReservationValidation') }
     public errorsInRegistrars(): string { return this.getDescription(this.feature, 'errorsInRegistrars') }
     public invalidClipboardPassengers(rowIndex: number): string { return this.getDescription(this.feature, 'invalidClipboardPassengers', rowIndex) }
+    public saveReservationMustBeDoneFromOverviewTab(): string { return this.getDescription(this.feature, 'saveReservationMustBeDoneFromOverviewTab') }
 
     public filterResponse(error: any, feature = 'snackbarMessages'): string {
         let returnValue = ''

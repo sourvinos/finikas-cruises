@@ -169,6 +169,10 @@
             {
                 "id": "invalidClipboardPassengers",
                 "message": "La ligne xx n'est pas correcte"
+            },
+            {
+                "id": "saveReservationMustBeDoneFromOverviewTab",
+                "message": "Lorsque la saisie répétée est activée, la sauvegarde doit être effectuée à partir de l'onglet 'général'."
             }
         ]
     }

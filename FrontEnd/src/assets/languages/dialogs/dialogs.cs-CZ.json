@@ -169,6 +169,10 @@
             {
                 "id": "invalidClipboardPassengers",
                 "message": "Řádek xx není správný"
+            },
+            {
+                "id": "saveReservationMustBeDoneFromOverviewTab",
+                "message": "Pokud je povoleno opakované zadávání, musí se ukládání provádět na kartě 'obecné'."
             }
         ]
     }

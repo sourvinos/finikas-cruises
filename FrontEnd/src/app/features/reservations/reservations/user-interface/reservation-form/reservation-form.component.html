@@ -10,6 +10,9 @@
                     <mat-button-toggle (click)="onShowReservationTab()" checked class="primary">{{ getLabel("toggle-button-general") | uppercase }}</mat-button-toggle>
                     <mat-button-toggle (click)="onShowPassengersTab()">{{ getLabel("toggle-button-passengers") | uppercase }}</mat-button-toggle>
                 </mat-button-toggle-group>
+                <button *ngIf="isDevelopment()" (click)="onCreateRandomRecord()" class="fab fab-with-no-background" mat-icon-button>
+                    <mat-icon style="color: #fee6c0;" class="material-symbols-outlined">cycle</mat-icon>
+                </button>
             </div>
         </div>
 
@@ -185,7 +188,7 @@
             <mat-icon [ngClass]="getIsRepeatedEntry()" class="material-symbols-outlined">cycle</mat-icon>
         </div>
         <div id="align-right">
-            <button *ngIf="form.value.reservationId != ''" (click)="onDelete()" [disabled]="!isAdmin()" class="delete" mat-flat-button>
+            <button *ngIf="form.value.reservationId != null && form.value.reservationId != ''" (click)="onDelete()" [disabled]="!isAdmin()" class="delete" mat-flat-button>
                 <mat-icon *ngIf="!isAdmin()" class="material-icons-outlined">lock</mat-icon>
                 <span>{{ getLabel('deleteButton') | uppercase }}</span>
             </button>
