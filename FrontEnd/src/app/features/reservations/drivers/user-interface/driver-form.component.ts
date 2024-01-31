@@ -68,7 +68,7 @@ export class DriverFormComponent {
                 this.driverService.delete(this.form.value.id).subscribe({
                     complete: () => {
                         this.dexieService.remove('drivers', this.form.value.id)
-                        this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, true)
+                        this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, false)
                     },
                     error: (errorFromInterceptor) => {
                         this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
@@ -157,7 +157,7 @@ export class DriverFormComponent {
         this.driverService.save(driver).subscribe({
             next: (response) => {
                 this.dexieService.update('drivers', { 'id': parseInt(response.id), 'description': driver.description, 'isActive': driver.isActive })
-                this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, true)
+                this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, false)
             },
             error: (errorFromInterceptor) => {
                 this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])

@@ -79,7 +79,7 @@ export class CodeFormComponent {
                 this.codeHttpService.delete(this.form.value.id).subscribe({
                     complete: () => {
                         this.dexieService.remove('codes', this.form.value.id)
-                        this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, true)
+                        this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, false)
                     },
                     error: (errorFromInterceptor) => {
                         this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
@@ -198,7 +198,7 @@ export class CodeFormComponent {
         this.codeHttpService.save(code).subscribe({
             next: (response) => {
                 this.dexieService.update('codes', { 'id': response.id, 'description': code.description, 'isActive': code.isActive })
-                this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, true)
+                this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, false)
             },
             error: (errorFromInterceptor) => {
                 this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])

@@ -68,7 +68,7 @@ export class TaxOfficeFormComponent {
                 this.taxOfficeService.delete(this.form.value.id).subscribe({
                     complete: () => {
                         this.dexieService.remove('taxOffices', this.form.value.id)
-                        this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, true)
+                        this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, false)
                     },
                     error: (errorFromInterceptor) => {
                         this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
@@ -154,7 +154,7 @@ export class TaxOfficeFormComponent {
         this.taxOfficeService.save(taxOffice).subscribe({
             next: (response) => {
                 this.dexieService.update('taxOffices', { 'id': response.id, 'description': taxOffice.description, 'isActive': taxOffice.isActive })
-                this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, true)
+                this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, false)
             },
             error: (errorFromInterceptor) => {
                 this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])

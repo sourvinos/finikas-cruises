@@ -69,7 +69,7 @@ export class CoachRouteFormComponent {
                 this.coachRouteService.delete(this.form.value.id).subscribe({
                     complete: () => {
                         this.dexieService.remove('coachRoutes', this.form.value.id)
-                        this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, true)
+                        this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, false)
                     },
                     error: (errorFromInterceptor) => {
                         this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
@@ -165,7 +165,7 @@ export class CoachRouteFormComponent {
         this.coachRouteService.save(coachRoute).subscribe({
             next: (response) => {
                 this.dexieService.update('coachRoutes', { 'id': parseInt(response.id), 'description': coachRoute.abbreviation, 'isActive': coachRoute.isActive })
-                this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, true)
+                this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, false)
             },
             error: (errorFromInterceptor) => {
                 this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])

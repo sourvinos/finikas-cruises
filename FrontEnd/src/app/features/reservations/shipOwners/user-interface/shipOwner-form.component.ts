@@ -68,7 +68,7 @@ export class ShipOwnerFormComponent {
                 this.shipOwnerService.delete(this.form.value.id).subscribe({
                     complete: () => {
                         this.dexieService.remove('shipOwners', this.form.value.id)
-                        this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, true)
+                        this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, false)
                     },
                     error: (errorFromInterceptor) => {
                         this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
@@ -172,7 +172,7 @@ export class ShipOwnerFormComponent {
         this.shipOwnerService.save(shipOwner).subscribe({
             next: (response) => {
                 this.dexieService.update('shipOwners', { 'id': parseInt(response.id), 'description': shipOwner.description, 'isActive': shipOwner.isActive })
-                this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, true)
+                this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, false)
             },
             error: (errorFromInterceptor) => {
                 this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])

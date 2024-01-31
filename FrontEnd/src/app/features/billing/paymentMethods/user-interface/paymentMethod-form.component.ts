@@ -68,7 +68,7 @@ export class PaymentMethodFormComponent {
                 this.paymentMethodHttpService.delete(this.form.value.id).subscribe({
                     complete: () => {
                         this.dexieService.remove('paymentMethods', this.form.value.id)
-                        this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, true)
+                        this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, false)
                     },
                     error: (errorFromInterceptor) => {
                         this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
@@ -157,7 +157,7 @@ export class PaymentMethodFormComponent {
         this.paymentMethodHttpService.save(paymentMethod).subscribe({
             next: (response) => {
                 this.dexieService.update('paymentMethods', { 'id': response.id, 'description': paymentMethod.description, 'isActive': paymentMethod.isActive })
-                this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, true)
+                this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, false)
             },
             error: (errorFromInterceptor) => {
                 this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])

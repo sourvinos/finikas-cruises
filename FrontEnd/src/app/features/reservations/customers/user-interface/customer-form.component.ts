@@ -103,7 +103,7 @@ export class CustomerFormComponent {
                 this.customerHttpService.delete(this.form.value.id).subscribe({
                     complete: () => {
                         this.dexieService.remove('customers', this.form.value.id)
-                        this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, true)
+                        this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, false)
                     },
                     error: (errorFromInterceptor) => {
                         this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
@@ -250,7 +250,7 @@ export class CustomerFormComponent {
         this.customerHttpService.save(customer).subscribe({
             next: (response) => {
                 this.dexieService.update('customers', { 'id': parseInt(response.id), 'description': customer.description, 'isActive': customer.isActive })
-                this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, true)
+                this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, false)
             },
             error: (errorFromInterceptor) => {
                 this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])

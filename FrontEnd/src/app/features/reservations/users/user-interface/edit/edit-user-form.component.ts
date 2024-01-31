@@ -123,7 +123,7 @@ export class EditUserFormComponent {
         if (this.helperService.deepEqual(this.form.value, this.mirrorRecord)) {
             this.userService.emailUserDetails(this.form.value).subscribe({
                 complete: () => {
-                    this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, true)
+                    this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, false)
                 },
                 error: (errorFromInterceptor) => {
                     this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])

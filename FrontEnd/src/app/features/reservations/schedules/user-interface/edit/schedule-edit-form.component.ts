@@ -105,7 +105,7 @@ export class ScheduleEditFormComponent {
             if (response) {
                 this.scheduleHttpService.delete(this.form.value.id).subscribe({
                     complete: () => {
-                        this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, true)
+                        this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, false)
                     },
                     error: (errorFromInterceptor) => {
                         this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
@@ -236,7 +236,7 @@ export class ScheduleEditFormComponent {
     private saveRecord(schedule: ScheduleWriteDto): void {
         this.scheduleHttpService.save(schedule).subscribe({
             complete: () => {
-                this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, true)
+                this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, false)
             },
             error: (errorFromInterceptor) => {
                 this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])

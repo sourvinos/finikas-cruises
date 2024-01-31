@@ -2,3 +2,4 @@ pickups ανα προορισμό
 send emails from own account
 an exception has been raised that is likely due to a transient failure. 
 	Consider enabling transient error resiliency by adding 'EnableRetryOnFailure()' to the 'UseMySql' call
+new user > send email on save (like reservation > send boarding pass`)
