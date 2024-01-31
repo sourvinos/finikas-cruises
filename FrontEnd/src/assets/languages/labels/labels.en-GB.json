@@ -274,6 +274,10 @@
                 "description": "Active"
             },
             {
+                "id": "headerDestinationAbbreviation",
+                "description": "Destination"
+            },
+            {
                 "id": "headerRouteAbbreviation",
                 "description": "Route"
             },
@@ -313,6 +317,10 @@
             {
                 "id": "coachRoute",
                 "description": "Route"
+            },
+            {
+                "id": "destination",
+                "description": "Destination"
             },
             {
                 "id": "port",

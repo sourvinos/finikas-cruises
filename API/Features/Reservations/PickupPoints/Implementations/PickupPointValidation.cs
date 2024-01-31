@@ -16,6 +16,7 @@ namespace API.Features.Reservations.PickupPoints {
         public int IsValid(PickupPoint z, PickupPointWriteDto pickupPoint) {
             return true switch {
                 var x when x == !IsValidCoachRoute(pickupPoint) => 408,
+                var x when x == !IsValidDestination(pickupPoint) => 451,
                 var x when x == !IsValidPort(pickupPoint) => 411,
                 var x when x == IsAlreadyUpdated(z, pickupPoint) => 415,
                 _ => 200,
@@ -32,12 +33,22 @@ namespace API.Features.Reservations.PickupPoints {
                     .SingleOrDefault(x => x.Id == pickupPoint.CoachRouteId) != null;
         }
 
+        private bool IsValidDestination(PickupPointWriteDto pickupPoint) {
+            return pickupPoint.Id == 0
+                ? context.Destinations
+                    .AsNoTracking()
+                    .SingleOrDefault(x => x.Id == pickupPoint.DestinationId && x.IsActive) != null
+                : context.CoachRoutes
+                    .AsNoTracking()
+                    .SingleOrDefault(x => x.Id == pickupPoint.DestinationId) != null;
+        }
+
         private bool IsValidPort(PickupPointWriteDto pickupPoint) {
             return pickupPoint.Id == 0
-                ? context.CoachRoutes
+                ? context.Ports
                     .AsNoTracking()
                     .SingleOrDefault(x => x.Id == pickupPoint.PortId && x.IsActive) != null
-                : context.CoachRoutes
+                : context.Ports
                     .AsNoTracking()
                     .SingleOrDefault(x => x.Id == pickupPoint.PortId) != null;
         }

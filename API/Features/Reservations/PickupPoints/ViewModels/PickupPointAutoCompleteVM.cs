@@ -6,6 +6,7 @@ namespace API.Features.Reservations.PickupPoints {
 
         public string ExactPoint { get; set; }
         public string Time { get; set; }
+        public SimpleEntity Destination { get; set; }
         public SimpleEntity Port { get; set; }
         public bool IsActive { get; set; }
 

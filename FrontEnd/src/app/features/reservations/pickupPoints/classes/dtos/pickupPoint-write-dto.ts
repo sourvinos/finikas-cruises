@@ -4,6 +4,7 @@ export interface PickupPointWriteDto {
     id: number
     // FKs
     coachRouteId: number
+    destinationId: number
     portId: number
     // Fields
     description: string
@@ -11,7 +12,7 @@ export interface PickupPointWriteDto {
     time: string
     remarks: string
     isActive: boolean
-    // Rowversion
+    // Metadata
     putAt: string
 
 }

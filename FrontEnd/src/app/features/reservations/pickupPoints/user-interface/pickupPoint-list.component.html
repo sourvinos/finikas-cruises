@@ -11,6 +11,7 @@
                 <ng-template pTemplate="header">
                     <tr>
                         <th class="width-5" pSortableColumn="isActive">{{ getLabel("headerIsActive") }}</th>
+                        <th class="width-8" pSortableColumn="destination.abbreviation">{{ getLabel("headerDestinationAbbreviation") }}</th>
                         <th class="width-8" pSortableColumn="coachRoute.abbreviation">{{ getLabel("headerRouteAbbreviation") }}</th>
                         <th class="width-8" pSortableColumn="port.abbreviation">{{ getLabel("headerPortAbbreviation") }}</th>
                         <th class="width-18" pSortableColumn="description">{{ getLabel("headerDescription") }}</th>
@@ -19,6 +20,19 @@
                     </tr>
                     <tr>
                         <th class="width-5"><p-columnFilter field="isActive" type="boolean"></p-columnFilter></th>
+                        <th class="width-8">
+                            <p-columnFilter [showMenu]="false" field="destination" matchMode="in">
+                                <ng-template let-filter="filterCallback" let-value pTemplate="filter">
+                                    <p-multiSelect (onChange)="filter($event.value)" [ngModel]="value" [options]="dropdownDestinations" [placeholder]="getEmoji('wildcard')" optionLabel="description">
+                                        <ng-template let-option pTemplate="item">
+                                            <div class="p-multiselect-option">
+                                                <span>{{ option.description }}</span>
+                                            </div>
+                                        </ng-template>
+                                    </p-multiSelect>
+                                </ng-template>
+                            </p-columnFilter>
+                        </th>
                         <th class="width-8">
                             <p-columnFilter [showMenu]="false" field="coachRoute" matchMode="in">
                                 <ng-template let-filter="filterCallback" let-value pTemplate="filter">
@@ -53,6 +67,7 @@
                 <ng-template let-record pTemplate="body">
                     <tr (click)="highlightRow(record.id)" (dblclick)="editRecord(record.id)" [attr.id]=record.id class="without-footer" style="height: 32px;">
                         <td class="width-5"><span class="center no-left-padding" style="font-size: 0.5rem; padding-top: 0 !important;">{{ getEmoji(record.isActive) }}</span></td>
+                        <td class="width-8"><span class="center">{{ record.destination.abbreviation }}</span></td>
                         <td class="width-8"><span class="center">{{ record.coachRoute.abbreviation }}</span></td>
                         <td class="width-8"><span class="center">{{ record.port.abbreviation }}</span></td>
                         <td class="width-18"><span>{{ record.description }}</span></td>

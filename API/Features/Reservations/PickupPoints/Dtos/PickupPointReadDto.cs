@@ -10,6 +10,7 @@ namespace API.Features.Reservations.PickupPoints {
         public int Id { get; set; }
         // FKs
         public int CoachRouteId { get; set; }
+        public int DestinationId { get; set; }
         public int PortId { get; set; }
         // Fields
         public string Description { get; set; }
@@ -24,6 +25,7 @@ namespace API.Features.Reservations.PickupPoints {
         public string PutUser { get; set; }
         // Navigation
         public CoachRouteAutoCompleteVM CoachRoute { get; set; }
+        public SimpleEntity Destination { get; set; }
         public SimpleEntity Port { get; set; }
 
     }

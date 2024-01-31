@@ -274,6 +274,10 @@
                 "description": "Aktivní"
             },
             {
+                "id": "headerDestinationAbbreviation",
+                "description": "Destinace"
+            },
+            {
                 "id": "headerRouteAbbreviation",
                 "description": "Trasa"
             },
@@ -313,6 +317,10 @@
             {
                 "id": "coachRoute",
                 "description": "Trasa"
+            },
+            {
+                "id": "destination",
+                "description": "Destinace"
             },
             {
                 "id": "port",

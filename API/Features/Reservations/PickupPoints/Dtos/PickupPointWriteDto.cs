@@ -8,6 +8,7 @@ namespace API.Features.Reservations.PickupPoints {
         public int Id { get; set; }
         // FKs
         public int CoachRouteId { get; set; }
+        public int DestinationId { get; set; }
         public int PortId { get; set; }
         // Fields
         public string Description { get; set; }

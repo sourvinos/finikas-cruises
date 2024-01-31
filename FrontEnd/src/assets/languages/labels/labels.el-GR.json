@@ -274,6 +274,10 @@
                 "description": "Ενεργό"
             },
             {
+                "id": "headerDestinationAbbreviation",
+                "description": "Προορισμός"
+            },
+            {
                 "id": "headerRouteAbbreviation",
                 "description": "Διαδρομή"
             },
@@ -313,6 +317,10 @@
             {
                 "id": "coachRoute",
                 "description": "Διαδρομή"
+            },
+            {
+                "id": "destination",
+                "description": "Προορισμός"
             },
             {
                 "id": "port",

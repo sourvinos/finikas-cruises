@@ -19,6 +19,7 @@ import { PickupPointService } from '../classes/services/pickupPoint.service'
 import { PickupPointWriteDto } from '../classes/dtos/pickupPoint-write-dto'
 import { PortAutoCompleteVM } from '../../ports/classes/view-models/port-autocomplete-vm'
 import { ValidationService } from '../../../../shared/services/validation.service'
+import { DestinationAutoCompleteVM } from '../../destinations/classes/view-models/destination-autocomplete-vm'
 
 @Component({
     selector: 'pickuppoint-form',
@@ -45,6 +46,7 @@ export class PickupPointFormComponent {
 
     public isAutoCompleteDisabled = true
     public dropdownCoachRoutes: Observable<CoachRouteAutoCompleteVM[]>
+    public dropdownDestinations: Observable<DestinationAutoCompleteVM[]>
     public dropdownPorts: Observable<PortAutoCompleteVM[]>
 
     //#endregion
@@ -99,7 +101,7 @@ export class PickupPointFormComponent {
                 this.pickupPointService.delete(this.form.value.id).subscribe({
                     complete: () => {
                         this.dexieService.remove('pickupPoints', this.form.value.id)
-                        this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, true)
+                        this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, false)
                     },
                     error: (errorFromInterceptor) => {
                         this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
@@ -133,6 +135,7 @@ export class PickupPointFormComponent {
         return {
             id: this.form.value.id,
             coachRouteId: this.form.value.coachRoute.id,
+            destinationId: this.form.value.destination.id,
             portId: this.form.value.port.id,
             description: this.form.value.description,
             exactPoint: this.form.value.exactPoint,
@@ -172,6 +175,7 @@ export class PickupPointFormComponent {
         this.form = this.formBuilder.group({
             id: 0,
             coachRoute: ['', [Validators.required, ValidationService.RequireAutocomplete]],
+            destination: ['', [Validators.required, ValidationService.RequireAutocomplete]],
             port: ['', [Validators.required, ValidationService.RequireAutocomplete]],
             description: ['', [Validators.required, Validators.maxLength(128)]],
             exactPoint: ['', [Validators.required, Validators.maxLength(128)]],
@@ -187,6 +191,7 @@ export class PickupPointFormComponent {
 
     private populateDropdowns(): void {
         this.populateDropdownFromDexieDB('coachRoutes', 'dropdownCoachRoutes', 'coachRoute', 'abbreviation', 'abbreviation')
+        this.populateDropdownFromDexieDB('destinations', 'dropdownDestinations', 'destination', 'description', 'description')
         this.populateDropdownFromDexieDB('ports', 'dropdownPorts', 'port', 'description', 'description')
     }
 
@@ -202,6 +207,7 @@ export class PickupPointFormComponent {
             this.form.setValue({
                 id: this.record.id,
                 coachRoute: { 'id': this.record.coachRoute.id, 'abbreviation': this.record.coachRoute.abbreviation },
+                destination: { 'id': this.record.destination.id, 'description': this.record.destination.description },
                 port: { 'id': this.record.port.id, 'abbreviation': this.record.port.abbreviation, 'description': this.record.port.description },
                 description: this.record.description,
                 exactPoint: this.record.exactPoint,
@@ -224,7 +230,7 @@ export class PickupPointFormComponent {
         this.pickupPointService.save(pickupPoint).subscribe({
             next: (response) => {
                 this.dexieService.update('pickupPoints', { 'id': parseInt(response.id), 'description': pickupPoint.description, 'exactPoint': pickupPoint.exactPoint, 'time': pickupPoint.time, 'isActive': pickupPoint.isActive })
-                this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, true)
+                this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, false)
             },
             error: (errorFromInterceptor) => {
                 this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
@@ -244,6 +250,10 @@ export class PickupPointFormComponent {
 
     get coachRoute(): AbstractControl {
         return this.form.get('coachRoute')
+    }
+
+    get destination(): AbstractControl {
+        return this.form.get('destination')
     }
 
     get port(): AbstractControl {

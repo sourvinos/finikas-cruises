@@ -24,8 +24,9 @@ namespace API.Features.Reservations.PickupPoints {
             var pickupPoints = await context.PickupPoints
                 .AsNoTracking()
                 .Include(x => x.CoachRoute)
+                .Include(x => x.Destination)
                 .Include(x => x.Port)
-                .OrderBy(x => x.CoachRoute.Abbreviation).ThenBy(x => x.Time).ThenBy(x => x.Description)
+                .OrderBy(x => x.Destination.Description).ThenBy(x => x.CoachRoute.Abbreviation).ThenBy(x => x.Time).ThenBy(x => x.Description)
                 .ToListAsync();
             return mapper.Map<IEnumerable<PickupPoint>, IEnumerable<PickupPointListVM>>(pickupPoints);
         }
@@ -34,6 +35,7 @@ namespace API.Features.Reservations.PickupPoints {
             var pickupPoints = await context.PickupPoints
                 .AsNoTracking()
                 .Include(x => x.CoachRoute)
+                .Include(x => x.Destination)
                 .Include(x => x.Port)
                 .OrderBy(x => x.Time).ThenBy(x => x.Description)
                 .ToListAsync();
@@ -45,6 +47,7 @@ namespace API.Features.Reservations.PickupPoints {
                 ? await context.PickupPoints
                     .AsNoTracking()
                     .Include(x => x.CoachRoute)
+                    .Include(x => x.Destination)
                     .Include(x => x.Port)
                     .SingleOrDefaultAsync(x => x.Id == id)
                 : await context.PickupPoints

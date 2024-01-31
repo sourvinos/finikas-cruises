@@ -274,6 +274,10 @@
                 "description": "Aktiv"
             },
             {
+                "id": "headerDestinationAbbreviation",
+                "description": "Reiseziel"
+            },
+            {
                 "id": "headerRouteAbbreviation",
                 "description": "Route"
             },
@@ -313,6 +317,10 @@
             {
                 "id": "coachRoute",
                 "description": "Busroute"
+            },
+            {
+                "id": "destination",
+                "description": "Reiseziel"
             },
             {
                 "id": "port",

@@ -9,8 +9,9 @@ namespace API.Features.Reservations.PickupPoints {
             // PK
             entity.Property(x => x.Id).ValueGeneratedOnAdd();
             // FKs
-            entity.Property(x => x.PortId).IsRequired(true);
             entity.Property(x => x.CoachRouteId).IsRequired(true);
+            entity.Property(x => x.DestinationId).IsRequired(true);
+            entity.Property(x => x.PortId).IsRequired(true);
             // Fields
             entity.Property(x => x.Description).HasMaxLength(128).IsRequired(true);
             entity.Property(x => x.ExactPoint).HasMaxLength(128).IsRequired(true);

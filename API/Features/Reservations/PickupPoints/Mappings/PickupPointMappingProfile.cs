@@ -1,4 +1,5 @@
 using API.Features.Reservations.CoachRoutes;
+using API.Features.Reservations.Destinations;
 using API.Infrastructure.Classes;
 using AutoMapper;
 
@@ -13,6 +14,11 @@ namespace API.Features.Reservations.PickupPoints {
                     Id = x.CoachRoute.Id,
                     Abbreviation = x.CoachRoute.Abbreviation
                 }))
+                .ForMember(x => x.Destination, x => x.MapFrom(x => new PickupPointListDestinationVM {
+                    Id = x.DestinationId,
+                    Abbreviation = x.Destination.Abbreviation,
+                    Description = x.Destination.Description
+                }))
                 .ForMember(x => x.Port, x => x.MapFrom(x => new PickupPointListPortVM {
                     Id = x.Port.Id,
                     Abbreviation = x.Port.Abbreviation,
@@ -23,6 +29,10 @@ namespace API.Features.Reservations.PickupPoints {
                 .ForMember(x => x.Description, x => x.MapFrom(x => x.Description))
                 .ForMember(x => x.ExactPoint, x => x.MapFrom(x => x.ExactPoint))
                 .ForMember(x => x.Time, x => x.MapFrom(x => x.Time))
+                .ForMember(x => x.Destination, x => x.MapFrom(x => new SimpleEntity {
+                    Id = x.Destination.Id,
+                    Description = x.Destination.Description
+                }))
                 .ForMember(x => x.Port, x => x.MapFrom(x => new SimpleEntity {
                     Id = x.Port.Id,
                     Description = x.Port.Description
@@ -32,6 +42,10 @@ namespace API.Features.Reservations.PickupPoints {
                 .ForMember(x => x.CoachRoute, x => x.MapFrom(x => new CoachRouteAutoCompleteVM {
                     Id = x.CoachRoute.Id,
                     Abbreviation = x.CoachRoute.Abbreviation
+                }))
+                .ForMember(x => x.Destination, x => x.MapFrom(x => new SimpleEntity {
+                    Id = x.Destination.Id,
+                    Description = x.Destination.Description
                 }))
                 .ForMember(x => x.Port, x => x.MapFrom(x => new SimpleEntity {
                     Id = x.Port.Id,
