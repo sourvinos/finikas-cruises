@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-using API.Features.Reservations.Ships;
 using API.Infrastructure.Interfaces;
 
 namespace API.Features.Reservations.ShipOwners {
@@ -22,8 +20,6 @@ namespace API.Features.Reservations.ShipOwners {
         public string PostUser { get; set; }
         public string PutAt { get; set; }
         public string PutUser { get; set; }
-        // Navigation
-        public List<Ship> Ships { get; set; }
 
     }
 
