@@ -2,8 +2,7 @@
 
 .p-scroller {
     height: 100% !important;
-    overflow-x: hidden !important;
-    overflow-y: scroll !important;
+    overflow: hidden scroll !important;
 }
 
 /* #endregion */
@@ -116,7 +115,7 @@
 }
 
 .p-datatable .p-datatable-tbody > tr:not(:first-child) > td {
-    border-top: 0.0625rem solid color-mix(in srgb, var(--color-primary) 30%, transparent);
+    border-top: 0.0625rem solid color-mix(in srgb, var(--color-primary), transparent);
 }
 
 .p-datatable .p-datatable-tbody > tr > td {
@@ -126,11 +125,11 @@
     font-size: var(--font-size-table-row);
     font-weight: 300;
     padding: 0 0 0 0;
-    transition: all var(--theme-delay);
+    transition: color var(--theme-delay);
 }
 
 .p-datatable .p-datatable-tbody > tr.without-footer:last-child > td {
-    border-bottom: 0.0625rem solid color-mix(in srgb, var(--color-primary) 30%, transparent) !important;
+    border-bottom: 0.0625rem solid color-mix(in srgb, var(--color-primary), transparent) !important;
 }
 
 .p-datatable .p-datatable-tbody > tr > td > span {
@@ -180,7 +179,22 @@
 
 .p-datatable .p-datatable-tbody > tr.p-highlight > td > span {
     background-color: color-mix(in srgb, var(--color-secondary), transparent) !important;
-    transition: background-color var(--theme-delay);
+}
+
+.p-datatable .p-datatable-tbody > tr.p-highlight > td > p-celleditor:has(input) {
+    padding: 0 0 0 0 !important;
+}
+
+.p-datatable .p-datatable-tbody > tr.p-highlight > td > p-celleditor > input {
+    background-color: var(--color-table-edit-cell);
+    padding: 6px 6px 6px 6px !important;
+}
+
+.p-datatable .p-datatable-tbody > tr.p-highlight > td > p-celleditor {
+    background-color: color-mix(in srgb, var(--color-secondary), transparent) !important;
+    display: block;
+    padding: 8px 0 8px 0 !important;
+    width: auto;
 }
 
 .p-datatable .p-datatable-tbody > tr:focus {
@@ -188,8 +202,27 @@
 }
 
 .p-datatable .p-datatable-tbody > tr:hover > td > span {
-    background-color: color-mix(in srgb, var(--color-secondary) 30%, transparent) !important;
+    background-color: color-mix(in srgb, var(--color-secondary), transparent) !important;
     cursor: pointer !important;
+    padding: 8px 0 8px 0;
+}
+
+.p-datatable .p-datatable-tbody > tr:hover > td {
+    cursor: pointer !important;
+}
+
+.p-datatable .p-datatable-tbody > tr > td > p-celleditor {
+    display: block;
+    padding: 8px 0 8px 0 !important;
+    width: auto;
+}
+
+.p-datatable .p-datatable-tbody > tr:hover > td > p-celleditor {
+    background-color: color-mix(in srgb, var(--color-secondary), transparent) !important;
+    cursor: pointer !important;
+    display: block;
+    padding: 8px 0 8px 0 !important;
+    width: auto;
 }
 
 .p-datatable-flex-scrollable .p-datatable-scrollable-body, .p-datatable-flex-scrollable .p-datatable-virtual-scrollable-body {
@@ -204,6 +237,12 @@
     overflow-y: scroll !important;
     overscroll-behavior: contain;
     scrollbar-gutter: stable;
+}
+
+.p-element > input:focus-visible {
+    border: 0.0625rem solid color-mix(in srgb, var(--color-border) 50%, transparent) !important;
+    outline: none !important;
+    width: 100% !important;
 }
 
 /* #endregion */
@@ -222,7 +261,7 @@
     font-size: var(--font-size-table-row);
     font-weight: 300;
     padding: 0.5rem 0 0.5rem 0.3125rem !important;
-    transition: all var(--theme-delay) !important;
+    transition: color var(--theme-delay) !important;
 }
 
 .p-datatable .p-datatable-tfoot > tr > td:first-child {

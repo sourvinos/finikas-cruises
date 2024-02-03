@@ -73,9 +73,37 @@
                         <td class="width-8"><span class="center">{{ record.destination.abbreviation }}</span></td>
                         <td class="width-8"><span class="center">{{ record.coachRoute.abbreviation }}</span></td>
                         <td class="width-8"><span class="center">{{ record.port.abbreviation }}</span></td>
-                        <td class="width-18"><span>{{ record.description }}</span></td>
-                        <td class="width-10"><span>{{ record.exactPoint }}</span></td>
-                        <td class="width-5"><span class="center">{{ record.time }}</span></td>
+                        <td class="width-18" pEditableColumn>
+                            <p-cellEditor>
+                                <ng-template pTemplate="input">
+                                    <input pInputText (keydown.ArrowLeft)="cancelArrowKeys($event)" (keydown.ArrowRight)="cancelArrowKeys($event)" [(ngModel)]="record.description">
+                                </ng-template>
+                                <ng-template pTemplate="output">
+                                    {{ record.description }}
+                                </ng-template>
+                            </p-cellEditor>
+                        </td>
+                        <td class="width-10" pEditableColumn>
+                            <p-cellEditor>
+                                <ng-template pTemplate="input">
+                                    <input pInputText (keydown.ArrowLeft)="cancelArrowKeys($event)" (keydown.ArrowRight)="cancelArrowKeys($event)" [(ngModel)]="record.exactPoint">
+                                </ng-template>
+                                <ng-template pTemplate="output">
+                                    {{ record.exactPoint }}
+                                </ng-template>
+                            </p-cellEditor>
+                        </td>
+                        <td class="width-5" pEditableColumn>
+                            <p-cellEditor class="center">
+                                <ng-template pTemplate="input">
+                                    <input pInputText (keydown.ArrowLeft)="cancelArrowKeys($event)" (keydown.ArrowRight)="cancelArrowKeys($event)" [(ngModel)]="record.time">
+                                </ng-template>
+                                <ng-template pTemplate="output">
+                                    {{ record.time }}
+                                </ng-template>
+                            </p-cellEditor>
+                        </td>
+                        <!-- <td class="width-5"><span class="center">{{ record.time }}</span></td> -->
                     </tr>
                 </ng-template>
             </p-table>

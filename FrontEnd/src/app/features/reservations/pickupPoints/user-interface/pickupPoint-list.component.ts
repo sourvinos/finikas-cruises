@@ -82,6 +82,10 @@ export class PickupPointListComponent {
 
     //#region public methods
 
+    public cancelArrowKeys(event: any): void {
+        event.stopPropagation()
+    }
+
     public filterRecords(event: any): void {
         this.sessionStorageService.saveItem(this.feature + '-' + 'filters', JSON.stringify(this.table.filters))
         this.recordsFiltered = event.filteredValue
