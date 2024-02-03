@@ -63,10 +63,6 @@ namespace API.Infrastructure.Implementations {
             }
         }
 
-        public void DeleteRange(IEnumerable<T> entities) {
-            context.RemoveRange(entities);
-        }
-
         private void DisposeOrCommit(IDbContextTransaction transaction) {
             if (testingSettings.IsTesting) {
                 transaction.Dispose();

@@ -1,6 +1,6 @@
 .p-checkbox .p-checkbox-box {
     background-color: transparent !important;
-    border: 0.0625rem solid var(--color-text);
+    border: 0.0625rem solid color-mix(in srgb, var(--color-text) 50%, transparent) !important;
     border-radius: 0;
     margin-top: -0.3125rem;
 }

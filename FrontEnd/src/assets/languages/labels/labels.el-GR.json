@@ -298,6 +298,10 @@
                 "description": "Ώρα"
             },
             {
+                "id": "rangeDelete",
+                "description": "Διαγραφή επιλεγμένων εγγραφών"
+            },
+            {
                 "id": "newRecord",
                 "description": "Νεα εγγραφη"
             },

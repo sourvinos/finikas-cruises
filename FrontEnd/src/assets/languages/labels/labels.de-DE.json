@@ -298,6 +298,10 @@
                 "description": "Uhrzeit"
             },
             {
+                "id": "rangeDelete",
+                "description": "Löschen ausgewählter Datensätze"
+            },
+            {
                 "id": "newRecord",
                 "description": "Neuer Rekord"
             },

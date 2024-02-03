@@ -298,6 +298,10 @@
                 "description": "Heure"
             },
             {
+                "id": "rangeDelete",
+                "description": "Suppression des enregistrements sélectionnés"
+            },
+            {
                 "id": "newRecord",
                 "description": "Nouveau record"
             },

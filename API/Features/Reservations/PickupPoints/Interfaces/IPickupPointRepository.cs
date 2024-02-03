@@ -9,7 +9,7 @@ namespace API.Features.Reservations.PickupPoints {
         Task<IEnumerable<PickupPointListVM>> GetAsync();
         Task<IEnumerable<PickupPointAutoCompleteVM>> GetAutoCompleteAsync();
         Task<PickupPoint> GetByIdAsync(int id, bool includeTables);
-
+        void DeleteRange(string[] ids);
     }
 
 }

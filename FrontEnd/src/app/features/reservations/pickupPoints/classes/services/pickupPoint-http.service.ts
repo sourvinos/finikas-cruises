@@ -8,7 +8,7 @@ import { environment } from 'src/environments/environment'
 
 @Injectable({ providedIn: 'root' })
 
-export class PickupPointService extends HttpDataService {
+export class PickupPointHttpService extends HttpDataService {
 
     constructor(httpClient: HttpClient) {
         super(httpClient, environment.apiUrl + '/pickupPoints')
@@ -16,6 +16,10 @@ export class PickupPointService extends HttpDataService {
 
     getAutoComplete(): Observable<any[]> {
         return this.http.get<PickupPointAutoCompleteVM[]>(environment.apiUrl + '/pickupPoints/getAutoComplete')
+    }
+
+    public deleteRange(ids: string[]): Observable<any> {
+        return this.http.request<void>('delete', this.url + '/deleteRange', { body: ids })
     }
 
 }

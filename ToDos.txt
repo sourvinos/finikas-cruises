@@ -1,5 +1,9 @@
 pickups ανα προορισμό
 send emails from own account
+fix passenger list when too long in reservation
+remove maxlength (material)
+rename services to http-services
+fix dropdowns after dexiedb update
 an exception has been raised that is likely due to a transient failure. 
 	Consider enabling transient error resiliency by adding 'EnableRetryOnFailure()' to the 'UseMySql' call
 new user > send email on save (like reservation > send boarding pass`)

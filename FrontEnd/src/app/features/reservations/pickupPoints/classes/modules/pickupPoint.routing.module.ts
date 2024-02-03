@@ -8,7 +8,7 @@ import { PickupPointListComponent } from '../../user-interface/pickupPoint-list.
 import { PickupPointListResolver } from '../resolvers/pickupPoint-list.resolver'
 
 const routes: Routes = [
-    { path: '', component: PickupPointListComponent, canActivate: [AuthGuardService], resolve: { pickupPointList: PickupPointListResolver } },
+    { path: '', component: PickupPointListComponent, canActivate: [AuthGuardService], resolve: { pickupPointList: PickupPointListResolver }, runGuardsAndResolvers: 'always' },
     { path: 'new', component: PickupPointFormComponent, canActivate: [AuthGuardService] },
     { path: ':id', component: PickupPointFormComponent, canActivate: [AuthGuardService], resolve: { pickupPointForm: PickupPointFormResolver } },
 ]

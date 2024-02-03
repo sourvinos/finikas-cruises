@@ -122,6 +122,18 @@ namespace API.Features.Reservations.PickupPoints {
             }
         }
 
+        [HttpDelete("deleteRange")]
+        [Authorize(Roles = "admin")]
+        public Response DeleteRange([FromBody] string[] ids) {
+            pickupPointRepo.DeleteRange(ids);
+            return new Response {
+                Code = 200,
+                Icon = Icons.Success.ToString(),
+                Id = null,
+                Message = ApiMessages.OK()
+            };
+        }
+
     }
 
 }
