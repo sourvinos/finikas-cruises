@@ -7,7 +7,7 @@
         </div>
 
         <div id="table-wrapper">
-            <p-table #table (onFilter)="filterRecords($event)" [(selection)]="selectedRecords" [scrollable]="true" [value]="records" [virtualScrollItemSize]="32" [virtualScroll]="true" dataKey="id" scrollHeight="flex" selectionMode="single" sortMode="multiple">
+            <p-table #table (onFilter)="filterRecords($event)" [(selection)]="selectedRecords" [scrollable]="true" [value]="records" [virtualScrollItemSize]="32" [virtualScroll]="true" dataKey="id" editMode="row" scrollHeight="flex" selectionMode="single" sortMode="multiple">
                 <ng-template pTemplate="header">
                     <tr>
                         <th class="width-3"></th>
@@ -18,6 +18,7 @@
                         <th class="width-18" pSortableColumn="description">{{ getLabel("headerDescription") }}</th>
                         <th class="width-10" pSortableColumn="exactPoint">{{ getLabel("headerExactPoint") }}</th>
                         <th class="width-5" pSortableColumn="time">{{ getLabel("headerTime") }}</th>
+                        <th class="width-3"></th>
                     </tr>
                     <tr>
                         <th class="width-3"><p-tableHeaderCheckbox></p-tableHeaderCheckbox></th>
@@ -64,16 +65,17 @@
                         <th class="width-18"><input (input)="table.filter($event.target.value, 'description', 'contains')" [value]="$any(table).filters['description']?.value" class="p-inputtext"></th>
                         <th class="width-10"><input (input)="table.filter($event.target.value, 'exactPoint', 'contains')" [value]="$any(table).filters['exactPoint']?.value" class="p-inputtext"></th>
                         <th class="width-5"><input (input)="table.filter($event.target.value, 'time', 'contains')" [value]="$any(table).filters['time']?.value" class="p-inputtext center"></th>
+                        <th class="width-3"></th>
                     </tr>
                 </ng-template>
-                <ng-template let-record pTemplate="body">
-                    <tr (click)="onHighlightRow(record.id)" (dblclick)="onEditRecord(record.id)" [attr.id]=record.id class="without-footer" style="height: 32px;">
+                <ng-template let-editing="editing" let-record pTemplate="body" let-ri="rowIndex">
+                    <tr (click)="onHighlightRow(record.id)" (dblclick)="onEditRecord(record.id)" (mouseenter)="onMouseEnter($event.target)" (mouseleave)="onMouseOut($event.target)" [attr.id]=record.id [pEditableRow]="record" class="without-footer" style="height: 32px;">
                         <td class="width-3"><span class="no-left-padding center" style="padding-top: 0.25rem !important;"><p-tableCheckbox [value]="record"></p-tableCheckbox></span></td>
                         <td class="width-5"><span class="center no-left-padding" style="font-size: 0.5rem; padding-top: 0 !important;">{{ getEmoji(record.isActive) }}</span></td>
                         <td class="width-8"><span class="center">{{ record.destination.abbreviation }}</span></td>
                         <td class="width-8"><span class="center">{{ record.coachRoute.abbreviation }}</span></td>
                         <td class="width-8"><span class="center">{{ record.port.abbreviation }}</span></td>
-                        <td class="width-18" pEditableColumn>
+                        <td class="width-18">
                             <p-cellEditor>
                                 <ng-template pTemplate="input">
                                     <input pInputText (keydown.ArrowLeft)="cancelArrowKeys($event)" (keydown.ArrowRight)="cancelArrowKeys($event)" [(ngModel)]="record.description">
@@ -83,7 +85,7 @@
                                 </ng-template>
                             </p-cellEditor>
                         </td>
-                        <td class="width-10" pEditableColumn>
+                        <td class="width-10">
                             <p-cellEditor>
                                 <ng-template pTemplate="input">
                                     <input pInputText (keydown.ArrowLeft)="cancelArrowKeys($event)" (keydown.ArrowRight)="cancelArrowKeys($event)" [(ngModel)]="record.exactPoint">
@@ -93,17 +95,23 @@
                                 </ng-template>
                             </p-cellEditor>
                         </td>
-                        <td class="width-5" pEditableColumn>
+                        <td class="width-5">
                             <p-cellEditor class="center">
                                 <ng-template pTemplate="input">
-                                    <input pInputText (keydown.ArrowLeft)="cancelArrowKeys($event)" (keydown.ArrowRight)="cancelArrowKeys($event)" [(ngModel)]="record.time">
+                                    <input (keydown.ArrowLeft)="cancelArrowKeys($event)" (keydown.ArrowRight)="cancelArrowKeys($event)" [(ngModel)]="record.time" pInputText>
                                 </ng-template>
                                 <ng-template pTemplate="output">
                                     {{ record.time }}
                                 </ng-template>
                             </p-cellEditor>
                         </td>
-                        <!-- <td class="width-5"><span class="center">{{ record.time }}</span></td> -->
+                        <td class="width-3">
+                            <span class="edit-buttons center">
+                                <button *ngIf="!editing" pInitEditableRow (click)="onRowEditInit(record)">{{ getEmoji('edit') }}</button>
+                                <div *ngIf="editing" pSaveEditableRow (click)="onRowEditSave(record)">{{ getEmoji('ok') }}</div>
+                                <div *ngIf="editing" pCancelEditableRow (click)="onRowEditCancel(record, ri)">{{ getEmoji('error') }}</div>
+                            </span>
+                        </td>
                     </tr>
                 </ng-template>
             </p-table>

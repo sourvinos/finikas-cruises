@@ -15,6 +15,7 @@ import { PickupPointHttpService } from '../classes/services/pickupPoint-http.ser
 import { PickupPointListVM } from '../classes/view-models/pickupPoint-list-vm'
 import { PickupPointPdfService } from '../classes/services/pickupPoint-pdf.service'
 import { SessionStorageService } from 'src/app/shared/services/session-storage.service'
+import { PickupPointWriteDto } from '../classes/dtos/pickupPoint-write-dto'
 
 @Component({
     selector: 'pickupPoint-list',
@@ -102,6 +103,10 @@ export class PickupPointListComponent {
         return this.messageLabelService.getDescription(this.feature, id)
     }
 
+    public onEditComplete(event: any): void {
+        console.log(event.data)
+    }
+
     public onEditRecord(id: number): void {
         this.storeScrollTop()
         this.storeSelectedId(id)
@@ -114,6 +119,18 @@ export class PickupPointListComponent {
 
     public onNewRecord(): void {
         this.router.navigate([this.url + '/new'])
+    }
+
+    public onRowEditInit(record: PickupPointWriteDto): void {
+        console.log(record)
+    }
+
+    public onRowEditSave(record: PickupPointWriteDto): void {
+        console.log(record)
+    }
+
+    public onRowEditCancel(record: PickupPointWriteDto, index: number): void {
+        console.log(index, record)
     }
 
     public resetTableFilters(): void {
@@ -273,5 +290,19 @@ export class PickupPointListComponent {
     }
 
     //#endregion
+
+    public onMouseEnter(row: HTMLElement): void {
+        const parent = document.getElementById(row.id)
+        const childDiv = parent.getElementsByTagName('td')[8]
+        const requiredDiv = childDiv.getElementsByTagName('span')[0]
+        requiredDiv.style.visibility = 'visible'
+    }
+
+    public onMouseOut(row: HTMLElement): void {
+        const parent = document.getElementById(row.id)
+        const childDiv = parent.getElementsByTagName('td')[8]
+        const requiredDiv = childDiv.getElementsByTagName('span')[0]
+        requiredDiv.style.visibility = 'hidden'
+    }
 
 }
