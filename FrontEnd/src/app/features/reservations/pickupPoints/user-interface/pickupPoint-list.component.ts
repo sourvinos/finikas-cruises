@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog'
 import { Table } from 'primeng/table'
 // Custom
 import { DeleteRangeDialogComponent } from 'src/app/shared/components/delete-range-dialog/delete-range-dialog.component'
+import { DexieService } from 'src/app/shared/services/dexie.service'
 import { DialogService } from 'src/app/shared/services/modal-dialog.service'
 import { EmojiService } from 'src/app/shared/services/emoji.service'
 import { HelperService } from 'src/app/shared/services/helper.service'
@@ -14,8 +15,8 @@ import { MessageLabelService } from 'src/app/shared/services/message-label.servi
 import { PickupPointHttpService } from '../classes/services/pickupPoint-http.service'
 import { PickupPointListVM } from '../classes/view-models/pickupPoint-list-vm'
 import { PickupPointPdfService } from '../classes/services/pickupPoint-pdf.service'
-import { SessionStorageService } from 'src/app/shared/services/session-storage.service'
 import { PickupPointWriteDto } from '../classes/dtos/pickupPoint-write-dto'
+import { SessionStorageService } from 'src/app/shared/services/session-storage.service'
 
 @Component({
     selector: 'pickupPoint-list',
@@ -53,10 +54,11 @@ export class PickupPointListComponent {
     public recordsFiltered: PickupPointListVM[]
     public selectedIds: string[] = []
     public selectedRecords: PickupPointListVM[] = []
+    private clonedRecords: { [s: string]: PickupPointListVM } = {}
 
     //#endregion
 
-    constructor(private activatedRoute: ActivatedRoute, private dialogService: DialogService, private emojiService: EmojiService, private helperService: HelperService, private interactionService: InteractionService, private messageDialogService: MessageDialogService, private messageLabelService: MessageLabelService, private pickupPointHttpService: PickupPointHttpService, private pickupPointPdfService: PickupPointPdfService, private router: Router, private sessionStorageService: SessionStorageService, public dialog: MatDialog) { }
+    constructor(private activatedRoute: ActivatedRoute, private dexieService: DexieService, private dialogService: DialogService, private emojiService: EmojiService, private helperService: HelperService, private interactionService: InteractionService, private messageDialogService: MessageDialogService, private messageLabelService: MessageLabelService, private pickupPointHttpService: PickupPointHttpService, private pickupPointPdfService: PickupPointPdfService, private router: Router, private sessionStorageService: SessionStorageService, public dialog: MatDialog) { }
 
     //#region lifecycle hooks
 
@@ -83,10 +85,6 @@ export class PickupPointListComponent {
 
     //#region public methods
 
-    public cancelArrowKeys(event: any): void {
-        event.stopPropagation()
-    }
-
     public filterRecords(event: any): void {
         this.sessionStorageService.saveItem(this.feature + '-' + 'filters', JSON.stringify(this.table.filters))
         this.recordsFiltered = event.filteredValue
@@ -103,10 +101,6 @@ export class PickupPointListComponent {
         return this.messageLabelService.getDescription(this.feature, id)
     }
 
-    public onEditComplete(event: any): void {
-        console.log(event.data)
-    }
-
     public onEditRecord(id: number): void {
         this.storeScrollTop()
         this.storeSelectedId(id)
@@ -121,16 +115,18 @@ export class PickupPointListComponent {
         this.router.navigate([this.url + '/new'])
     }
 
-    public onRowEditInit(record: PickupPointWriteDto): void {
-        console.log(record)
+    public onRowEditInit(record: PickupPointListVM): void {
+        this.clonedRecords[record.id as number] = { ...record }
     }
 
-    public onRowEditSave(record: PickupPointWriteDto): void {
-        console.log(record)
+    public onRowEditSave(record: PickupPointListVM): void {
+        delete this.clonedRecords[record.id as number]
+        this.saveRecord(this.flattenObject(record))
     }
 
     public onRowEditCancel(record: PickupPointWriteDto, index: number): void {
-        console.log(index, record)
+        this.records[index] = this.clonedRecords[record.id as number]
+        delete this.clonedRecords[record.id as number]
     }
 
     public resetTableFilters(): void {
@@ -263,6 +259,21 @@ export class PickupPointListComponent {
         this.selectedRecords = []
     }
 
+    private flattenObject(record: PickupPointListVM): PickupPointWriteDto {
+        return {
+            id: record.id,
+            coachRouteId: record.coachRoute.id,
+            destinationId: record.destination.id,
+            portId: record.port.id,
+            description: record.description,
+            exactPoint: record.exactPoint,
+            time: record.time,
+            remarks: record.remarks,
+            isActive: record.isActive,
+            putAt: record.putAt
+        }
+    }
+
     private isAnyRowSelected(): boolean {
         if (this.selectedRecords.length == 0) {
             this.dialogService.open(this.messageDialogService.noRecordsSelected(), 'error', ['ok'])
@@ -281,6 +292,18 @@ export class PickupPointListComponent {
         this.router.navigateByUrl(this.router.url)
     }
 
+    private saveRecord(pickupPoint: PickupPointWriteDto): void {
+        this.pickupPointHttpService.save(pickupPoint).subscribe({
+            next: (response) => {
+                this.dexieService.update('pickupPoints', { 'id': parseInt(response.id), 'description': pickupPoint.description, 'exactPoint': pickupPoint.exactPoint, 'time': pickupPoint.time, 'isActive': pickupPoint.isActive })
+                this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, true)
+            },
+            error: (errorFromInterceptor) => {
+                this.dialogService.open(this.messageDialogService.filterResponse(errorFromInterceptor), 'error', ['ok'])
+            }
+        })
+    }
+
     private saveSelectedIds(): void {
         const ids = []
         this.selectedRecords.forEach(record => {
@@ -290,19 +313,5 @@ export class PickupPointListComponent {
     }
 
     //#endregion
-
-    public onMouseEnter(row: HTMLElement): void {
-        const parent = document.getElementById(row.id)
-        const childDiv = parent.getElementsByTagName('td')[8]
-        const requiredDiv = childDiv.getElementsByTagName('span')[0]
-        requiredDiv.style.visibility = 'visible'
-    }
-
-    public onMouseOut(row: HTMLElement): void {
-        const parent = document.getElementById(row.id)
-        const childDiv = parent.getElementsByTagName('td')[8]
-        const requiredDiv = childDiv.getElementsByTagName('span')[0]
-        requiredDiv.style.visibility = 'hidden'
-    }
 
 }

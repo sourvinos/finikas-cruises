@@ -1,4 +1,4 @@
-pickups ανα προορισμό
+pickups ανα προορισμό: new reservation loads pickups per destination after selection
 send emails from own account
 fix passenger list when too long in reservation
 remove maxlength (material)

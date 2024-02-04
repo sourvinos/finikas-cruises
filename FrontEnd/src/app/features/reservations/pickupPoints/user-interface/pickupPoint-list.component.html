@@ -69,7 +69,7 @@
                     </tr>
                 </ng-template>
                 <ng-template let-editing="editing" let-record pTemplate="body" let-ri="rowIndex">
-                    <tr (click)="onHighlightRow(record.id)" (dblclick)="onEditRecord(record.id)" (mouseenter)="onMouseEnter($event.target)" (mouseleave)="onMouseOut($event.target)" [attr.id]=record.id [pEditableRow]="record" class="without-footer" style="height: 32px;">
+                    <tr (click)="onHighlightRow(record.id)" (dblclick)="onEditRecord(record.id)" [attr.id]=record.id [pEditableRow]="record" class="without-footer" style="height: 32px;">
                         <td class="width-3"><span class="no-left-padding center" style="padding-top: 0.25rem !important;"><p-tableCheckbox [value]="record"></p-tableCheckbox></span></td>
                         <td class="width-5"><span class="center no-left-padding" style="font-size: 0.5rem; padding-top: 0 !important;">{{ getEmoji(record.isActive) }}</span></td>
                         <td class="width-8"><span class="center">{{ record.destination.abbreviation }}</span></td>
@@ -78,7 +78,7 @@
                         <td class="width-18">
                             <p-cellEditor>
                                 <ng-template pTemplate="input">
-                                    <input pInputText (keydown.ArrowLeft)="cancelArrowKeys($event)" (keydown.ArrowRight)="cancelArrowKeys($event)" [(ngModel)]="record.description">
+                                    <input pInputText [(ngModel)]="record.description">
                                 </ng-template>
                                 <ng-template pTemplate="output">
                                     {{ record.description }}
@@ -88,7 +88,7 @@
                         <td class="width-10">
                             <p-cellEditor>
                                 <ng-template pTemplate="input">
-                                    <input pInputText (keydown.ArrowLeft)="cancelArrowKeys($event)" (keydown.ArrowRight)="cancelArrowKeys($event)" [(ngModel)]="record.exactPoint">
+                                    <input pInputText [(ngModel)]="record.exactPoint">
                                 </ng-template>
                                 <ng-template pTemplate="output">
                                     {{ record.exactPoint }}
@@ -98,7 +98,7 @@
                         <td class="width-5">
                             <p-cellEditor class="center">
                                 <ng-template pTemplate="input">
-                                    <input (keydown.ArrowLeft)="cancelArrowKeys($event)" (keydown.ArrowRight)="cancelArrowKeys($event)" [(ngModel)]="record.time" pInputText>
+                                    <input [(ngModel)]="record.time" pInputText>
                                 </ng-template>
                                 <ng-template pTemplate="output">
                                     {{ record.time }}
@@ -107,7 +107,7 @@
                         </td>
                         <td class="width-3">
                             <span class="edit-buttons center">
-                                <button *ngIf="!editing" pInitEditableRow (click)="onRowEditInit(record)">{{ getEmoji('edit') }}</button>
+                                <div *ngIf="!editing" pInitEditableRow (click)="onRowEditInit(record)">{{ getEmoji('edit') }}</div>
                                 <div *ngIf="editing" pSaveEditableRow (click)="onRowEditSave(record)">{{ getEmoji('ok') }}</div>
                                 <div *ngIf="editing" pCancelEditableRow (click)="onRowEditCancel(record, ri)">{{ getEmoji('error') }}</div>
                             </span>

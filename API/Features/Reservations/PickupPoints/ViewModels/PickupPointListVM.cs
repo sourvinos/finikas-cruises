@@ -11,7 +11,9 @@ namespace API.Features.Reservations.PickupPoints {
         public PickupPointListPortVM Port { get; set; }
         public string ExactPoint { get; set; }
         public string Time { get; set; }
+        public string Remarks { get; set; }
         public bool IsActive { get; set; }
+        public string PutAt { get; set; }
 
     }
 
