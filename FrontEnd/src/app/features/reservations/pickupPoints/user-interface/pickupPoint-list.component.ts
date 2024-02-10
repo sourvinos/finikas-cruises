@@ -116,11 +116,14 @@ export class PickupPointListComponent {
     }
 
     public onRowEditInit(record: PickupPointListVM): void {
-        this.clonedRecords[record.id as number] = { ...record }
+        this.pickupPointHttpService.getSingle(record.id).subscribe(response => {
+            this.clonedRecords[record.id as number] = { ...response.body }
+        })
     }
 
     public onRowEditSave(record: PickupPointListVM): void {
-        delete this.clonedRecords[record.id as number]
+        record.putAt = this.clonedRecords[record.id].putAt
+        this.clonedRecords = {}
         this.saveRecord(this.flattenObject(record))
     }
 
