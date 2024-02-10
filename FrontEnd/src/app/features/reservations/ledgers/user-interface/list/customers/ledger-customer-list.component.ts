@@ -28,7 +28,7 @@ export class LedgerCustomerListComponent {
     public feature = 'ledgerList'
     public featureIcon = 'ledgers'
     public icon = 'arrow_back'
-    public parentUrl = '/ledgers'
+    public parentUrl = '/reservation-ledgers'
     public records: LedgerVM[] = []
     public criteriaPanels: LedgerCriteriaVM
 
