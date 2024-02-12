@@ -42,12 +42,14 @@ namespace API.Features.Reservations.PickupPoints {
                     Id = x.CoachRoute.Id,
                     Abbreviation = x.CoachRoute.Abbreviation
                 }))
-                .ForMember(x => x.Destination, x => x.MapFrom(x => new SimpleEntity {
+                .ForMember(x => x.Destination, x => x.MapFrom(x => new PickupPointListDestinationVM {
                     Id = x.Destination.Id,
+                    Abbreviation = x.Destination.Abbreviation,
                     Description = x.Destination.Description
                 }))
-                .ForMember(x => x.Port, x => x.MapFrom(x => new SimpleEntity {
+                .ForMember(x => x.Port, x => x.MapFrom(x => new PickupPointListPortVM {
                     Id = x.Port.Id,
+                    Abbreviation = x.Port.Abbreviation,
                     Description = x.Port.Description
                 }));
             // Write

@@ -68,7 +68,7 @@
                         <th class="width-3"></th>
                     </tr>
                 </ng-template>
-                <ng-template let-editing="editing" let-record pTemplate="body" let-ri="rowIndex">
+                <ng-template let-editing="editing" let-record pTemplate="body" let-index="rowIndex">
                     <tr (click)="onHighlightRow(record.id)" (dblclick)="onEditRecord(record.id)" [attr.id]=record.id [pEditableRow]="record" class="without-footer" style="height: 32px;">
                         <td class="width-3"><span class="no-left-padding center" style="padding-top: 0.25rem !important;"><p-tableCheckbox [value]="record"></p-tableCheckbox></span></td>
                         <td class="width-5"><span class="center no-left-padding" style="font-size: 0.5rem; padding-top: 0 !important;">{{ getEmoji(record.isActive) }}</span></td>
@@ -107,9 +107,9 @@
                         </td>
                         <td class="width-3">
                             <span class="edit-buttons center">
-                                <div *ngIf="!editing" pInitEditableRow (click)="onRowEditInit(record)">{{ getEmoji('edit') }}</div>
-                                <div *ngIf="editing" pSaveEditableRow (click)="onRowEditSave(record)">{{ getEmoji('ok') }}</div>
-                                <div *ngIf="editing" pCancelEditableRow (click)="onRowEditCancel(record, ri)">{{ getEmoji('error') }}</div>
+                                <div *ngIf="!editing" pInitEditableRow (click)="onRowEditInit(record)"><span class="editable-row-button material-symbols-outlined">stylus</span></div>
+                                <div *ngIf="editing" pSaveEditableRow (click)="onRowEditSave(record)"><span class="editable-row-button material-symbols-outlined">done</span></div>
+                                <div *ngIf="editing" pCancelEditableRow (click)="onRowEditCancel(record, index)"><span class="editable-row-button material-symbols-outlined">undo</span></div>
                             </span>
                         </td>
                     </tr>
