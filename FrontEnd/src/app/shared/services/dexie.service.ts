@@ -7,7 +7,7 @@ export class DexieService extends Dexie {
 
     constructor() {
         super('DexieDB')
-        this.version(18).stores({
+        this.version(1).stores({
             coachRoutes: 'id, abbreviation, isActive',
             customers: 'id, description, isActive',
             codes: 'id, description, isActive',
@@ -24,7 +24,7 @@ export class DexieService extends Dexie {
             taxOffices: 'id, description, isActive',
             vatRegimes: 'id, description, isActive'
         })
-        this.open()
+        this.delete().then(() => this.open())
     }
 
     public populateTable(table: string, httpService: any): void {

@@ -16,3 +16,5 @@ RANDOM NAMES
 SCROLL LISTS
 LEDGERS GOBACK = NO GO!
 SHIP CREW - FIX HEIGHTS
+Re-design emails
+Tax offices + vat regimes change guids to ids
