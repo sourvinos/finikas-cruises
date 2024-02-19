@@ -66,6 +66,14 @@ button.primary {
     background-color: var(--color-button-primary) !important;
 }
 
+button.primary-darker {
+    background-color: var(--color-button-primary-darker) !important;
+}
+
+button.secondary-darker {
+    background-color: var(--color-button-secondary-darker) !important;
+}
+
 button.secondary {
     background-color: var(--color-button-secondary) !important;
 }
@@ -102,7 +110,6 @@ button.no-right-border-radius {
 button.no-left-border-radius {
     border-radius: 0 0.25rem 0.25rem 0 !important;
     margin-left: -0.5rem !important;
-    background-color: var(--color-button-primary-altered) !important;
     padding: 0 0 0 18px !important;
 }
 

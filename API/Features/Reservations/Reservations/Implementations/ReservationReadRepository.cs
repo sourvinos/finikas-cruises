@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
+using API.Infrastructure.Helpers;
 
 namespace API.Features.Reservations.Reservations {
 
@@ -84,6 +85,18 @@ namespace API.Features.Reservations.Reservations {
                   .SingleOrDefaultAsync();
         }
 
+        public async Task<RepoPassenger> GetRepoPassengerAsync() {
+            Random rand = new();
+            int skipper = rand.Next(0, context.RepoPassengers.Count());
+            return await context
+                .RepoPassengers
+                .Include(x => x.Gender)
+                .Include(x => x.Nationality)
+                .OrderBy(x => Guid.NewGuid())
+                .Skip(skipper)
+                .Take(1)
+                .FirstOrDefaultAsync();
+        }
 
         private async Task<IEnumerable<Reservation>> GetReservationsFromAllUsersByDateAsync(string date) {
             return await context.Reservations

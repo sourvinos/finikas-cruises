@@ -17,7 +17,7 @@ namespace API.Features.Reservations.Reservations {
             entity.Property(x => x.Firstname).HasMaxLength(128).IsRequired(true);
             entity.Property(x => x.Birthdate).HasColumnType("date").HasMaxLength(10).IsRequired(true);
             entity.Property(x => x.PassportNo).HasMaxLength(32).IsRequired(true);
-            entity.Property(x => x.PassportExpireDate).HasColumnType("date").HasMaxLength(10).IsRequired(true);
+            entity.Property(x => x.PassportExpiryDate).HasColumnType("date").HasMaxLength(10).IsRequired(true);
             entity.Property(x => x.Remarks).HasDefaultValue("").HasMaxLength(128);
             entity.Property(x => x.SpecialCare).HasDefaultValue("").HasMaxLength(128);
             entity.Property(x => x.IsBoarded);

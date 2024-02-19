@@ -55,7 +55,7 @@ export class ManifestPdfService {
                     [
                         this.createTable(this.pdfVM,
                             ['', '', '', '', '', 'date', '', '', '', 'date', '', ''],
-                            ['', 'lastname', 'firstname', 'gender', 'nationality', 'birthdate', 'occupant', 'specialCare', 'passportNo', 'passportExpireDate', 'phones', 'remarks'],
+                            ['', 'lastname', 'firstname', 'gender', 'nationality', 'birthdate', 'occupant', 'specialCare', 'passportNo', 'passportExpiryDate', 'phones', 'remarks'],
                             ['right', 'left', 'left', 'center', 'center', 'center', 'left', 'left', 'left', 'center', 'left', 'left'])
                     ],
                     {

@@ -86,6 +86,24 @@ namespace API.Features.Reservations.Reservations {
             }
         }
 
+        [HttpGet("getRandomPassenger")]
+        [Authorize(Roles = "admin")]
+        public async Task<ResponseWithBody> GetRandomPassengerAsync() {
+            var x = await reservationReadRepo.GetRepoPassengerAsync();
+            if (x != null) {
+                return new ResponseWithBody {
+                    Code = 200,
+                    Icon = Icons.Info.ToString(),
+                    Body = mapper.Map<RepoPassenger, RepoPassengerReadDto>(x),
+                    Message = ApiMessages.OK(),
+                };
+            } else {
+                throw new CustomException() {
+                    ResponseCode = 404
+                };
+            }
+        }
+
         [HttpPost]
         [Authorize(Roles = "user, admin")]
         [ServiceFilter(typeof(ModelValidationAttribute))]

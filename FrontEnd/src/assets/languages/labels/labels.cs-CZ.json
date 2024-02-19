@@ -1181,11 +1181,11 @@
             },
             {
                 "id": "passportNo",
-                "description": "Číslo pasu."
+                "description": "Pas č."
             },
             {
-                "id": "passportExpireDate",
-                "description": "Datum vypršení platnosti pasu"
+                "id": "passportExpiryDate",
+                "description": "Datum platnosti"
             },
             {
                 "id": "specialCare",
@@ -1982,7 +1982,7 @@
                 "description": "Číslo pasu."
             },
             {
-                "id": "passportExpireDate",
+                "id": "passportExpiryDate",
                 "description": "Datum vypršení platnosti pasu"
             },
             {

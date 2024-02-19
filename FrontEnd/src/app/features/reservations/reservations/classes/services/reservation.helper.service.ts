@@ -140,7 +140,7 @@ export class ReservationHelperService {
                 firstname: passenger.firstname,
                 birthdate: this.dateHelperService.formatDateToIso(new Date(passenger.birthdate)),
                 passportNo: passenger.passportNo,
-                passportExpireDate: this.dateHelperService.formatDateToIso(new Date(passenger.passportExpireDate)),
+                passportExpiryDate: this.dateHelperService.formatDateToIso(new Date(passenger.passportExpiryDate)),
                 specialCare: passenger.specialCare,
                 remarks: passenger.remarks,
                 isBoarded: passenger.isBoarded

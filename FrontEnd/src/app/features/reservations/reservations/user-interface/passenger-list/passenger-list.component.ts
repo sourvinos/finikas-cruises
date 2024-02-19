@@ -6,11 +6,12 @@ import { Table } from 'primeng/table'
 import { EmojiService } from 'src/app/shared/services/emoji.service'
 import { HelperService } from 'src/app/shared/services/helper.service'
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
-import { PassengerFormComponent } from '../passenger-form/passenger-form.component'
-import { PassengerReadDto } from '../../classes/dtos/form/passenger-read-dto'
-import { environment } from 'src/environments/environment'
-import { PassengerImportComponent } from '../passenger-import/passenger-import.component'
 import { PassengerClipboard } from '../../classes/view-models/passenger/passenger-clipboard-vm'
+import { PassengerFormComponent } from '../passenger-form/passenger-form.component'
+import { PassengerImportComponent } from '../passenger-import/passenger-import.component'
+import { PassengerReadDto } from '../../classes/dtos/form/passenger-read-dto'
+import { ReservationHttpService } from '../../classes/services/reservation.http.service'
+import { environment } from 'src/environments/environment'
 
 @Component({
     selector: 'passenger-list',
@@ -33,7 +34,7 @@ export class PassengerListComponent {
 
     //#endregion
 
-    constructor(private dialog: MatDialog, private emojiService: EmojiService, private helperService: HelperService, private messageLabelService: MessageLabelService) { }
+    constructor(private dialog: MatDialog, private emojiService: EmojiService, private helperService: HelperService, private messageLabelService: MessageLabelService, private reservationHttpService: ReservationHttpService) { }
 
     //#region public methods
 
@@ -63,6 +64,35 @@ export class PassengerListComponent {
         if (nationalityCode != undefined) {
             return environment.nationalitiesIconDirectory + nationalityCode.toLowerCase() + '.png'
         }
+    }
+
+    public onCreateRandomPassenger(): void {
+        this.reservationHttpService.getRandomPassenger().subscribe(response => {
+            const x: PassengerReadDto = {
+                id: 1,
+                reservationId: this.reservationId,
+                gender: response.body.gender,
+                nationality: response.body.nationality,
+                occupant: { 'id': 2, 'description': '', 'isActive': true },
+                lastname: response.body.lastname,
+                firstname: response.body.firstname,
+                birthdate: response.body.birthdate,
+                passportNo: response.body.passportNo,
+                passportExpiryDate: response.body.passportExpiryDate,
+                remarks: '',
+                specialCare: '',
+                isBoarded: false
+            }
+            this.passengers.push(x)
+            // console.log(response.body)
+            // this.record = response.body
+            // this.record.reservationId = this.data.reservationId
+            // this.record.specialCare = ''
+            // this.record.remarks = ''
+            // this.record.isBoarded = false
+            // this.data = this.record
+            // this.populateFields()
+        })
     }
 
     public onDeleteRow(record: PassengerReadDto): void {
@@ -112,7 +142,7 @@ export class PassengerListComponent {
                 firstname: record.firstname,
                 birthdate: record.birthdate,
                 passportNo: record.passportNo,
-                passportExpireDate: record.passportExpireDate,
+                passportExpiryDate: record.passportExpiryDate,
                 remarks: record.remarks,
                 specialCare: record.specialCare,
                 isBoarded: false,
@@ -133,7 +163,7 @@ export class PassengerListComponent {
                 firstname: passenger.firstname,
                 birthdate: passenger.birthdate,
                 passportNo: passenger.passportNo,
-                passportExpireDate: passenger.passportExpireDate,
+                passportExpiryDate: passenger.passportExpiryDate,
                 remarks: passenger.remarks,
                 specialCare: passenger.specialCare,
                 isBoarded: passenger.isBoarded,
@@ -148,7 +178,7 @@ export class PassengerListComponent {
                 passenger.birthdate = result.birthdate
                 passenger.gender = result.gender
                 passenger.passportNo = result.passportNo
-                passenger.passportExpireDate = result.passportExpireDate
+                passenger.passportExpiryDate = result.passportExpiryDate
                 passenger.specialCare = result.specialCare
                 passenger.remarks = result.remarks
                 passenger.isBoarded = result.isBoarded
@@ -168,7 +198,7 @@ export class PassengerListComponent {
                 gender: { 'id': 1, 'description': '' },
                 birthdate: '',
                 passportNo: '',
-                passportExpireDate: '',
+                passportExpiryDate: '',
                 specialCare: '',
                 remarks: '',
                 isBoarded: false

@@ -12,7 +12,7 @@ export interface ManifestPassengerVM {
     nationality: ManifestNationalityVM,
     occupant: SimpleEntity,
     passportNo: string
-    passportExpireDate: string
+    passportExpiryDate: string
     remarks: string
     specialCare: string
 

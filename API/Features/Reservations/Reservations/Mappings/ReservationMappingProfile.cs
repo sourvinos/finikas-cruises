@@ -68,7 +68,7 @@ namespace API.Features.Reservations.Reservations {
                         Description = passenger.Gender.Description
                     },
                     PassportNo = passenger.PassportNo,
-                    PassportExpireDate = DateHelpers.DateToISOString(passenger.PassportExpireDate),
+                    PassportExpiryDate = DateHelpers.DateToISOString(passenger.PassportExpiryDate),
                 })));
             // Read passenger
             CreateMap<Passenger, PassengerReadDto>()
@@ -78,7 +78,7 @@ namespace API.Features.Reservations.Reservations {
                     Description = x.Nationality.Description,
                     Code = x.Nationality.Code
                 }))
-                .ForMember(x => x.PassportExpireDate, x => x.MapFrom(x => DateHelpers.DateToISOString(x.PassportExpireDate)));
+                .ForMember(x => x.PassportExpiryDate, x => x.MapFrom(x => DateHelpers.DateToISOString(x.PassportExpiryDate)));
             // Write reservation
             CreateMap<ReservationWriteDto, Reservation>()
                 .ForMember(x => x.TicketNo, x => x.MapFrom(x => x.TicketNo.Trim()))
@@ -116,6 +116,10 @@ namespace API.Features.Reservations.Reservations {
                    Lastname = passenger.Lastname,
                    Firstname = passenger.Firstname
                })));
+            // Repo passenger
+            CreateMap<RepoPassenger, RepoPassengerReadDto>()
+                .ForMember(x => x.Birthdate, x => x.MapFrom(x => DateHelpers.DateToISOString(x.Birthdate)))
+                .ForMember(x => x.PassportExpiryDate, x => x.MapFrom(x => DateHelpers.DateToISOString(x.PassportExpiryDate)));
         }
 
     }

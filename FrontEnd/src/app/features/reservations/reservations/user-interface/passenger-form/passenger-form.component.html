@@ -21,39 +21,43 @@
                 <mat-error *ngIf="firstname.hasError('maxlength')">{{ getHint("maxLength", firstname.errors.maxlength.requiredLength) }}</mat-error>
             </mat-form-field>
             <!-- Nationality -->
-            <mat-form-field>
-                <mat-label>{{ getLabel('nationality') }}</mat-label>
-                <input #inputAutoComplete #triggerNationality="matAutocompleteTrigger" (keydown)="enableOrDisableAutoComplete($event)" (keyup)="checkForEmptyAutoComplete($event)" [inputTabStop]="input" [matAutocompleteDisabled]="isAutoCompleteDisabled" [matAutocomplete]="nationalities" dataTabIndex="3" formControlName="nationality" matInput>
-                <div matSuffix style="display:flex">
-                    <button (click)="openOrCloseAutoComplete(triggerNationality, 'nationality')" mat-icon-button type="button">
-                        <mat-icon class="input-suffix material-icons-outlined">expand_more</mat-icon>
-                    </button>
-                </div>
-                <mat-error *ngIf="nationality.hasError('required')">{{ getHint("required") }}</mat-error>
-                <mat-error *ngIf="!nationality.hasError('required') && nationality.hasError('incorrect')">{{ getHint("invalid") }}</mat-error>
-            </mat-form-field>
-            <!-- Gender -->
-            <mat-form-field>
-                <mat-label>{{ getLabel('gender') }}</mat-label>
-                <input #inputAutoComplete #triggerGender="matAutocompleteTrigger" (keydown)="enableOrDisableAutoComplete($event)" (keyup)="checkForEmptyAutoComplete($event)" [inputTabStop]="input" [matAutocompleteDisabled]="isAutoCompleteDisabled" [matAutocomplete]="genders" dataTabIndex="4" formControlName="gender" matInput>
-                <div matSuffix style="display:flex">
-                    <button (click)="openOrCloseAutoComplete(triggerGender, 'gender')" mat-icon-button type="button">
-                        <mat-icon class="input-suffix material-icons-outlined">expand_more</mat-icon>
-                    </button>
-                </div>
-                <mat-error *ngIf="gender.hasError('required')">{{ getHint("required") }}</mat-error>
-                <mat-error *ngIf="!gender.hasError('required') && gender.hasError('incorrect')">{{ getHint("invalid") }}</mat-error>
-            </mat-form-field>
+            <div class="group-input-field">
+                <mat-form-field style="width: 50%;">
+                    <mat-label>{{ getLabel('nationality') }}</mat-label>
+                    <input #inputAutoComplete #triggerNationality="matAutocompleteTrigger" (keydown)="enableOrDisableAutoComplete($event)" (keyup)="checkForEmptyAutoComplete($event)" [inputTabStop]="input" [matAutocompleteDisabled]="isAutoCompleteDisabled" [matAutocomplete]="nationalities" dataTabIndex="3" formControlName="nationality" matInput>
+                    <div matSuffix style="display:flex">
+                        <button (click)="openOrCloseAutoComplete(triggerNationality, 'nationality')" mat-icon-button type="button">
+                            <mat-icon class="input-suffix material-icons-outlined">expand_more</mat-icon>
+                        </button>
+                    </div>
+                    <mat-error *ngIf="nationality.hasError('required')">{{ getHint("required") }}</mat-error>
+                    <mat-error *ngIf="!nationality.hasError('required') && nationality.hasError('incorrect')">{{ getHint("invalid") }}</mat-error>
+                </mat-form-field>
+                <!-- Gender -->
+                <mat-form-field style="width: 50%;">
+                    <mat-label>{{ getLabel('gender') }}</mat-label>
+                    <input #inputAutoComplete #triggerGender="matAutocompleteTrigger" (keydown)="enableOrDisableAutoComplete($event)" (keyup)="checkForEmptyAutoComplete($event)" [inputTabStop]="input" [matAutocompleteDisabled]="isAutoCompleteDisabled" [matAutocomplete]="genders" dataTabIndex="4" formControlName="gender" matInput>
+                    <div matSuffix style="display:flex">
+                        <button (click)="openOrCloseAutoComplete(triggerGender, 'gender')" mat-icon-button type="button">
+                            <mat-icon class="input-suffix material-icons-outlined">expand_more</mat-icon>
+                        </button>
+                    </div>
+                    <mat-error *ngIf="gender.hasError('required')">{{ getHint("required") }}</mat-error>
+                    <mat-error *ngIf="!gender.hasError('required') && gender.hasError('incorrect')">{{ getHint("invalid") }}</mat-error>
+                </mat-form-field>
+            </div>
             <!-- Birthdate -->
             <date-picker (outputValue)="patchFormWithSelectedDate($event,'birthdate',false)" [dataTabIndex]="5" [isAdminOrNewRecord]=true [label]="getLabel('birthdate')" [parentDate]="getDate('birthdate')" [readOnly]=false [required]="true" [showHint]=false></date-picker>
-            <!-- Passport No -->
-            <mat-form-field>
-                <mat-label>{{ getLabel('passportNo') }}</mat-label>
-                <input [inputTabStop]="input" dataTabIndex="6" formControlName="passportNo" matInput [readonly]="!isPassportRequired()">
-                <mat-error *ngIf="passportNo.hasError('required')">{{ getHint("required") }}</mat-error>
-            </mat-form-field>
-            <!-- Passport Expire date -->
-            <date-picker (outputValue)="patchFormWithSelectedDate($event,'passportExpireDate',true)" [dataTabIndex]="7" [isAdminOrNewRecord]=true [label]="getLabel('passportExpireDate')" [parentDate]="getDate('passportExpireDate')" [readOnly]="!isPassportRequired()" [required]="isPassportRequired()" [showHint]=false></date-picker>
+            <div class="group-input-field">
+                <!-- Passport No -->
+                <mat-form-field style="width: 50%;">
+                    <mat-label>{{ getLabel('passportNo') }}</mat-label>
+                    <input [inputTabStop]="input" dataTabIndex="6" formControlName="passportNo" matInput [readonly]="!isPassportRequired()">
+                    <mat-error *ngIf="passportNo.hasError('required')">{{ getHint("required") }}</mat-error>
+                </mat-form-field>
+                <!-- Passport Expiry date -->
+                <date-picker (outputValue)="patchFormWithSelectedDate($event,'passportExpiryDate',true)" [dataTabIndex]="7" [isAdminOrNewRecord]=true [label]="getLabel('passportExpiryDate')" [parentDate]="getDate('passportExpiryDate')" [readOnly]="!isPassportRequired()" [required]="isPassportRequired()" [showHint]=false style="width: 50%;"></date-picker>
+            </div>
             <!-- Special care -->
             <mat-form-field>
                 <mat-label>{{ getLabel('specialCare') }}</mat-label>

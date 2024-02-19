@@ -85,7 +85,7 @@ namespace API.Infrastructure.Auth {
         }
 
         private async Task<TokenResponse> CreateAccessToken(UserExtended user, string refreshToken) {
-            double tokenExpiryTime = Convert.ToDouble(settings.ExpireTime);
+            double tokenExpiryTime = Convert.ToDouble(settings.ExpiryTime);
             var key = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(settings.Secret));
             var roles = await userManager.GetRolesAsync(user);
             var tokenHandler = new JwtSecurityTokenHandler();

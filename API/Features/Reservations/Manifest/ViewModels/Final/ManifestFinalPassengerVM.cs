@@ -10,7 +10,7 @@ namespace API.Features.Reservations.Manifest {
         public string Birthdate { get; set; }
         public string Phones { get; set; }
         public string PassportNo { get; set; }
-        public string PassportExpireDate { get; set; }
+        public string PassportExpiryDate { get; set; }
         public string Remarks { get; set; }
         public string SpecialCare { get; set; }
         public SimpleEntity Gender { get; set; }

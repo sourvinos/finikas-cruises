@@ -1184,8 +1184,8 @@
                 "description": "Numéro de passeport"
             },
             {
-                "id": "passportExpireDate",
-                "description": "Date d'expiration du passeport"
+                "id": "passportExpiryDate",
+                "description": "Date d'expiration"
             },
             {
                 "id": "specialCare",
@@ -1982,7 +1982,7 @@
                 "description": "Numéro de passeport"
             },
             {
-                "id": "passportExpireDate",
+                "id": "passportExpiryDate",
                 "description": "Date d'expiration du passeport"
             },
             {

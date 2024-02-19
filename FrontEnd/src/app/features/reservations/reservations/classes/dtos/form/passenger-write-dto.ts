@@ -10,7 +10,7 @@ export interface PassengerWriteDto {
     firstname: string
     birthdate: string
     passportNo: string
-    passportExpireDate: string
+    passportExpiryDate: string
     remarks: string
     specialCare: string
     isBoarded: boolean

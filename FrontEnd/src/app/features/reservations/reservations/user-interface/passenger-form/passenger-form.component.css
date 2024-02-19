@@ -8,11 +8,12 @@
 }
 
 #dialog-header {
-    margin: 0 1rem 0 1rem;
+    display: flex;
+    justify-content: space-between;
 }
 
 #dialog-footer {
-    margin: 0 1rem 0 1rem;
+    margin: 0 1rem 0 0;
 }
 
 #dialog-footer #align-right {
@@ -27,4 +28,10 @@
 
 #is-boarded {
     padding: 0 1.5rem 0 1.5rem;
+}
+
+.group-input-field {
+    display: flex;
+    gap: 0.5rem;
+    overflow-y: initial;
 }

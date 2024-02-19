@@ -1181,11 +1181,11 @@
             },
             {
                 "id": "passportNo",
-                "description": "Reisepass Nr."
+                "description": "Reisepass-Nr."
             },
             {
-                "id": "passportExpireDate",
-                "description": "Ablaufdatum des Reisepasses"
+                "id": "passportExpiryDate",
+                "description": "Verfallsdatum"
             },
             {
                 "id": "specialCare",
@@ -1982,7 +1982,7 @@
                 "description": "Reisepass Nr."
             },
             {
-                "id": "passportExpireDate",
+                "id": "passportExpiryDate",
                 "description": "Ablaufdatum des Reisepasses"
             },
             {

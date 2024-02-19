@@ -50,7 +50,7 @@ namespace API.Features.Reservations.Manifest {
                             Birthdate = DateHelpers.DateToISOString(crew.Birthdate),
                             Phones = "",
                             PassportNo = crew.PassportNo,
-                            PassportExpireDate = ReplaceYearWithSpace(DateHelpers.DateToISOString(crew.PassportExpireDate)),
+                            PassportExpiryDate = ReplaceYearWithSpace(DateHelpers.DateToISOString(crew.PassportExpiryDate)),
                             Gender = new SimpleEntity {
                                 Id = crew.Gender.Id,
                                 Description = crew.Gender.Description
@@ -84,7 +84,7 @@ namespace API.Features.Reservations.Manifest {
                     Birthdate = DateHelpers.DateToISOString(passenger.Birthdate),
                     Phones = passenger.Reservation.Phones.Trim(),
                     PassportNo = passenger.PassportNo,
-                    PassportExpireDate = ReplaceYearWithSpace(DateHelpers.DateToISOString(passenger.PassportExpireDate)),
+                    PassportExpiryDate = ReplaceYearWithSpace(DateHelpers.DateToISOString(passenger.PassportExpiryDate)),
                     Remarks = passenger.Remarks.Trim(),
                     SpecialCare = passenger.SpecialCare.Trim(),
                     Gender = new SimpleEntity {

@@ -11,7 +11,7 @@ export interface PassengerClipboard {
     gender: SimpleEntity
     nationality: NationalityDropdownVM
     passportNo: string
-    passportExpireDate: string
+    passportExpiryDate: string
     remarks: string
     specialCare: string
     isValid: boolean

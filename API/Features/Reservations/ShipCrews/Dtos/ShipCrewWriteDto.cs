@@ -15,7 +15,7 @@ namespace API.Features.Reservations.ShipCrews {
         public string Firstname { get; set; }
         public string Birthdate { get; set; }
         public string PassportNo { get; set; }
-        public string PassportExpireDate { get; set; }
+        public string PassportExpiryDate { get; set; }
         public bool IsActive { get; set; }
         // Metadata
         public string PostAt { get; set; }

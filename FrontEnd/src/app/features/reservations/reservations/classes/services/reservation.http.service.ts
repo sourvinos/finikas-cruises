@@ -6,6 +6,7 @@ import { HttpDataService } from 'src/app/shared/services/http-data.service'
 import { ReservationListVM } from '../view-models/list/reservation-list-vm'
 import { SessionStorageService } from 'src/app/shared/services/session-storage.service'
 import { environment } from 'src/environments/environment'
+import { PassengerReadDto } from '../dtos/form/passenger-read-dto'
 
 @Injectable({ providedIn: 'root' })
 
@@ -33,6 +34,10 @@ export class ReservationHttpService extends HttpDataService {
 
     public getByRefNo(refNo: string): Observable<ReservationListVM> {
         return this.http.get<ReservationListVM>(this.url + '/refNo/' + refNo)
+    }
+
+    public getRandomPassenger(): Observable<any> {
+        return this.http.get<PassengerReadDto>(this.url + '/getRandomPassenger')
     }
 
     public saveReservation(formData: any): Observable<any> {

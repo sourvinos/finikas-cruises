@@ -227,7 +227,7 @@ export class ReservationFormComponent {
                     firstname: this.helperService.generateRandomString(10),
                     birthdate: '2015-01-01',
                     passportNo: 'ALNJHLKHKDHK',
-                    passportExpireDate: '2026-12-31',
+                    passportExpiryDate: '2026-12-31',
                     remarks: '--',
                     specialCare: '-',
                     isBoarded: false

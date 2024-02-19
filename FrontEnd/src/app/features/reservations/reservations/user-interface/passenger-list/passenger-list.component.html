@@ -32,8 +32,8 @@
                         </span>
                     </td>
                     <td class="width-5">
-                        <span class="center">
-                            <span (click)="onDeleteRow(record)" class="center" style="font-size: 0.75rem;">{{ getEmoji('error') }}</span>
+                        <span class="center" style="padding-top: 1px !important;" (click)="onDeleteRow(record)">
+                            <span class="material-symbols-outlined red" style="font-size: 1.25rem;">delete</span>
                         </span>
                     </td>
                 </tr>
@@ -50,11 +50,27 @@
             <button (click)="onShowImportDialog()" class="transparent" mat-flat-button tabindex="-1">
                 <span>{{ getLabel("importPassengersButton") | uppercase }}</span>
             </button>
-            <button (click)="onNewRow()" [disabled]="checkTotalPaxAgainstPassengerCount()" class="secondary" mat-flat-button>
+            <button (click)="onNewRow()" [disabled]="checkTotalPaxAgainstPassengerCount()" class="no-right-border-radius secondary" mat-flat-button>
                 <mat-icon *ngIf="checkTotalPaxAgainstPassengerCount()" class="material-icons-outlined">lock</mat-icon>
                 <span>{{ getLabel("newPassengerButton") | uppercase }}</span>
             </button>
+            <button [disabled]="checkTotalPaxAgainstPassengerCount()" [matMenuTriggerFor]="menu" class="no-left-border-radius secondary-darker" mat-flat-button>
+                <mat-icon class="big material-symbols-outlined">expand_less</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu" class="primary" xPosition="before" yPosition="above">
+                <ng-container *ngTemplateOutlet="menuTemplate"></ng-container>
+            </mat-menu>
         </div>
     </div>
+
+</div>
+
+<div id="menus">
+
+    <ng-template #menuTemplate>
+        <button (click)="onCreateRandomPassenger()" mat-menu-item>
+            <span>New random passenger</span>
+        </button>
+    </ng-template>
 
 </div>

@@ -46,6 +46,7 @@ namespace API.Infrastructure.Classes {
         public DbSet<PickupPoint> PickupPoints { get; set; }
         public DbSet<Port> Ports { get; set; }
         public DbSet<Registrar> Registrars { get; set; }
+        public DbSet<RepoPassenger> RepoPassengers { get; set; }
         public DbSet<Reservation> Reservations { get; set; }
         public DbSet<ReservationParameter> ReservationParameters { get; set; }
         public DbSet<Schedule> Schedules { get; set; }

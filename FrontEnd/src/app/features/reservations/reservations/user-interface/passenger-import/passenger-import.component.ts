@@ -121,7 +121,7 @@ export class PassengerImportComponent {
                         isActive: true
                     },
                     passportNo: x[9],
-                    passportExpireDate: x[10],
+                    passportExpiryDate: x[10],
                     remarks: x[11],
                     specialCare: x[12],
                     isValid: true
@@ -139,7 +139,7 @@ export class PassengerImportComponent {
             this.validateObjectById(record, 'gender')
             this.validateObjectById(record, 'nationality')
             this.validateDate(record, 'birthdate', false)
-            this.validateDate(record, 'passportExpireDate', true)
+            this.validateDate(record, 'passportExpiryDate', true)
         })
     }
 

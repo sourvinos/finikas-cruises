@@ -64,8 +64,8 @@
                 <mat-label>{{ getLabel('passportNo') }}</mat-label>
                 <input [inputTabStop]="input" dataTabIndex="7" formControlName="passportNo" matInput>
             </mat-form-field>
-            <!-- Passport Expire date -->
-            <date-picker (outputValue)="patchFormWithSelectedPassportExpireDate($event)" [dataTabIndex]="8" [isAdminOrNewRecord]=true [label]="getLabel('passportExpireDate')" [parentDate]="getPassportExpireDate()" [readOnly]=false [showHint]=false></date-picker>
+            <!-- Passport Expiry date -->
+            <date-picker (outputValue)="patchFormWithSelectedPassportExpiryDate($event)" [dataTabIndex]="8" [isAdminOrNewRecord]=true [label]="getLabel('passportExpiryDate')" [parentDate]="getPassportExpiryDate()" [readOnly]=false [showHint]=false></date-picker>
             <div class="stacked-checkboxes">
                 <!-- Active -->
                 <mat-checkbox formControlName="isActive">

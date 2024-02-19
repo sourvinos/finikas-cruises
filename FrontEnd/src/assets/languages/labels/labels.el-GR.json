@@ -1181,11 +1181,11 @@
             },
             {
                 "id": "passportNo",
-                "description": "Αριθμός διαβατηρίου"
+                "description": "Νο διαβατηρίου"
             },
             {
-                "id": "passportExpireDate",
-                "description": "Ημερομηνία λήξης διαβατηρίου"
+                "id": "passportExpiryDate",
+                "description": "Λήξη ισχύος"
             },
             {
                 "id": "specialCare",
@@ -1974,7 +1974,7 @@
                 "description": "Αριθμός διαβατηρίου"
             },
             {
-                "id": "passportExpireDate",
+                "id": "passportExpiryDate",
                 "description": "Ημερομηνία λήξης διαβατηρίου"
             },
             {

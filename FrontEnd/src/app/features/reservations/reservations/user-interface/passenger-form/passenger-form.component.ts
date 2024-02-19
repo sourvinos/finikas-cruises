@@ -147,9 +147,9 @@ export class PassengerFormComponent {
         return Math.round(Math.random() * new Date().getMilliseconds())
     }
 
-    private assignPassportExpireDate(): string {
+    private assignPassportExpiryDate(): string {
         if (this.isPassportRequired()) {
-            return this.dateHelperService.formatDateToIso(new Date(this.form.value.passportExpireDate))
+            return this.dateHelperService.formatDateToIso(new Date(this.form.value.passportExpiryDate))
         } else {
             return '9999-12-31'
         }
@@ -180,7 +180,7 @@ export class PassengerFormComponent {
             'occupantId': 2,
             'birthdate': this.dateHelperService.formatDateToIso(new Date(this.form.value.birthdate)),
             'passportNo': this.form.value.passportNo,
-            'passportExpireDate': this.assignPassportExpireDate(),
+            'passportExpiryDate': this.assignPassportExpiryDate(),
             'nationality': this.form.value.nationality,
             'gender': this.form.value.gender,
             'specialCare': this.form.value.specialCare,
@@ -216,7 +216,7 @@ export class PassengerFormComponent {
             firstname: ['', [Validators.required, Validators.maxLength(128)]],
             birthdate: ['', Validators.required],
             passportNo: ['', this.isPassportRequired() ? Validators.required : null],
-            passportExpireDate: ['', this.isPassportRequired() ? Validators.required : null],
+            passportExpiryDate: ['', this.isPassportRequired() ? Validators.required : null],
             specialCare: ['', Validators.maxLength(128)],
             remarks: ['', Validators.maxLength(128)],
             isBoarded: [{ value: false, disabled: !this.isAdmin }],
@@ -246,7 +246,7 @@ export class PassengerFormComponent {
                 firstname: this.record.firstname,
                 birthdate: this.record.birthdate,
                 passportNo: this.record.passportNo,
-                passportExpireDate: this.record.passportExpireDate,
+                passportExpiryDate: this.record.passportExpiryDate,
                 specialCare: this.record.specialCare,
                 remarks: this.record.remarks,
                 isBoarded: this.record.isBoarded
@@ -290,8 +290,8 @@ export class PassengerFormComponent {
         return this.form.get('passportNo')
     }
 
-    get passportExpireDate(): AbstractControl {
-        return this.form.get('passportExpireDate')
+    get passportExpiryDate(): AbstractControl {
+        return this.form.get('passportExpiryDate')
     }
 
     get specialCare(): AbstractControl {

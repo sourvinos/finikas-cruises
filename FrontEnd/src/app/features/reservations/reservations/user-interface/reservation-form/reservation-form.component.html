@@ -196,7 +196,7 @@
                 <mat-icon *ngIf="!form.valid || !checkForDifferenceBetweenTotalPaxAndPassengers()" class="material-icons-outlined">lock</mat-icon>
                 <span>{{ getLabel("saveButton") | uppercase }}</span>
             </button>
-            <button [disabled]="!form.valid || !checkForDifferenceBetweenTotalPaxAndPassengers()" [matMenuTriggerFor]="saveMenu" class="no-left-border-radius secondary" mat-flat-button>
+            <button [disabled]="!form.valid || !checkForDifferenceBetweenTotalPaxAndPassengers()" [matMenuTriggerFor]="saveMenu" class="no-left-border-radius primary-darker" mat-flat-button>
                 <mat-icon class="big material-symbols-outlined">expand_less</mat-icon>
             </button>
             <mat-menu #saveMenu="matMenu" class="primary">
@@ -253,7 +253,7 @@
 
 <div id="menus">
 
-    <ng-template #saveMenuTemplate xPosision="before">
+    <ng-template #saveMenuTemplate xPosition="before">
         <button (click)="onSave('printBoardingPass')" mat-menu-item>
             <span>{{ getLabel('saveAndPrintBoardingPassButton') }}</span>
         </button>

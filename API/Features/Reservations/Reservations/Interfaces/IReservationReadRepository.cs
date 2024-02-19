@@ -10,6 +10,7 @@ namespace API.Features.Reservations.Reservations {
         Task<IEnumerable<ReservationListVM>> GetByRefNoAsync(string refNo);
         Task<ReservationDriverGroupVM> GetByDateAndDriverAsync(string date, int driverId);
         Task<Reservation> GetByIdAsync(string reservationId, bool includeTables);
+        Task<RepoPassenger> GetRepoPassengerAsync();
 
     }
 
