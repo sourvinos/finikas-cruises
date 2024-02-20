@@ -37,7 +37,7 @@
 }
 
 #dialog-footer {
-    border-top: 0.0625rem solid var(--color-dialog-areas-seperator);
+    border-top: 0.0625rem solid color-mix(in srgb, var(--color-text) 30%, transparent);
     display: flex;
     justify-content: center;
     padding: 1rem 0 1rem 0;

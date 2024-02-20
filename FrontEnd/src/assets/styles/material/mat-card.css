@@ -12,7 +12,7 @@
 }
 
 .mdc-card:hover {
-    background-color: color-mix(in srgb, var(--color-secondary) 30%, transparent) !important;
+    background-color: color-mix(in srgb, var(--color-mat-menu-background) 30%, transparent) !important;
     cursor: pointer;
 }
 

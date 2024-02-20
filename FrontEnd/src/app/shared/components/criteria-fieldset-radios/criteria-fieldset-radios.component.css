@@ -3,10 +3,11 @@
 }
 
 .fieldset {
-    border: 0.0625rem solid var(--color-primary);
+    border: 0.0625rem solid color-mix(in srgb, var(--color-text) 30%, transparent);
     display: flex;
     height: 100%;
     margin: 0;
+    transition: border var(--theme-delay) !important;
 }
 
 .fieldset legend {
@@ -43,7 +44,7 @@ fieldset legend span {
 }
 
 .p-datatable .p-datatable-thead > tr > th {
-    border: 0.0625rem solid color-mix(in srgb, var(--color-primary) 30%, transparent) !important;
+    border: 0.0625rem solid color-mix(in srgb, var(--color-mat-menu-background) 30%, transparent) !important;
 }
 
 input::placeholder {

@@ -7,7 +7,7 @@
 
 #comparison {
     align-self: center;
-    color: var(--color-primary);
+    color: var(--color-button-primary);
     display: flex;
     font-size: 1.875rem;
     font-weight: 600;

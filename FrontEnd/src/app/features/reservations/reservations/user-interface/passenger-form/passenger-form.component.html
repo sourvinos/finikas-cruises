@@ -75,7 +75,7 @@
             <!-- IsBoarded -->
             <div id="is-boarded">
                 <mat-checkbox [class]="!isAdmin() ? 'disabled': null" formControlName="isBoarded">
-                    <mat-icon *ngIf="!isAdmin()" class="material-icons-outlined small">lock</mat-icon>
+                    <mat-icon *ngIf="!isAdmin()" class="lock material-icons-outlined small">lock</mat-icon>
                     <span>{{ getLabel("isBoarded") }}</span>
                 </mat-checkbox>
             </div>

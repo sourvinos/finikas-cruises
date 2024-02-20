@@ -1,8 +1,8 @@
 .mdc-button .mat-icon.big {
     font-size: 22px !important;
-    top: -2px;
-    left: -5px;
-    width: 21px !important;
+    top: -0.125rem;
+    left: -0.3125rem;
+    width: 20.0625rem !important;
     height: 22px !important;
 }
 

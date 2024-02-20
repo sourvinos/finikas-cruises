@@ -1,6 +1,6 @@
 <form [formGroup]="form" id="form">
     <mat-form-field id="date-picker">
-        <mat-icon *ngIf="!isAdminOrNewRecord" class="material-icons-outlined small">lock</mat-icon>
+        <mat-icon *ngIf="!isAdminOrNewRecord" class="lock material-icons-outlined small">lock</mat-icon>
         <mat-label>{{ label }}</mat-label>
         <input (dateInput)="emitFormValues()" [attr.datatabindex]=dataTabIndex [inputTabStop]="input" [matDatepicker]="picker" [readonly]=readOnly formControlName="date" matInput>
         <mat-datepicker-toggle [disabled]="!isAdminOrNewRecord" [for]="picker" matSuffix></mat-datepicker-toggle>

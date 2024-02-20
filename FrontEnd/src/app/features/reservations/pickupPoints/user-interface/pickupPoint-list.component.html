@@ -69,7 +69,7 @@
                     </tr>
                 </ng-template>
                 <ng-template let-editing="editing" let-record pTemplate="body" let-index="rowIndex">
-                    <tr (click)="onHighlightRow(record.id)" (dblclick)="onEditRecord(record.id)" [attr.id]=record.id [pEditableRow]="record" class="without-footer" style="height: 32px;">
+                    <tr (click)="onHighlightRow(record.id)" (dblclick)="onEditRecord(record.id)" [attr.id]=record.id [pEditableRow]="record"  style="height: 32px;">
                         <td class="width-3"><span class="no-left-padding center" style="padding-top: 0.25rem !important;"><p-tableCheckbox [value]="record"></p-tableCheckbox></span></td>
                         <td class="width-5"><span class="center no-left-padding" style="font-size: 0.5rem; padding-top: 0 !important;">{{ getEmoji(record.isActive) }}</span></td>
                         <td class="width-8"><span class="center">{{ record.destination.abbreviation }}</span></td>
