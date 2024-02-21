@@ -1149,6 +1149,10 @@
             {
                 "id": "newPassengerButton",
                 "description": "Neuer Passagier"
+            },
+            {
+                "id": "newRandomPassengerButton",
+                "description": "Neuer Passagier mit zufälligen Angaben"
             }
         ]
     },

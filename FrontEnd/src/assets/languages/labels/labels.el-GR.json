@@ -1149,6 +1149,10 @@
             {
                 "id": "newPassengerButton",
                 "description": "Νεος επιβατης"
+            },
+            {
+                "id": "newRandomPassengerButton",
+                "description": "Νέος επιβάτης με τυχαία στοιχεία"
             }
         ]
     },

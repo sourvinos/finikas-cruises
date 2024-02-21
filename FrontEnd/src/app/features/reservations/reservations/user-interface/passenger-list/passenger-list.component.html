@@ -69,7 +69,7 @@
 
     <ng-template #menuTemplate>
         <button (click)="onCreateRandomPassenger()" mat-menu-item>
-            <span>New random passenger</span>
+            <span>{{ getLabel("newRandomPassengerButton") }}</span>
         </button>
     </ng-template>
 
