@@ -19,7 +19,8 @@ export class ManifestListResolver {
             date: storedCriteria.date,
             destinationId: storedCriteria.selectedDestinations[0].id,
             portIds: this.buildIds(storedCriteria.selectedPorts),
-            shipId: storedCriteria.selectedShips[0].id
+            shipId: storedCriteria.selectedShips[0].id,
+            onlyBoarded: storedCriteria.onlyBoarded
         }
         return this.manifestService.get(searchCriteria).pipe(
             map((manifestList) => new ManifestListResolved(manifestList)),

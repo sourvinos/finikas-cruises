@@ -4,5 +4,6 @@ export interface ManifestSearchCriteriaVM {
     destinationId: number
     portIds: number[]
     shipId: number
+    onlyBoarded: boolean
 
 }

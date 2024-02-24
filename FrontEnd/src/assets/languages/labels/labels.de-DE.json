@@ -1564,6 +1564,10 @@
                 "description": "Reiseziele"
             },
             {
+                "id": "onlyBoarded",
+                "description": "Nur eingestiegene Passagiere anzeigen"
+            },
+            {
                 "id": "ports",
                 "description": "Häfen"
             },

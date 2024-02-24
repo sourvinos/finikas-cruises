@@ -87,6 +87,7 @@ namespace API.Features.Reservations.Manifest {
                     PassportExpiryDate = ReplaceYearWithSpace(DateHelpers.DateToISOString(passenger.PassportExpiryDate)),
                     Remarks = passenger.Remarks.Trim(),
                     SpecialCare = passenger.SpecialCare.Trim(),
+                    IsBoarded = passenger.IsBoarded,
                     Gender = new SimpleEntity {
                         Id = passenger.Gender.Id,
                         Description = passenger.Gender.Description

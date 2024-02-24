@@ -118,6 +118,7 @@ export class ManifestCriteriaComponent {
             selectedDestinations: this.formBuilder.array([], Validators.required),
             selectedPorts: this.formBuilder.array([], Validators.required),
             selectedShips: this.formBuilder.array([], Validators.required),
+            onlyBoarded: false
         })
     }
 
@@ -144,7 +145,8 @@ export class ManifestCriteriaComponent {
                 date: this.criteria.date,
                 selectedDestinations: this.addSelectedCriteriaFromStorage('selectedDestinations'),
                 selectedPorts: this.addSelectedCriteriaFromStorage('selectedPorts'),
-                selectedShips: this.addSelectedCriteriaFromStorage('selectedShips')
+                selectedShips: this.addSelectedCriteriaFromStorage('selectedShips'),
+                onlyBoarded: this.criteria.onlyBoarded
             })
         }
     }

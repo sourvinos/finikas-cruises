@@ -19,7 +19,7 @@ namespace API.Features.Reservations.Manifest {
             this.mapper = mapper;
         }
 
-        public ManifestFinalVM Get(string date, int destinationId, int[] portIds, int? shipId) {
+        public ManifestFinalVM Get(bool onlyBoarded, string date, int destinationId, int[] portIds, int? shipId) {
             var manifest = new ManifestInitialVM {
                 Date = date,
                 Destination = context.Destinations
@@ -42,7 +42,7 @@ namespace API.Features.Reservations.Manifest {
                         && x.Reservation.DestinationId == destinationId
                         && x.Reservation.ShipId == shipId
                         && portIds.Contains(x.Reservation.PickupPoint.PortId)
-                        && x.IsBoarded)
+                        && onlyBoarded ? x.IsBoarded : x.IsBoarded || !x.IsBoarded)
                     .ToList()
             };
             return mapper.Map<ManifestInitialVM, ManifestFinalVM>(manifest);

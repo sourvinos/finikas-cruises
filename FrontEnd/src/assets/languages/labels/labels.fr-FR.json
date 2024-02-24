@@ -1564,6 +1564,10 @@
                 "description": "Destinations"
             },
             {
+                "id": "onlyBoarded",
+                "description": "Afficher uniquement les passagers embarqués"
+            },
+            {
                 "id": "ports",
                 "description": "Ports"
             },

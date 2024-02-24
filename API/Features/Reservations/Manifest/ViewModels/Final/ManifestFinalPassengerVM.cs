@@ -13,6 +13,7 @@ namespace API.Features.Reservations.Manifest {
         public string PassportExpiryDate { get; set; }
         public string Remarks { get; set; }
         public string SpecialCare { get; set; }
+        public bool IsBoarded { get; set; }
         public SimpleEntity Gender { get; set; }
         public ManifestFinalNationalityVM Nationality { get; set; }
         public SimpleEntity Occupant { get; set; }

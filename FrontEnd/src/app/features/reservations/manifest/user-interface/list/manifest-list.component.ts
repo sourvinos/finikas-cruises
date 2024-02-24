@@ -91,6 +91,17 @@ export class ManifestListComponent {
         return this.dateHelperService.formatISODateToLocale(date, showWeekday, showYear)
     }
 
+    public getBoardingStatusIcon(isBoarded: boolean): string {
+        switch (isBoarded) {
+            case true:
+                return this.getEmoji('green-box')
+            case false:
+                return this.getEmoji('red-box')
+            default:
+                return this.getEmoji('yellow-box')
+        }
+    }
+
     public getEmoji(emoji: string): string {
         return this.emojiService.getEmoji(emoji)
     }

@@ -24,6 +24,7 @@
         "@zxing/ngx-scanner": "17.0.0",
         "crypto-js": "4.2.0",
         "dexie": "3.2.5",
+        "file-saver": "2.0.5",
         "guid-typescript": "1.0.9",
         "jwt-decode": "4.0.0",
         "pdfmake": "0.2.9",
@@ -32,12 +33,14 @@
         "rxjs": "7.8.1",
         "stylelint": "16.2.1",
         "tslib": "2.6.2",
+        "xlsx":"0.18.5",
         "zone.js": "0.14.4"
     },
     "devDependencies": {
         "@angular-devkit/build-angular": "17.2.1",
         "@angular/cli": "17.2.1",
         "@angular/compiler-cli": "17.2.2",
+        "@types/file-saver": "2.0.7",
         "@types/pdfmake": "0.2.9",
         "@typescript-eslint/eslint-plugin": "7.0.2",
         "@typescript-eslint/parser": "7.0.2",

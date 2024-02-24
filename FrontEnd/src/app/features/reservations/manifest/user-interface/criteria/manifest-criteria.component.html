@@ -18,6 +18,11 @@
                     <criteria-fieldset-checkboxes (outputSelected)="patchFormWithSelectedArrays($event,'selectedPorts')" [array]="ports" [caption]="'ports'" [feature]="feature" [selected]="selectedPorts"></criteria-fieldset-checkboxes>
                     <criteria-fieldset-radios (outputSelected)="patchFormWithSelectedArrays($event,'selectedShips')" [array]="ships" [caption]="'ships'" [feature]="feature" [selected]="selectedShips"></criteria-fieldset-radios>
                 </div>
+                <div class="group-input-field">
+                    <mat-checkbox formControlName="onlyBoarded">
+                        <span>{{ getLabel("onlyBoarded") }}</span>
+                    </mat-checkbox>
+                </div>
             </form>
         </div>
 

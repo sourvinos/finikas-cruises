@@ -1564,6 +1564,10 @@
                 "description": "Destinace"
             },
             {
+                "id": "onlyBoarded",
+                "description": "Zobrazit pouze nastoupené cestující"
+            },
+            {
                 "id": "ports",
                 "description": "Přístavy"
             },
