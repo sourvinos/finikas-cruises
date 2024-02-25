@@ -28,6 +28,7 @@ const appRoutes: Routes = [
     { path: 'manifest', loadChildren: () => import('../features/reservations/manifest/classes/modules/manifest.module').then(m => m.ManifestModule) },
     { path: 'statistics', loadChildren: () => import('../features/reservations/statistics/classes/modules/statistics.module').then(m => m.StatisticsModule) },
     { path: 'coachRoutes', loadChildren: () => import('../features/reservations/coachRoutes/classes/modules/coachRoute.module').then(m => m.CoachRouteModule) },
+    { path: 'crewSpecialties', loadChildren: () => import('../features/reservations/crewSpecialties/classes/modules/crewSpecialty.module').then(m => m.CrewSpecialtyModule) },
     { path: 'customers', loadChildren: () => import('../features/reservations/customers/classes/modules/customer.module').then(m => m.CustomerModule) },
     { path: 'destinations', loadChildren: () => import('../features/reservations/destinations/classes/modules/destination.module').then(m => m.DestinationModule) },
     { path: 'drivers', loadChildren: () => import('../features/reservations/drivers/classes/modules/driver.module').then(m => m.DriverModule) },

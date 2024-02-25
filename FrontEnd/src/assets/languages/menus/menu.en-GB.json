@@ -20,6 +20,10 @@
         "description": "Passenger registrars"
     },
     {
+        "id": "crewSpecialties",
+        "description": "Crew specialties"
+    },
+    {
         "id": "ports",
         "description": "Ports"
     },

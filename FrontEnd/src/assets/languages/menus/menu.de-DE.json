@@ -20,6 +20,10 @@
         "description": "Fahrgastregistrierer"
     },
     {
+        "id": "crewSpecialties",
+        "description": "Spezialitäten der Mannschaft"
+    },
+    {
         "id": "ports",
         "description": "Häfen"
     },

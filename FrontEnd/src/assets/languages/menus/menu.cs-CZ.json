@@ -20,6 +20,10 @@
         "description": "Registrátoři"
     },
     {
+        "id": "crewSpecialties",
+        "description": "Speciality posádky"
+    },
+    {
         "id": "ports",
         "description": "Přístavy"
     },

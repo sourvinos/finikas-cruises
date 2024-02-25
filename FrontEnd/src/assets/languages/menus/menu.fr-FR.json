@@ -20,6 +20,10 @@
         "description": "Enregistreurs de passagers"
     },
     {
+        "id": "crewSpecialties",
+        "description": "Spécialités de l'équipage"
+    },
+    {
         "id": "ports",
         "description": "Ports"
     },

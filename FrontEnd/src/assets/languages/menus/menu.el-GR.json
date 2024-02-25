@@ -20,6 +20,10 @@
         "description": "Καταγραφείς επιβατών"
     },
     {
+        "id": "crewSpecialties",
+        "description": "Ειδικότητες πληρώματος"
+    },
+    {
         "id": "ports",
         "description": "Λιμάνια"
     },
