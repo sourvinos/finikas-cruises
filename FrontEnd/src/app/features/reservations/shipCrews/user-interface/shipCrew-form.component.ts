@@ -21,9 +21,10 @@ import { MessageLabelService } from 'src/app/shared/services/message-label.servi
 import { NationalityDropdownVM } from '../../nationalities/classes/view-models/nationality-autocomplete-vm'
 import { ShipAutoCompleteVM } from '../../ships/classes/view-models/ship-autocomplete-vm'
 import { ShipCrewReadDto } from '../classes/dtos/shipCrew-read-dto'
-import { ShipCrewService } from '../classes/services/shipCrew.service'
+import { ShipCrewHttpService } from '../classes/services/shipCrew-http.service'
 import { ShipCrewWriteDto } from '../classes/dtos/shipCrew-write-dto'
 import { ValidationService } from 'src/app/shared/services/validation.service'
+import { CrewSpecialtyAutoCompleteVM } from '../../crewSpecialties/classes/view-models/crewSpecialty-autocomplete-vm'
 
 @Component({
     selector: 'ship-crew-form',
@@ -52,10 +53,11 @@ export class ShipCrewFormComponent {
     public dropdownGenders: Observable<GenderAutoCompleteVM[]>
     public dropdownNationalities: Observable<NationalityDropdownVM[]>
     public dropdownShips: Observable<ShipAutoCompleteVM[]>
+    public dropdownSpecialties: Observable<CrewSpecialtyAutoCompleteVM[]>
 
     //#endregion
 
-    constructor(@Inject(MAT_DATE_LOCALE) private locale: string, private activatedRoute: ActivatedRoute, private dateAdapter: DateAdapter<any>, private dateHelperService: DateHelperService, private dexieService: DexieService, private dialogService: DialogService, private formBuilder: FormBuilder, private helperService: HelperService, private interactionService: InteractionService, private localStorageService: LocalStorageService, private messageDialogService: MessageDialogService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private router: Router, private shipCrewService: ShipCrewService) { }
+    constructor(@Inject(MAT_DATE_LOCALE) private locale: string, private activatedRoute: ActivatedRoute, private dateAdapter: DateAdapter<any>, private dateHelperService: DateHelperService, private dexieService: DexieService, private dialogService: DialogService, private formBuilder: FormBuilder, private helperService: HelperService, private interactionService: InteractionService, private localStorageService: LocalStorageService, private messageDialogService: MessageDialogService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private router: Router, private shipCrewService: ShipCrewHttpService) { }
 
     //#region lifecycle hooks
 
@@ -172,6 +174,7 @@ export class ShipCrewFormComponent {
             shipId: this.form.value.ship.id,
             genderId: this.form.value.gender.id,
             nationalityId: this.form.value.nationality.id,
+            specialtyId: this.form.value.specialty.id,
             lastname: this.form.value.lastname,
             firstname: this.form.value.firstname,
             birthdate: this.dateHelperService.formatDateToIso(new Date(this.form.value.birthdate)),
@@ -213,9 +216,10 @@ export class ShipCrewFormComponent {
             lastname: ['', [Validators.required, Validators.maxLength(128)]],
             firstname: ['', [Validators.required, Validators.maxLength(128)]],
             birthdate: ['', [Validators.required]],
-            ship: ['', [Validators.required, ValidationService.RequireAutocomplete]],
-            nationality: ['', [Validators.required, ValidationService.RequireAutocomplete]],
             gender: ['', [Validators.required, ValidationService.RequireAutocomplete]],
+            nationality: ['', [Validators.required, ValidationService.RequireAutocomplete]],
+            ship: ['', [Validators.required, ValidationService.RequireAutocomplete]],
+            specialty: ['', [Validators.required, ValidationService.RequireAutocomplete]],
             passportNo: [''],
             passportExpiryDate: [''],
             isActive: true,
@@ -230,6 +234,7 @@ export class ShipCrewFormComponent {
         this.populateDropdownFromDexieDB('genders', 'dropdownGenders', 'gender', 'description', 'description')
         this.populateDropdownFromDexieDB('nationalities', 'dropdownNationalities', 'nationality', 'description', 'description')
         this.populateDropdownFromDexieDB('ships', 'dropdownShips', 'ship', 'description', 'description')
+        this.populateDropdownFromDexieDB('crewSpecialties', 'dropdownSpecialties', 'specialty', 'description', 'description')
     }
 
     private populateDropdownFromDexieDB(dexieTable: string, filteredTable: string, formField: string, modelProperty: string, orderBy: string): void {
@@ -246,9 +251,10 @@ export class ShipCrewFormComponent {
                 lastname: this.record.lastname,
                 firstname: this.record.firstname,
                 birthdate: this.record.birthdate,
-                ship: { 'id': this.record.ship.id, 'description': this.record.ship.description },
-                nationality: { 'id': this.record.nationality.id, 'description': this.record.nationality.description },
                 gender: { 'id': this.record.gender.id, 'description': this.record.gender.description },
+                nationality: { 'id': this.record.nationality.id, 'description': this.record.nationality.description },
+                ship: { 'id': this.record.ship.id, 'description': this.record.ship.description },
+                specialty: { 'id': this.record.specialty.id, 'description': this.record.specialty.description },
                 passportNo: this.record.passportNo,
                 passportExpiryDate: this.record.passportExpiryDate,
                 isActive: this.record.isActive,
@@ -318,6 +324,10 @@ export class ShipCrewFormComponent {
 
     get gender(): AbstractControl {
         return this.form.get('gender')
+    }
+
+    get specialty(): AbstractControl {
+        return this.form.get('specialty')
     }
 
     get passportNo(): AbstractControl {

@@ -2,14 +2,14 @@ import { ActivatedRouteSnapshot } from '@angular/router'
 import { Injectable } from '@angular/core'
 import { catchError, map, of } from 'rxjs'
 // Custom
-import { ShipCrewService } from '../services/shipCrew.service'
+import { ShipCrewHttpService } from '../services/shipCrew-http.service'
 import { FormResolved } from 'src/app/shared/classes/form-resolved'
 
 @Injectable({ providedIn: 'root' })
 
 export class ShipCrewFormResolver {
 
-    constructor(private shipCrewService: ShipCrewService) { }
+    constructor(private shipCrewService: ShipCrewHttpService) { }
 
     resolve(route: ActivatedRouteSnapshot): any {
         return this.shipCrewService.getSingle(route.params.id).pipe(

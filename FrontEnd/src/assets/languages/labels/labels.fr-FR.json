@@ -1929,6 +1929,10 @@
                 "description": "Navire"
             },
             {
+                "id": "headerSpecialtyDescription",
+                "description": "Spécialité"
+            },
+            {
                 "id": "headerLastname",
                 "description": "Nom de famille"
             },
@@ -1972,6 +1976,10 @@
             {
                 "id": "nationality",
                 "description": "Nationalite"
+            },
+            {
+                "id": "specialty",
+                "description": "Spécialité"
             },
             {
                 "id": "gender",

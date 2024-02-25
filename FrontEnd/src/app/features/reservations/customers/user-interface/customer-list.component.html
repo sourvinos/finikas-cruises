@@ -2,12 +2,15 @@
 
     <div id="content">
 
+        <!-- {{ table.filters.description | json }} -->
+        {{ table.filters | json }}
+
         <div id="header">
             <home-button-and-title [featureIcon]="featureIcon" [feature]="feature" [icon]="icon" [parentUrl]="parentUrl"></home-button-and-title>
         </div>
 
         <div id="table-wrapper">
-            <p-table #table (onFilter)="filterRecords($event)" [scrollable]="true" [value]="records" [virtualScrollItemSize]="32" [virtualScroll]="true" dataKey="id" scrollHeight="flex" selectionMode="single" sortMode="multiple">
+            <p-table #table (onFilter)="filterRecords($event)" [scrollable]="true" [value]="records" [virtualScrollItemSize]="32" [virtualScroll]="true" dataKey="id" scrollHeight="flex" selectionMode="single" sortMode="multiple" stateKey="statedemo-session" stateStorage="session">
                 <ng-template pTemplate="header">
                     <tr>
                         <th class="width-5" pSortableColumn="isActive">{{ getLabel("headerIsActive") }}</th>
@@ -17,13 +20,13 @@
                     </tr>
                     <tr>
                         <th class="width-5"><p-columnFilter field="isActive" type="boolean"></p-columnFilter></th>
-                        <th class="width-18"><input (input)="table.filter($event.target.value, 'description', 'contains')" [value]="$any(table).filters['description']?.value" class="p-inputtext"></th>
-                        <th class="width-18"><input (input)="table.filter($event.target.value, 'email', 'contains')" [value]="$any(table).filters['email']?.value" class="p-inputtext"></th>
-                        <th class="width-18"><input (input)="table.filter($event.target.value, 'phones', 'contains')" [value]="$any(table).filters['phones']?.value" class="p-inputtext"></th>
+                        <th class="width-18"><input (input)="table.filter($event.target.value, 'description', 'contains')" value="tui" class="p-inputtext"></th>
+                        <th class="width-18"><input (input)="table.filter($event.target.value, 'email', 'contains')" class="p-inputtext"></th>
+                        <th class="width-18"><input (input)="table.filter($event.target.value, 'phones', 'contains')" class="p-inputtext"></th>
                     </tr>
                 </ng-template>
                 <ng-template let-record pTemplate="body">
-                    <tr (click)="highlightRow(record.id)" (dblclick)="editRecord(record.id)" [attr.id]=record.id  style="height: 32px;">
+                    <tr (click)="highlightRow(record.id)" (dblclick)="editRecord(record.id)" [attr.id]=record.id style="height: 32px;">
                         <td class="width-5"><span class="center no-left-padding" style="font-size: 0.5rem; padding-top: 0 !important;">{{ getEmoji(record.isActive) }}</span></td>
                         <td class="width-18"><span>{{ record.description }}</span></td>
                         <td class="width-18"><span>{{ record.email }}</span></td>

@@ -3,13 +3,13 @@ import { Observable, of } from 'rxjs'
 import { catchError, map } from 'rxjs/operators'
 // Custom
 import { ListResolved } from 'src/app/shared/classes/list-resolved'
-import { ShipCrewService } from '../services/shipCrew.service'
+import { ShipCrewHttpService } from '../services/shipCrew-http.service'
 
 @Injectable({ providedIn: 'root' })
 
 export class ShipCrewListResolver {
 
-    constructor(private shipCrewService: ShipCrewService) { }
+    constructor(private shipCrewService: ShipCrewHttpService) { }
 
     resolve(): Observable<ListResolved> {
         return this.shipCrewService.getAll().pipe(

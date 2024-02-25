@@ -41,7 +41,7 @@ export class CustomerListComponent {
 
     ngOnInit(): void {
         this.loadRecords().then(() => {
-            this.filterTableFromStoredFilters()
+            // this.filterTableFromStoredFilters()
             this.subscribeToInteractionService()
             this.setTabTitle()
             this.setSidebarsHeight()

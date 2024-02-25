@@ -32,7 +32,7 @@ namespace API.Features.Reservations.ShipCrews {
             return mapper.Map<IEnumerable<ShipCrew>, IEnumerable<ShipCrewListVM>>(shipCrews);
         }
 
-        public async Task<IEnumerable<ShipCrewAutoCompleteVM>> GetAutoCompleteAsync() {
+        public async Task<IEnumerable<ShipCrewAutoCompleteVM>> GetForBrowserStorageAsync() {
             var shipCrews = await context.ShipCrews
                 .AsNoTracking()
                 .OrderBy(x => x.Lastname).ThenBy(x => x.Firstname).ThenByDescending(x => x.Birthdate)

@@ -43,6 +43,7 @@ export class ShipCrewListComponent {
     //#region dropdown filters #1
 
     public distinctShips: SimpleEntity[] = []
+    public distinctSpecialties: SimpleEntity[] = []
 
     //#endregion
 
@@ -156,6 +157,7 @@ export class ShipCrewListComponent {
             setTimeout(() => {
                 this.filterColumn(filters.isActive, 'isActive', 'contains')
                 this.filterColumn(filters.ship, 'ship', 'in')
+                this.filterColumn(filters.specialty, 'specialty', 'in')
                 this.filterColumn(filters.lastname, 'lastname', 'contains')
                 this.filterColumn(filters.firstname, 'firstname', 'contains')
                 this.filterColumn(filters.birthdate, 'birthdate', 'equals')
@@ -240,6 +242,7 @@ export class ShipCrewListComponent {
 
     private populateDropdownFilters(): void {
         this.distinctShips = this.helperService.getDistinctRecords(this.records, 'ship', 'description')
+        this.distinctSpecialties = this.helperService.getDistinctRecords(this.records, 'ship', 'description')
     }
 
     private setLocale(): void {
