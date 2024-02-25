@@ -35,6 +35,7 @@ namespace API.Infrastructure.Helpers {
         public static string InvalidShip() { return "The ship doesn't exist or is inactive."; }
         public static string InvalidShipOwner() { return "The shipowner doesn't exist or is inactive."; }
         public static string InvalidNationality() { return "The nationality doesn't exist or is inactive."; }
+        public static string InvalidSpecialty() { return "The specialty doesn't exist or is inactive."; }
         public static string InvalidGender() { return "The gender doesn't exist or is inactive."; }
         public static string InvalidTaxOffice() { return "The tax office doesn't exist or is inactive."; }
         public static string InvalidVatRegime() { return "The vat state doesn't exist or is inactive."; }

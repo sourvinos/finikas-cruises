@@ -4,7 +4,7 @@ namespace API.Features.Reservations.CrewSpecialties {
 
     public interface ICrewSpecialtyValidation : IRepository<CrewSpecialty> {
 
-        int IsValid(CrewSpecialty x, CrewSpecialtyWriteDto gender);
+        int IsValid(CrewSpecialty x, CrewSpecialtyWriteDto specialty);
 
     }
 

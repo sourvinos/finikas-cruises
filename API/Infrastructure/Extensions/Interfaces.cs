@@ -44,7 +44,6 @@ namespace API.Infrastructure.Extensions {
             services.AddTransient<IDestinationRepository, DestinationRepository>();
             services.AddTransient<IDriverRepository, DriverRepository>();
             services.AddTransient<IGenderRepository, GenderRepository>();
-            services.AddTransient<IGenderRepository, GenderRepository>();
             services.AddTransient<INationalityRepository, NationalityRepository>();
             services.AddTransient<IPickupPointRepository, PickupPointRepository>();
             services.AddTransient<IPortRepository, PortRepository>();
