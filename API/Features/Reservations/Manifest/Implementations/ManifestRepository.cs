@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
+using System;
 
 namespace API.Features.Reservations.Manifest {
 
@@ -41,10 +42,12 @@ namespace API.Features.Reservations.Manifest {
                     .Where(x => x.Reservation.Date.ToString() == date
                         && x.Reservation.DestinationId == destinationId
                         && x.Reservation.ShipId == shipId
-                        && portIds.Contains(x.Reservation.PickupPoint.PortId)
-                        && onlyBoarded ? x.IsBoarded : x.IsBoarded || !x.IsBoarded)
+                        && portIds.Contains(x.Reservation.PickupPoint.PortId))
                     .ToList()
             };
+            manifest.Passengers = onlyBoarded
+                ? manifest.Passengers.Where(x => x.IsBoarded).ToList()
+                : manifest.Passengers;
             return mapper.Map<ManifestInitialVM, ManifestFinalVM>(manifest);
         }
 
