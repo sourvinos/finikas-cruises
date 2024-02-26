@@ -28,12 +28,20 @@ namespace API.Features.Reservations.Destinations {
             return mapper.Map<IEnumerable<Destination>, IEnumerable<DestinationListVM>>(destinations);
         }
 
-        public async Task<IEnumerable<DestinationAutoCompleteVM>> GetAutoCompleteAsync() {
+        public async Task<IEnumerable<DestinationAutoCompleteVM>> GetForAutoCompleteAsync() {
             var destinations = await context.Destinations
                 .AsNoTracking()
                 .OrderBy(x => x.Description)
                 .ToListAsync();
             return mapper.Map<IEnumerable<Destination>, IEnumerable<DestinationAutoCompleteVM>>(destinations);
+        }
+
+        public async Task<IEnumerable<SimpleEntity>> GetForCriteriaAsync() {
+            var destinations = await context.Destinations
+                .AsNoTracking()
+                .OrderBy(x => x.Description)
+                .ToListAsync();
+            return mapper.Map<IEnumerable<Destination>, IEnumerable<SimpleEntity>>(destinations);
         }
 
         public async Task<Destination> GetByIdAsync(int id) {

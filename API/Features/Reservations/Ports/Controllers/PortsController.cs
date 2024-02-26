@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using API.Infrastructure.Classes;
 using API.Infrastructure.Extensions;
 using API.Infrastructure.Helpers;
 using API.Infrastructure.Responses;
@@ -34,8 +35,14 @@ namespace API.Features.Reservations.Ports {
 
         [HttpGet("[action]")]
         [Authorize(Roles = "user, admin")]
-        public async Task<IEnumerable<PortAutoCompleteVM>> GetAutoCompleteAsync() {
-            return await portRepo.GetAutoCompleteAsync();
+        public async Task<IEnumerable<PortAutoCompleteVM>> GetForAutoCompleteAsync() {
+            return await portRepo.GetForAutoCompleteAsync();
+        }
+
+        [HttpGet("[action]")]
+        [Authorize(Roles = "user, admin")]
+        public async Task<IEnumerable<SimpleEntity>> GetForCriteriaAsync() {
+            return await portRepo.GetForCriteriaAsync();
         }
 
         [HttpGet("{id}")]

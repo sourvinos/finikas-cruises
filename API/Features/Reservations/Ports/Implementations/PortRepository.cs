@@ -28,12 +28,20 @@ namespace API.Features.Reservations.Ports {
             return mapper.Map<IEnumerable<Port>, IEnumerable<PortListVM>>(ports);
         }
 
-        public async Task<IEnumerable<PortAutoCompleteVM>> GetAutoCompleteAsync() {
+        public async Task<IEnumerable<PortAutoCompleteVM>> GetForAutoCompleteAsync() {
             var ports = await context.Ports
                 .AsNoTracking()
                 .OrderBy(x => x.Description)
                 .ToListAsync();
             return mapper.Map<IEnumerable<Port>, IEnumerable<PortAutoCompleteVM>>(ports);
+        }
+
+        public async Task<IEnumerable<SimpleEntity>> GetForCriteriaAsync() {
+            var ports = await context.Ports
+                .AsNoTracking()
+                .OrderBy(x => x.Description)
+                .ToListAsync();
+            return mapper.Map<IEnumerable<Port>, IEnumerable<SimpleEntity>>(ports);
         }
 
         public async Task<Port> GetByIdAsync(int id) {

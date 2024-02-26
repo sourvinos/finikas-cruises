@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using API.Infrastructure.Classes;
 using API.Infrastructure.Extensions;
 using API.Infrastructure.Helpers;
 using API.Infrastructure.Responses;
@@ -34,8 +35,14 @@ namespace API.Features.Reservations.Ships {
 
         [HttpGet("[action]")]
         [Authorize(Roles = "user, admin")]
-        public async Task<IEnumerable<ShipAutoCompleteVM>> GetAutoCompleteAsync() {
-            return await shipRepo.GetAutoCompleteAsync();
+        public async Task<IEnumerable<ShipAutoCompleteVM>> GetForAutoCompleteAsync() {
+            return await shipRepo.GetForAutoCompleteAsync();
+        }
+
+        [HttpGet("[action]")]
+        [Authorize(Roles = "user, admin")]
+        public async Task<IEnumerable<SimpleEntity>> GetForCriteriaAsync() {
+            return await shipRepo.GetForCriteriaAsync();
         }
 
         [HttpGet("{id}")]

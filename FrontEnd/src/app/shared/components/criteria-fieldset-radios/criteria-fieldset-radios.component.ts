@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { EmojiService } from '../../services/emoji.service'
 import { HelperService } from '../../services/helper.service'
 import { MessageLabelService } from '../../services/message-label.service'
+import { SimpleCriteriaEntity } from '../../classes/simple-criteria-entity'
 import { SimpleEntity } from '../../classes/simple-entity'
 
 @Component({
@@ -16,7 +17,7 @@ export class CriteriaFieldsetRadiosComponent {
 
     //#region variables
 
-    @Input() array: SimpleEntity[]
+    @Input() array: SimpleCriteriaEntity[]
     @Input() caption: string
     @Input() feature: string
     @Input() selected: SimpleEntity[]

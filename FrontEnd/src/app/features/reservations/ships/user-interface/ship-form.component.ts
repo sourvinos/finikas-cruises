@@ -15,7 +15,7 @@ import { MessageInputHintService } from 'src/app/shared/services/message-input-h
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
 import { ShipOwnerAutoCompleteVM } from '../../shipOwners/classes/view-models/shipOwner-autocomplete-vm'
 import { ShipReadDto } from '../classes/dtos/ship-read-dto'
-import { ShipService } from '../classes/services/ship.service'
+import { ShipHttpService } from '../classes/services/ship-https.service'
 import { ShipWriteDto } from '../classes/dtos/ship-write-dto'
 import { ValidationService } from 'src/app/shared/services/validation.service'
 
@@ -47,7 +47,7 @@ export class ShipFormComponent {
 
     //#endregion
 
-    constructor(private activatedRoute: ActivatedRoute, private dexieService: DexieService, private dialogService: DialogService, private formBuilder: FormBuilder, private helperService: HelperService, private messageDialogService: MessageDialogService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private router: Router, private shipService: ShipService) { }
+    constructor(private activatedRoute: ActivatedRoute, private dexieService: DexieService, private dialogService: DialogService, private formBuilder: FormBuilder, private helperService: HelperService, private messageDialogService: MessageDialogService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService, private router: Router, private shipService: ShipHttpService) { }
 
     //#region lifecycle hooks
 

@@ -10,7 +10,7 @@ import { CodeHttpService } from 'src/app/features/billing/codes/classes/services
 import { CrewSpecialtyHttpService } from 'src/app/features/reservations/crewSpecialties/classes/services/crewSpecialty-http.service'
 import { CryptoService } from './crypto.service'
 import { CustomerHttpService } from '../../features/reservations/customers/classes/services/customer-http.service'
-import { DestinationService } from './../../features/reservations/destinations/classes/services/destination.service'
+import { DestinationHttpService } from './../../features/reservations/destinations/classes/services/destination.service'
 import { DexieService } from './dexie.service'
 import { DotNetVersion } from '../classes/dotnet-version'
 import { DriverService } from './../../features/reservations/drivers/classes/services/driver.service'
@@ -20,12 +20,12 @@ import { InteractionService } from './interaction.service'
 import { NationalityService } from './../../features/reservations/nationalities/classes/services/nationality.service'
 import { PaymentMethodHttpService } from 'src/app/features/billing/paymentMethods/classes/services/paymentMethod-http.service'
 import { PickupPointHttpService } from '../../features/reservations/pickupPoints/classes/services/pickupPoint-http.service'
-import { PortService } from './../../features/reservations/ports/classes/services/port.service'
+import { PortHttpService } from './../../features/reservations/ports/classes/services/port-http.service'
 import { ResetPasswordViewModel } from './../../features/reservations/users/classes/view-models/reset-password-view-model'
 import { SessionStorageService } from './session-storage.service'
 import { ShipOwnerService } from './../../features/reservations/shipOwners/classes/services/shipOwner.service'
 import { ShipRouteService } from './../../features/reservations/shipRoutes/classes/services/shipRoute.service'
-import { ShipService } from './../../features/reservations/ships/classes/services/ship.service'
+import { ShipHttpService } from '../../features/reservations/ships/classes/services/ship-https.service'
 import { TaxOfficeService } from './../../features/billing/taxOffices/classes/services/taxOffice.service'
 import { VatRegimeService } from 'src/app/features/billing/vatRegimes/services/vatRegime-http.service'
 import { environment } from '../../../environments/environment'
@@ -43,7 +43,7 @@ export class AccountService extends HttpDataService {
 
     //#endregion
 
-    constructor(private cryptoService: CryptoService, httpClient: HttpClient, private coachRouteService: CoachRouteService, private codeHttpService: CodeHttpService, private crewSpecialtyHttpService: CrewSpecialtyHttpService, private customerHttpService: CustomerHttpService, private destinationService: DestinationService, private dexieService: DexieService, private driverService: DriverService, private genderService: GenderService, private interactionService: InteractionService, private nationalityService: NationalityService, private ngZone: NgZone, private paymentMethodService: PaymentMethodHttpService, private pickupPointService: PickupPointHttpService, private portService: PortService, private router: Router, private sessionStorageService: SessionStorageService, private shipOwnerService: ShipOwnerService, private shipRouteService: ShipRouteService, private shipService: ShipService, private taxOfficeService: TaxOfficeService, private vatRegimeService: VatRegimeService) {
+    constructor(private cryptoService: CryptoService, httpClient: HttpClient, private coachRouteService: CoachRouteService, private codeHttpService: CodeHttpService, private crewSpecialtyHttpService: CrewSpecialtyHttpService, private customerHttpService: CustomerHttpService, private destinationHttpService: DestinationHttpService, private dexieService: DexieService, private driverService: DriverService, private genderService: GenderService, private interactionService: InteractionService, private nationalityService: NationalityService, private ngZone: NgZone, private paymentMethodService: PaymentMethodHttpService, private pickupPointService: PickupPointHttpService, private portHttpService: PortHttpService, private router: Router, private sessionStorageService: SessionStorageService, private shipOwnerService: ShipOwnerService, private shipRouteService: ShipRouteService, private shipHttpService: ShipHttpService, private taxOfficeService: TaxOfficeService, private vatRegimeService: VatRegimeService) {
         super(httpClient, environment.apiUrl)
     }
 
@@ -162,24 +162,29 @@ export class AccountService extends HttpDataService {
     }
 
     private populateDexieFromAPI(): void {
+        // AutoComplete
         this.dexieService.populateTable('coachRoutes', this.coachRouteService)
         this.dexieService.populateTable('codes', this.codeHttpService)
         this.dexieService.populateTable('crewSpecialties', this.crewSpecialtyHttpService)
         this.dexieService.populateTable('crewSpecialties', this.paymentMethodService)
         this.dexieService.populateTable('customers', this.customerHttpService)
-        this.dexieService.populateCriteria('customersCriteria', this.customerHttpService)
-        this.dexieService.populateTable('destinations', this.destinationService)
+        this.dexieService.populateTable('destinations', this.destinationHttpService)
         this.dexieService.populateTable('drivers', this.driverService)
         this.dexieService.populateTable('genders', this.genderService)
         this.dexieService.populateTable('nationalities', this.nationalityService)
         this.dexieService.populateTable('paymentMethods', this.paymentMethodService)
         this.dexieService.populateTable('pickupPoints', this.pickupPointService)
-        this.dexieService.populateTable('ports', this.portService)
+        this.dexieService.populateTable('ports', this.portHttpService)
         this.dexieService.populateTable('shipOwners', this.shipOwnerService)
         this.dexieService.populateTable('shipRoutes', this.shipRouteService)
-        this.dexieService.populateTable('ships', this.shipService)
+        this.dexieService.populateTable('ships', this.shipHttpService)
         this.dexieService.populateTable('taxOffices', this.taxOfficeService)
         this.dexieService.populateTable('vatRegimes', this.vatRegimeService)
+        // Criteria
+        this.dexieService.populateCriteria('customersCriteria', this.customerHttpService)
+        this.dexieService.populateCriteria('destinationsCriteria', this.destinationHttpService)
+        this.dexieService.populateCriteria('portsCriteria', this.portHttpService)
+        this.dexieService.populateCriteria('shipsCriteria', this.shipHttpService)
     }
 
     private setDotNetVersion(response: any): void {

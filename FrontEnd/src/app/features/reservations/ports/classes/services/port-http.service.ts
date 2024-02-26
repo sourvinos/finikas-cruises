@@ -3,12 +3,13 @@ import { Injectable } from '@angular/core'
 import { Observable } from 'rxjs'
 // Custom
 import { HttpDataService } from 'src/app/shared/services/http-data.service'
-import { environment } from 'src/environments/environment'
 import { PortAutoCompleteVM } from '../view-models/port-autocomplete-vm'
+import { SimpleCriteriaEntity } from 'src/app/shared/classes/simple-criteria-entity'
+import { environment } from 'src/environments/environment'
 
 @Injectable({ providedIn: 'root' })
 
-export class PortService extends HttpDataService {
+export class PortHttpService extends HttpDataService {
 
     constructor(httpClient: HttpClient) {
         super(httpClient, environment.apiUrl + '/ports')
@@ -17,7 +18,11 @@ export class PortService extends HttpDataService {
     //#region public methods
 
     public getAutoComplete(): Observable<PortAutoCompleteVM[]> {
-        return this.http.get<PortAutoCompleteVM[]>(environment.apiUrl + '/ports/getAutoComplete')
+        return this.http.get<PortAutoCompleteVM[]>(environment.apiUrl + '/ports/getForAutoComplete')
+    }
+
+    public getForCriteria(): Observable<SimpleCriteriaEntity[]> {
+        return this.http.get<SimpleCriteriaEntity[]>(environment.apiUrl + '/ports/getForCriteria')
     }
 
     //#endregion
