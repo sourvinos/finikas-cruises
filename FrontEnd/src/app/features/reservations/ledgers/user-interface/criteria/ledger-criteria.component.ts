@@ -12,6 +12,7 @@ import { LedgerCriteriaVM } from '../../classes/view-models/criteria/ledger-crit
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service'
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
 import { SessionStorageService } from 'src/app/shared/services/session-storage.service'
+import { SimpleCriteriaEntity } from 'src/app/shared/classes/simple-criteria-entity'
 import { SimpleEntity } from './../../../../../shared/classes/simple-entity'
 
 @Component({
@@ -35,7 +36,7 @@ export class LedgerCriteriaComponent {
 
     //#region tables
 
-    public customers: SimpleEntity[]
+    public customersCriteria: SimpleCriteriaEntity[]
     public destinations: SimpleEntity[]
     public ports: SimpleEntity[]
     public ships: SimpleEntity[]
@@ -96,8 +97,7 @@ export class LedgerCriteriaComponent {
         event.forEach(element => {
             x.push(new FormControl({
                 'id': element.id,
-                'description': element.description,
-                'isActive': element.isActive
+                'description': element.description
             }))
         })
     }
@@ -148,7 +148,7 @@ export class LedgerCriteriaComponent {
     }
 
     private populateDropdowns(): void {
-        this.populateDropdownFromDexieDB('customers', 'description')
+        this.populateDropdownFromDexieDB('customersCriteria', 'description')
         this.populateDropdownFromDexieDB('destinations', 'description')
         this.populateDropdownFromDexieDB('ports', 'description')
         this.populateDropdownFromDexieDB('ships', 'description')

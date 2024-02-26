@@ -10,6 +10,7 @@ export class DexieService extends Dexie {
         this.version(1).stores({
             coachRoutes: 'id, abbreviation, isActive',
             customers: 'id, description, isActive',
+            customersCriteria: 'id, description',
             codes: 'id, description, isActive',
             destinations: 'id, description, isPassportRequired, isActive',
             drivers: 'id, description, isActive',
@@ -30,6 +31,14 @@ export class DexieService extends Dexie {
 
     public populateTable(table: string, httpService: any): void {
         httpService.getAutoComplete().subscribe((records: any) => {
+            this.table(table)
+                .bulkAdd(records)
+                .catch(Dexie.BulkError, () => { })
+        })
+    }
+
+    public populateCriteria(table: string, httpService: any): void {
+        httpService.getForCriteria().subscribe((records: any) => {
             this.table(table)
                 .bulkAdd(records)
                 .catch(Dexie.BulkError, () => { })

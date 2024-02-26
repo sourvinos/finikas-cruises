@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using API.Infrastructure.Classes;
 using API.Infrastructure.Extensions;
 using API.Infrastructure.Helpers;
 using API.Infrastructure.Responses;
@@ -34,8 +35,14 @@ namespace API.Features.Reservations.Customers {
 
         [HttpGet("[action]")]
         [Authorize(Roles = "user, admin")]
-        public async Task<IEnumerable<CustomerAutoCompleteVM>> GetAutoCompleteAsync() {
-            return await customerRepo.GetAutoCompleteAsync();
+        public async Task<IEnumerable<CustomerAutoCompleteVM>> GetForAutoCompleteAsync() {
+            return await customerRepo.GetForAutoCompleteAsync();
+        }
+
+        [HttpGet("[action]")]
+        [Authorize(Roles = "user, admin")]
+        public async Task<IEnumerable<SimpleEntity>> GetForCriteriaAsync() {
+            return await customerRepo.GetForCriteriaAsync();
         }
 
         [HttpGet("{id}")]

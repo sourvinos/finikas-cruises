@@ -4,7 +4,7 @@ import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@ang
 import { EmojiService } from '../../services/emoji.service'
 import { HelperService } from '../../services/helper.service'
 import { MessageLabelService } from '../../services/message-label.service'
-import { SimpleEntity } from '../../classes/simple-entity'
+import { SimpleCriteriaEntity } from '../../classes/simple-criteria-entity'
 
 @Component({
     selector: 'criteria-fieldset-checkboxes',
@@ -16,13 +16,13 @@ export class CriteriaFieldsetCheckboxesComponent {
 
     //#region variables
 
-    @Input() array: SimpleEntity[]
+    @Input() array: SimpleCriteriaEntity[]
     @Input() caption: string
     @Input() feature: string
-    @Input() selected: SimpleEntity[]
+    @Input() selected: SimpleCriteriaEntity[]
     @Output() outputSelected = new EventEmitter()
 
-    public localSelected: SimpleEntity[]
+    public localSelected: SimpleCriteriaEntity[]
     public form: FormGroup
 
     //#endregion
@@ -87,8 +87,7 @@ export class CriteriaFieldsetCheckboxesComponent {
         const x = this.form.controls['selected'] as FormArray
         x.push(new FormControl({
             'id': element.id,
-            'description': element.description,
-            'isActive': element.isActive
+            'description': element.description
         }))
     }
 

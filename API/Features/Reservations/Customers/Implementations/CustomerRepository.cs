@@ -28,12 +28,20 @@ namespace API.Features.Reservations.Customers {
             return mapper.Map<IEnumerable<Customer>, IEnumerable<CustomerListVM>>(customers);
         }
 
-        public async Task<IEnumerable<CustomerAutoCompleteVM>> GetAutoCompleteAsync() {
+        public async Task<IEnumerable<CustomerAutoCompleteVM>> GetForAutoCompleteAsync() {
             var customers = await context.Customers
                 .AsNoTracking()
                 .OrderBy(x => x.Description)
                 .ToListAsync();
             return mapper.Map<IEnumerable<Customer>, IEnumerable<CustomerAutoCompleteVM>>(customers);
+        }
+
+        public async Task<IEnumerable<SimpleEntity>> GetForCriteriaAsync() {
+            var customers = await context.Customers
+                .AsNoTracking()
+                .OrderBy(x => x.Description)
+                .ToListAsync();
+            return mapper.Map<IEnumerable<Customer>, IEnumerable<SimpleEntity>>(customers);
         }
 
         public async Task<Customer> GetByIdAsync(int id, bool includeTables) {
