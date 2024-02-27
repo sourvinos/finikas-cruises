@@ -1549,7 +1549,7 @@
         "labels": [
             {
                 "id": "header",
-                "description": "Seznam cestujících"
+                "description": "Manifest lodi"
             },
             {
                 "id": "filterPlaceholder",
@@ -1598,7 +1598,7 @@
         "labels": [
             {
                 "id": "header",
-                "description": "Seznam cestujících"
+                "description": "Manifest lodi"
             },
             {
                 "id": "headerOccupant",
@@ -1629,10 +1629,17 @@
                 "description": "P"
             },
             {
-                "id": "createPdf",
-                "description": "Vytvořit PDF"
-            }
-        ]
+                "id": "createFiles",
+                "description": "Vytvořit soubory"
+            },
+            {
+                "id": "createFilePassengers",
+                "description": "Cestující"
+            },
+            {
+                "id": "createFileCrew",
+                "description": "Osádka"
+            }        ]
     },
     {
         "feature": "manifestShipRouteSelector",

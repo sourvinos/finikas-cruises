@@ -1549,7 +1549,7 @@
         "labels": [
             {
                 "id": "header",
-                "description": "Passagiermanifest"
+                "description": "Schiffsmanifest"
             },
             {
                 "id": "filterPlaceholder",
@@ -1598,7 +1598,7 @@
         "labels": [
             {
                 "id": "header",
-                "description": "Passagiermanifest"
+                "description": "Schiffsmanifest"
             },
             {
                 "id": "headerOccupant",
@@ -1629,10 +1629,17 @@
                 "description": "B"
             },
             {
-                "id": "createPdf",
-                "description": "PDF erstellen"
-            }
-        ]
+                "id": "createFiles",
+                "description": "Dateien erstellen"
+            },
+            {
+                "id": "createFilePassengers",
+                "description": "Passagiere"
+            },
+            {
+                "id": "createFileCrew",
+                "description": "Besatzung"
+            }        ]
     },
     {
         "feature": "manifestShipRouteSelector",

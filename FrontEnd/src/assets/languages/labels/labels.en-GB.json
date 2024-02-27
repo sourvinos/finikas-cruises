@@ -1549,7 +1549,7 @@
         "labels": [
             {
                 "id": "header",
-                "description": "Passengers manifest"
+                "description": "Ship manifest"
             },
             {
                 "id": "filterPlaceholder",
@@ -1598,7 +1598,7 @@
         "labels": [
             {
                 "id": "header",
-                "description": "Passengers manifest"
+                "description": "Ship manifest"
             },
             {
                 "id": "headerOccupant",
@@ -1629,10 +1629,17 @@
                 "description": "C"
             },
             {
-                "id": "createPdf",
-                "description": "Create PDF"
-            }
-        ]
+                "id": "createFiles",
+                "description": "Create files"
+            },
+            {
+                "id": "createFilePassengers",
+                "description": "Passengers"
+            },
+            {
+                "id": "createFileCrew",
+                "description": "Crew"
+            }        ]
     },
     {
         "feature": "manifestShipRouteSelector",

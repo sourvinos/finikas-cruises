@@ -1,3 +1,4 @@
+import FileSaver from 'file-saver'
 import { ActivatedRoute, Router } from '@angular/router'
 import { Component, ViewChild } from '@angular/core'
 import { MatDialog } from '@angular/material/dialog'
@@ -15,6 +16,7 @@ import { ManifestRouteSelectorComponent } from './manifest-route-selector.compon
 import { ManifestVM } from '../../classes/view-models/list/manifest-vm'
 import { MessageDialogService } from '../../../../../shared/services/message-dialog.service'
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
+import { PassengerExportVM } from '../../classes/view-models/export/passenger-export-vm'
 import { RegistrarService } from '../../../registrars/classes/services/registrar.service'
 import { SessionStorageService } from 'src/app/shared/services/session-storage.service'
 import { SimpleEntity } from 'src/app/shared/classes/simple-entity'
@@ -37,7 +39,9 @@ export class ManifestListComponent {
     public icon = 'arrow_back'
     public parentUrl = '/manifest'
     public records: ManifestVM
+    private exportRecords: PassengerExportVM[]
     public criteriaPanels: ManifestCriteriaPanelVM
+
 
     //#endregion
 
@@ -80,6 +84,11 @@ export class ManifestListComponent {
                 ? this.showRouteSelectionDialog()
                 : this.dialogService.open(this.messageDialogService.errorsInRegistrars(), 'error', ['ok'])
         })
+    }
+
+    public doExportTasks(): void {
+        this.cloneRecords()
+        this.exportToExcel()
     }
 
     public filterRecords(event: any): void {
@@ -129,6 +138,24 @@ export class ManifestListComponent {
     //#endregion
 
     //#region private methods
+
+    private saveAsExcelFile(buffer: any, fileName: string): void {
+        const EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8'
+        const EXCEL_EXTENSION = '.xlsx'
+        const data: Blob = new Blob([buffer], {
+            type: EXCEL_TYPE
+        })
+        FileSaver.saveAs(data, fileName + EXCEL_EXTENSION)
+    }
+
+    public exportToExcel(): void {
+        import('xlsx').then((xlsx) => {
+            const worksheet = xlsx.utils.json_to_sheet(this.exportRecords)
+            const workbook = { Sheets: { data: worksheet }, SheetNames: ['data'] }
+            const excelBuffer: any = xlsx.write(workbook, { bookType: 'xlsx', type: 'array' })
+            this.saveAsExcelFile(excelBuffer, 'Passengers')
+        })
+    }
 
     private addCrewToList(): void {
         if (this.records.passengers.length > 0) {
@@ -213,6 +240,33 @@ export class ManifestListComponent {
         return new Promise((resolve) => {
             this.registrarService.validateRegistrarsForManifest(this.records.ship.id).then((response) => {
                 resolve(response)
+            })
+        })
+    }
+
+    private cloneRecords(): void {
+        let row = 0
+        this.exportRecords = []
+        this.records.passengers.forEach(record => {
+            this.exportRecords.push({
+                Passengers_Number: ++row,
+                Passengers_Family_name: record.lastname,
+                Passengers_Given_name: record.firstname,
+                Passengers_Gender: record.gender.description,
+                Passengers_Nationality: record.nationality.code,
+                Passengers_Date_of_birth: this.dateHelperService.formatISODateToLocale(record.birthdate),
+                Passengers_Place_of_birth: '',
+                Passengers_Country_of_birth: null,
+                Passengers_Nature_of_identity_document: 'Other',
+                Passengers_Number_of_identity_document: '0',
+                Passengers_Issuing_State_of_Identity_Document: '',
+                Passengers_Expiry_Date_of_Identity_Document: '',
+                Passengers_Port_of_embarkation: 'GRCFU',
+                Passengers_Port_of_disembarkation: null,
+                Passengers_Transit: null,
+                Passengers_Visa_Residence_Permit_number: '',
+                Passengers_Special_Care_Or_Assistance: '',
+                Passengers_Emergency_Contact_Number: ''
             })
         })
     }

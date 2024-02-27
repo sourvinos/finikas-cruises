@@ -1549,7 +1549,7 @@
         "labels": [
             {
                 "id": "header",
-                "description": "Manifeste des passagers"
+                "description": "Manifeste du navire"
             },
             {
                 "id": "filterPlaceholder",
@@ -1598,7 +1598,7 @@
         "labels": [
             {
                 "id": "header",
-                "description": "Manifeste des passagers"
+                "description": "Manifeste du navire"
             },
             {
                 "id": "headerOccupant",
@@ -1629,8 +1629,16 @@
                 "description": "E"
             },
             {
-                "id": "createPdf",
-                "description": "Créer un PDF"
+                "id": "createFiles",
+                "description": "Créer des fichiers"
+            },
+            {
+                "id": "createFilePassengers",
+                "description": "Passagers"
+            },
+            {
+                "id": "createFileCrew",
+                "description": "Équipage"
             }
         ]
     },
