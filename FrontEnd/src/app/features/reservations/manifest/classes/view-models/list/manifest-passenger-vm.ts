@@ -1,5 +1,5 @@
-import { SimpleEntity } from 'src/app/shared/classes/simple-entity'
 import { ManifestNationalityVM } from './manifest-nationality-vm'
+import { SimpleEntity } from 'src/app/shared/classes/simple-entity'
 
 export interface ManifestPassengerVM {
 
