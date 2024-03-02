@@ -11,8 +11,8 @@ export interface ManifestShipCrewVM {
     gender: SimpleEntity,
     nationality: ManifestNationalityVM,
     occupant: SimpleEntity
-    passportNo: string
-    passportExpiryDate: string
+    port: SimpleEntity
+    specialty: SimpleEntity
     remarks: string
     specialCare: string
 

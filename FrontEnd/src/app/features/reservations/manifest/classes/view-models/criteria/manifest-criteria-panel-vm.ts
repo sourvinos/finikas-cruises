@@ -6,6 +6,5 @@ export interface ManifestCriteriaPanelVM {
     selectedDestinations: SimpleEntity[]
     selectedPorts: SimpleEntity[]
     selectedShips: SimpleEntity[]
-    onlyBoarded: boolean
 
 }

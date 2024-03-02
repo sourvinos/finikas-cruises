@@ -1,4 +1,4 @@
-export interface PassengerExportVM {
+export interface ManifestExportPassengerVM {
 
     Passengers_Number: number
     Passengers_Family_name: string

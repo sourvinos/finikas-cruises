@@ -9,14 +9,14 @@ namespace API.Features.Reservations.Manifest {
         public string Firstname { get; set; }
         public string Birthdate { get; set; }
         public string Phones { get; set; }
-        public string PassportNo { get; set; }
-        public string PassportExpiryDate { get; set; }
         public string Remarks { get; set; }
         public string SpecialCare { get; set; }
         public bool IsBoarded { get; set; }
         public SimpleEntity Gender { get; set; }
         public ManifestFinalNationalityVM Nationality { get; set; }
         public SimpleEntity Occupant { get; set; }
+        public SimpleEntity Port { get; set; }
+        public SimpleEntity Specialty { get; set; }
 
     }
 

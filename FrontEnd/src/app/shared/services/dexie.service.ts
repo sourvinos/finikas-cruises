@@ -29,7 +29,7 @@ export class DexieService extends Dexie {
             taxOffices: 'id, description, isActive',
             vatRegimes: 'id, description, isActive'
         })
-        this.delete().then(() => this.open())
+        this.open()
     }
 
     public populateTable(table: string, httpService: any): void {

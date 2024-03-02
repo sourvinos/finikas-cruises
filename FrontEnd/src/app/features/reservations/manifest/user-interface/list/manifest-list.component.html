@@ -138,10 +138,10 @@
     </div>
 
     <ng-template #saveMenuTemplate>
-        <button (click)="doExportTasks()" mat-menu-item>
+        <button (click)="doExportTasks('passengers')" mat-menu-item>
             <span>{{ getLabel("createFilePassengers") }}</span>
         </button>
-        <button (click)="doExportTasks()" mat-menu-item>
+        <button (click)="doExportTasks('crew')" mat-menu-item>
             <span>{{ getLabel("createFileCrew") }}</span>
         </button>
     </ng-template>
