@@ -409,6 +409,10 @@
                 "description": "Description"
             },
             {
+                "id": "locode",
+                "description": "UN/Locode"
+            },
+            {
                 "id": "stopOrder",
                 "description": "Approach order"
             },
@@ -1639,7 +1643,8 @@
             {
                 "id": "createFileCrew",
                 "description": "Crew"
-            }        ]
+            }
+        ]
     },
     {
         "feature": "manifestShipRouteSelector",
