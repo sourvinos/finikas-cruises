@@ -15,6 +15,9 @@
         { "id": "remainingCharacters", "description": "Μπορείτε να δώσετε ακόμα έως και xx χαρακτήρες" },
         { "id": "required", "description": "Αυτό το πεδίο είναι υποχρεωτικό" },
         { "id": "shouldBeEmptyPlusOrMinus", "description": "Αυτό το πεδίο επιτρέπεται να είναι κενό ή να έχει το σύμβολο + ή -" },
+        { "id": "spacesNotAllowed", "description": "Αυτό το πεδίο δεν μπορεί να περιέχει κενά" },
+        { "id": "shouldBeCapitalLetterOrSpace", "description": "Επιτρέπονται μόνο λατινικά κεφαλαία γράμματα" },
+        { "id": "shouldBeCapitalLetterOrNumber", "description": "Επιτρέπονται μόνο αριθμοί και λατινικά κεφαλαία γράμματα" },
         { "id": "spacesNotAllowed", "description": "Αυτό το πεδίο δεν μπορεί να περιέχει κενά" }
     ]
 }

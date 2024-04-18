@@ -218,14 +218,14 @@ export class PassengerFormComponent {
             reservationId: this.data.reservationId,
             gender: ['', [Validators.required, ValidationService.RequireAutocomplete]],
             nationality: ['', [Validators.required, ValidationService.RequireAutocomplete]],
-            lastname: ['', [Validators.required, Validators.maxLength(128)]],
-            firstname: ['', [Validators.required, Validators.maxLength(128)]],
+            lastname: ['', [Validators.required, ValidationService.shouldBeCapitalLetterOrSpace, Validators.maxLength(128)]],
+            firstname: ['', [Validators.required, ValidationService.shouldBeCapitalLetterOrSpace, Validators.maxLength(128)]],
             birthdate: ['', Validators.required],
-            passportNo: ['', this.isPassportRequired() ? Validators.required : null],
+            passportNo: ['', this.isPassportRequired() ? [Validators.required, ValidationService.shouldBeCapitalLetterOrNumber] : null],
             passportExpiryDate: ['', this.isPassportRequired() ? Validators.required : null],
             specialCare: ['', Validators.maxLength(128)],
             remarks: ['', Validators.maxLength(128)],
-            isBoarded: [{ value: false, disabled: !this.isAdmin }],
+            isBoarded: [{ value: false, disabled: !this.isAdmin }]
         })
     }
 

@@ -57,6 +57,11 @@ export class ValidationService {
         return pattern.test(control.value) ? null : { shouldBeCapitalLetterOrSpace: true }
     }
 
+    static shouldBeCapitalLetterOrNumber(control: AbstractControl): { [key: string]: any } {
+        const pattern = /^[A-Z0-9]*$/
+        return pattern.test(control.value) ? null : { shouldBeCapitalLetterOrNumber: true }
+    }
+
     static shouldBeFiveCapitalLetters(control: AbstractControl): { [key: string]: any } {
         const pattern = /[A-Z]{5}/
         return pattern.test(control.value) ? null : { shouldBeFiveCapitalLetters: true }

@@ -15,6 +15,8 @@
         { "id": "remainingCharacters", "description": "Sie können bis zu xx weitere Zeichen eingeben" },
         { "id": "required", "description": "Dieses Feld ist erforderlich" },
         { "id": "shouldBeEmptyPlusOrMinus", "description": "Dieses Feld darf leer sein oder das Symbol + oder - enthalten" },
+        { "id": "spacesNotAllowed", "description": "Dieses Feld darf keine Leerzeichen enthalten" },
+        { "id": "shouldBeCapitalLetterOrSpace", "description": "Nur lateinische Großbuchstaben sind erlaubt" },
         { "id": "spacesNotAllowed", "description": "Dieses Feld darf keine Leerzeichen enthalten" }
     ]
 }

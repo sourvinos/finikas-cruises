@@ -11,14 +11,14 @@
                 <mat-label>{{ getLabel('lastname') }}</mat-label>
                 <input (input)="convertToUpperCase('lastname')" [inputTabStop]="input" dataTabIndex="1" formControlName="lastname" matInput>
                 <mat-error *ngIf="lastname.hasError('required')">{{ getHint("required") }}</mat-error>
-                <mat-error *ngIf="lastname.hasError('maxlength')">{{ getHint("maxLength", lastname.errors.maxlength.requiredLength) }}</mat-error>
+                <mat-error *ngIf="!lastname.hasError('required') && lastname.hasError('shouldBeCapitalLetterOrSpace')">{{ getHint("shouldBeCapitalLetterOrSpace") }}</mat-error>
             </mat-form-field>
             <!-- Firstname -->
             <mat-form-field>
                 <mat-label>{{ getLabel('firstname') }}</mat-label>
                 <input (input)="convertToUpperCase('firstname')" [inputTabStop]="input" dataTabIndex="2" formControlName="firstname" matInput>
                 <mat-error *ngIf="firstname.hasError('required')">{{ getHint("required") }}</mat-error>
-                <mat-error *ngIf="firstname.hasError('maxlength')">{{ getHint("maxLength", firstname.errors.maxlength.requiredLength) }}</mat-error>
+                <mat-error *ngIf="!firstname.hasError('required') && firstname.hasError('shouldBeCapitalLetterOrSpace')">{{ getHint("shouldBeCapitalLetterOrSpace") }}</mat-error>
             </mat-form-field>
             <!-- Nationality -->
             <div class="group-input-field">
@@ -54,6 +54,7 @@
                     <mat-label>{{ getLabel('passportNo') }}</mat-label>
                     <input [inputTabStop]="input" dataTabIndex="6" formControlName="passportNo" matInput [readonly]="!isPassportRequired()">
                     <mat-error *ngIf="passportNo.hasError('required')">{{ getHint("required") }}</mat-error>
+                    <mat-error *ngIf="!passportNo.hasError('required') && passportNo.hasError('shouldBeCapitalLetterOrNumber')">{{ getHint("shouldBeCapitalLetterOrNumber") }}</mat-error>
                 </mat-form-field>
                 <!-- Passport Expiry date -->
                 <date-picker (outputValue)="patchFormWithSelectedDate($event,'passportExpiryDate',true)" [dataTabIndex]="7" [isAdminOrNewRecord]=true [label]="getLabel('passportExpiryDate')" [parentDate]="getDate('passportExpiryDate')" [readOnly]="!isPassportRequired()" [required]="isPassportRequired()" [showHint]=false style="width: 50%;"></date-picker>
