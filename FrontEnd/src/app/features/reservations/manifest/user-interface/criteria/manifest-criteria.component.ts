@@ -11,8 +11,8 @@ import { LocalStorageService } from 'src/app/shared/services/local-storage.servi
 import { ManifestSearchCriteriaVM } from '../../classes/view-models/criteria/manifest-search-criteria-vm'
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
 import { SessionStorageService } from 'src/app/shared/services/session-storage.service'
-import { SimpleCriteriaEntity } from 'src/app/shared/classes/simple-criteria-entity'
 import { SimpleEntity } from 'src/app/shared/classes/simple-entity'
+import { SimpleCriteriaEntity } from 'src/app/shared/classes/simple-criteria-entity'
 
 @Component({
     selector: 'manifest-criteria',
@@ -38,9 +38,9 @@ export class ManifestCriteriaComponent {
     public destinationsCriteria: SimpleCriteriaEntity[]
     public portsCriteria: SimpleCriteriaEntity[]
     public shipsCriteria: SimpleCriteriaEntity[]
-    public selectedDestinations: SimpleEntity[]
-    public selectedPorts: SimpleEntity[]
-    public selectedShips: SimpleEntity[]
+    public selectedDestinations: SimpleEntity[] = []
+    public selectedPorts: SimpleEntity[] = []
+    public selectedShips: SimpleEntity[] = []
 
     //#endregion
 
@@ -117,7 +117,6 @@ export class ManifestCriteriaComponent {
             selectedDestinations: this.formBuilder.array([], Validators.required),
             selectedPorts: this.formBuilder.array([], Validators.required),
             selectedShips: this.formBuilder.array([], Validators.required),
-            onlyBoarded: false
         })
     }
 
@@ -144,8 +143,7 @@ export class ManifestCriteriaComponent {
                 date: this.criteria.date,
                 selectedDestinations: this.addSelectedCriteriaFromStorage('selectedDestinations'),
                 selectedPorts: this.addSelectedCriteriaFromStorage('selectedPorts'),
-                selectedShips: this.addSelectedCriteriaFromStorage('selectedShips'),
-                onlyBoarded: this.criteria.onlyBoarded
+                selectedShips: this.addSelectedCriteriaFromStorage('selectedShips')
             })
         }
     }

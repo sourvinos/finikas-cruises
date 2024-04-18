@@ -8,6 +8,9 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
+using System.Threading.Tasks;
+using System.Collections.Generic;
+using API.Features.Reservations.ShipCrews;
 
 namespace API.Features.Reservations.Manifest {
 
@@ -19,38 +22,31 @@ namespace API.Features.Reservations.Manifest {
             this.mapper = mapper;
         }
 
-        public ManifestFinalVM Get(string date, int destinationId, int portId, int? shipId, bool onlyBoarded) {
-            var manifest = new ManifestInitialVM {
-                Date = date,
-                Destination = context.Destinations
-                    .FirstOrDefault(x => x.Id == destinationId),
-                Port = context.Ports
-                    .FirstOrDefault(x => x.Id == portId),
-                Ship = context.Ships
-                    .Include(x => x.ShipOwner)
-                    .Include(x => x.Registrars.Where(x => x.IsActive))
-                    .Include(x => x.ShipCrews.Where(x => x.IsActive))
-                    .Include(x => x.ShipCrews.Where(x => x.IsActive)).ThenInclude(x => x.Gender)
-                    .Include(x => x.ShipCrews.Where(x => x.IsActive)).ThenInclude(x => x.Nationality)
-                    .Include(x => x.ShipCrews.Where(x => x.IsActive)).ThenInclude(x => x.Occupant)
-                    .Include(x => x.ShipCrews.Where(x => x.IsActive)).ThenInclude(x => x.Specialty)
-                    .FirstOrDefault(x => x.Id == shipId),
-                ShipRoute = null,
-                Passengers = context.Passengers
-                    .Include(x => x.Gender)
-                    .Include(x => x.Nationality)
-                    .Include(x => x.Occupant)
-                    .Include(x => x.Reservation)
-                    .Where(x => x.Reservation.Date.ToString() == date
-                        && x.Reservation.DestinationId == destinationId
-                        && x.Reservation.ShipId == shipId
-                        && x.Reservation.PortId == portId)
-                    .ToList()
-            };
-            manifest.Passengers = onlyBoarded
-                ? manifest.Passengers.Where(x => x.IsBoarded).ToList()
-                : manifest.Passengers;
-            return mapper.Map<ManifestInitialVM, ManifestFinalVM>(manifest);
+        public async Task<IEnumerable<ManifestPassengerVM>> GetPassengersAsync(string date, int destinationId, int portId, int shipId) {
+            var passengers = await context.Passengers
+                .AsNoTracking()
+                .Include(x => x.Nationality)
+                .Include(x => x.Gender)
+                .Include(x => x.Reservation).ThenInclude(x => x.Port)
+                .OrderBy(x => x.Lastname).ThenBy(x => x.Firstname).ThenBy(x => x.Birthdate)
+                .Where(x => x.Reservation.Date.ToString() == date
+                    && x.Reservation.DestinationId == destinationId
+                    && x.Reservation.ShipId == shipId
+                    && x.Reservation.PortId == portId
+                    && x.IsBoarded)
+                .ToListAsync();
+            return mapper.Map<IEnumerable<Passenger>, IEnumerable<ManifestPassengerVM>>(passengers);
+        }
+
+        public async Task<IEnumerable<ManifestCrewVM>> GetCrewAsync(int shipId) {
+            var crew = await context.ShipCrews
+                .AsNoTracking()
+                .Include(x => x.Nationality)
+                .Include(x => x.Gender)
+                .Include(x => x.Specialty)
+                .Where(x => x.Ship.Id == shipId && x.IsActive)
+                .ToListAsync();
+            return mapper.Map<IEnumerable<ShipCrew>, IEnumerable<ManifestCrewVM>>(crew);
         }
 
     }
