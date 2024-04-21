@@ -22,5 +22,5 @@
     column-gap: 0.5rem;
     display: flex;
     flex-direction: row;
-    height: 0;
+    height: 100%;
 }

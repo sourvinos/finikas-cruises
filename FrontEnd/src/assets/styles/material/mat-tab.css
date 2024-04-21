@@ -7,6 +7,7 @@
     --mdc-tab-indicator-active-indicator-color: var(--color-accent) !important;
     height: 100% !important;
     row-gap: 1rem;
+    width: 100% !important;
 }
 
 .mat-mdc-tab .mdc-tab__text-label {
@@ -27,4 +28,8 @@
 .mat-mdc-tab-body-content, .mat-mdc-tab-body-wrapper {
     height: 100% !important;
     overflow: hidden;
+}
+
+.mat-mdc-tab.mdc-tab:last-child {
+    margin-left: auto !important;
 }

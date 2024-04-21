@@ -1,4 +1,4 @@
-export interface StatisticsVM {
+export interface StatisticVM {
 
     id: number
     description: string

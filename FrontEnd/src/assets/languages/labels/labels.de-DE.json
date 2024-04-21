@@ -1605,8 +1605,12 @@
                 "description": "Schiffsmanifest"
             },
             {
-                "id": "headerOccupant",
-                "description": "Eigentum"
+                "id": "tab1",
+                "description": "Passagiere"
+            },
+            {
+                "id": "tab2",
+                "description": "Πλήρωμα"
             },
             {
                 "id": "headerLastname",
@@ -1625,14 +1629,6 @@
                 "description": "Geschlecht"
             },
             {
-                "id": "countPassengers",
-                "description": "P"
-            },
-            {
-                "id": "countCrew",
-                "description": "B"
-            },
-            {
                 "id": "createFiles",
                 "description": "Dateien erstellen"
             },
@@ -1642,28 +1638,7 @@
             },
             {
                 "id": "createFileCrew",
-                "description": "Besatzung"
-            }
-        ]
-    },
-    {
-        "feature": "manifestShipRouteSelector",
-        "labels": [
-            {
-                "id": "header",
-                "description": "Δρομολόγιο πλοίου"
-            },
-            {
-                "id": "subHeader",
-                "description": "Επιλέξτε ποια διαδρομή θα ακολουθήσει το πλοίο"
-            },
-            {
-                "id": "okButton",
-                "description": "OK"
-            },
-            {
-                "id": "cancelButton",
-                "description": "Ακυρο"
+                "description": "Crew"
             }
         ]
     },
@@ -1730,178 +1705,6 @@
             {
                 "id": "email",
                 "description": "Email"
-            },
-            {
-                "id": "isActive",
-                "description": "Aktiv"
-            },
-            {
-                "id": "post",
-                "description": "Erstmalige Registrierung"
-            },
-            {
-                "id": "put",
-                "description": "Letzte Aktualisierung"
-            },
-            {
-                "id": "deleteButton",
-                "description": "Löschen"
-            },
-            {
-                "id": "saveButton",
-                "description": "Speichern"
-            }
-        ]
-    },
-    {
-        "feature": "shipRouteList",
-        "labels": [
-            {
-                "id": "header",
-                "description": "Schiffsrouten"
-            },
-            {
-                "id": "headerIsActive",
-                "description": "Aktiv"
-            },
-            {
-                "id": "headerFromPort",
-                "description": "Abreisehafen"
-            },
-            {
-                "id": "headerViaPort",
-                "description": "Zwischenhäfen im Anflug"
-            },
-            {
-                "id": "headerToPort",
-                "description": "Zielhafen"
-            },
-            {
-                "id": "newRecord",
-                "description": "Neuer Rekord"
-            }
-        ]
-    },
-    {
-        "feature": "shipRouteForm",
-        "labels": [
-            {
-                "id": "header",
-                "description": "Route"
-            },
-            {
-                "id": "description",
-                "description": "Beschreibung"
-            },
-            {
-                "id": "fromPort",
-                "description": "Abreisehafen"
-            },
-            {
-                "id": "fromTime",
-                "description": "Abreisezeit"
-            },
-            {
-                "id": "viaPort",
-                "description": "Zwischenhäfen"
-            },
-            {
-                "id": "viaTime",
-                "description": "Ankunftszeit"
-            },
-            {
-                "id": "toPort",
-                "description": "Ankunftshafen"
-            },
-            {
-                "id": "toTime",
-                "description": "Ankunftszeit"
-            },
-            {
-                "id": "isActive",
-                "description": "Aktiv"
-            },
-            {
-                "id": "post",
-                "description": "Erstmalige Registrierung"
-            },
-            {
-                "id": "put",
-                "description": "Letzte Aktualisierung"
-            },
-            {
-                "id": "deleteButton",
-                "description": "Löschen"
-            },
-            {
-                "id": "saveButton",
-                "description": "Speichern"
-            }
-        ]
-    },
-    {
-        "feature": "registrarList",
-        "labels": [
-            {
-                "id": "header",
-                "description": "Registrare"
-            },
-            {
-                "id": "headerIsActive",
-                "description": "Activ"
-            },
-            {
-                "id": "headerIsPrimary",
-                "description": "Primär"
-            },
-            {
-                "id": "headerFullname",
-                "description": "Vollständiger Name"
-            },
-            {
-                "id": "headerShipDescription",
-                "description": "Schiff"
-            },
-            {
-                "id": "newRecord",
-                "description": "Neuer Rekord"
-            }
-        ]
-    },
-    {
-        "feature": "registrarForm",
-        "labels": [
-            {
-                "id": "header",
-                "description": "Registrator"
-            },
-            {
-                "id": "fullname",
-                "description": "Vollständiger Name"
-            },
-            {
-                "id": "ship",
-                "description": "Schiff"
-            },
-            {
-                "id": "phones",
-                "description": "Telefone"
-            },
-            {
-                "id": "email",
-                "description": "Email"
-            },
-            {
-                "id": "fax",
-                "description": "Fax"
-            },
-            {
-                "id": "address",
-                "description": "Adresse"
-            },
-            {
-                "id": "isPrimary",
-                "description": "Primär"
             },
             {
                 "id": "isActive",
@@ -2190,31 +1993,6 @@
         ]
     },
     {
-        "feature": "honeycombMenu",
-        "labels": [
-            {
-                "id": "reservations",
-                "description": "Reservierungen"
-            },
-            {
-                "id": "availability",
-                "description": "Verfügbarkeit"
-            },
-            {
-                "id": "boarding",
-                "description": "Einschiffung"
-            },
-            {
-                "id": "ledgers",
-                "description": "Kundenbücher"
-            },
-            {
-                "id": "schedules",
-                "description": "Zeitpläne"
-            }
-        ]
-    },
-    {
         "feature": "reservation-parameters",
         "labels": [
             {
@@ -2290,6 +2068,27 @@
         ]
     },
     {
+        "feature": "statistics-criteria",
+        "labels": [
+            {
+                "id": "header",
+                "description": "Kriterien"
+            },
+            {
+                "id": "subHeader",
+                "description": "Wählen Sie die Kriterien aus, die für die Suche verwendet werden sollen."
+            },
+            {
+                "id": "cancelButton",
+                "description": "Abbrechen"
+            },
+            {
+                "id": "okButton",
+                "description": "Weiter"
+            }
+        ]
+    },
+    {
         "feature": "statistics",
         "labels": [
             {
@@ -2302,7 +2101,7 @@
             },
             {
                 "id": "ytd",
-                "description": "YTD"
+                "description": "Gesamt"
             },
             {
                 "id": "destinations",
@@ -2418,438 +2217,6 @@
             {
                 "id": "cancelButton",
                 "description": "Abbrechen"
-            }
-        ]
-    },
-    {
-        "feature": "priceList",
-        "labels": [
-            {
-                "id": "header",
-                "description": "Τιμοκατάλογοι"
-            },
-            {
-                "id": "clonePrices",
-                "description": "Δημιουργία αντιγράφων"
-            },
-            {
-                "id": "rangeDelete",
-                "description": "Διαγραφή επιλεγμένων εγγραφών"
-            },
-            {
-                "id": "headerCustomerDescription",
-                "description": "Πελάτης"
-            },
-            {
-                "id": "headerDestinationDescription",
-                "description": "Προορισμός"
-            },
-            {
-                "id": "headerPortDescription",
-                "description": "Λιμάνι"
-            },
-            {
-                "id": "headerFrom",
-                "description": "Από"
-            },
-            {
-                "id": "headerTo",
-                "description": "Εως"
-            },
-            {
-                "id": "newRecord",
-                "description": "Νεα εγγραφη"
-            }
-        ]
-    },
-    {
-        "feature": "priceForm",
-        "labels": [
-            {
-                "id": "header",
-                "description": "Τιμοκατάλογος"
-            },
-            {
-                "id": "customer",
-                "description": "Πελάτης"
-            },
-            {
-                "id": "destination",
-                "description": "Προορισμός"
-            },
-            {
-                "id": "port",
-                "description": "Λιμάνι"
-            },
-            {
-                "id": "from",
-                "description": "Από"
-            },
-            {
-                "id": "to",
-                "description": "Εως"
-            },
-            {
-                "id": "adultsWithTransfer",
-                "description": "Ενήλικες με transfer"
-            },
-            {
-                "id": "adultsWithoutTransfer",
-                "description": "Ενήλικες χωρίς transfer"
-            },
-            {
-                "id": "kidsWithTransfer",
-                "description": "Παιδιά με transfer"
-            },
-            {
-                "id": "kidsWithoutTransfer",
-                "description": "Παιδιά χωρίς transfer"
-            },
-            {
-                "id": "post",
-                "description": "Αρχική καταχώριση"
-            },
-            {
-                "id": "put",
-                "description": "Τελευταία ενημέρωση"
-            },
-            {
-                "id": "deleteButton",
-                "description": "Διαγραφη"
-            },
-            {
-                "id": "saveButton",
-                "description": "Αποθηκευση"
-            }
-        ]
-    },
-    {
-        "feature": "clonePrices",
-        "labels": [
-            {
-                "id": "header",
-                "description": "Επιλογή πελατών"
-            },
-            {
-                "id": "subHeader",
-                "description": "Επιλέξτε τους πελάτες στους οποίους θα γίνουν οι αντιγραφές των επιλεγμένων εγγραφών."
-            },
-            {
-                "id": "okButton",
-                "description": "OK"
-            },
-            {
-                "id": "cancelButton",
-                "description": "Ακυρο"
-            }
-        ]
-    },
-    {
-        "feature": "taxOfficeList",
-        "labels": [
-            {
-                "id": "header",
-                "description": "Οικονομικές υπηρεσίες"
-            },
-            {
-                "id": "headerDescription",
-                "description": "Περιγραφή"
-            },
-            {
-                "id": "newRecord",
-                "description": "Νεα εγγραφη"
-            }
-        ]
-    },
-    {
-        "feature": "taxOfficeForm",
-        "labels": [
-            {
-                "id": "header",
-                "description": "Οικονομική υπηρεσία"
-            },
-            {
-                "id": "description",
-                "description": "Περιγραφή"
-            },
-            {
-                "id": "isActive",
-                "description": "Ενεργή"
-            },
-            {
-                "id": "post",
-                "description": "Αρχική καταχώριση"
-            },
-            {
-                "id": "put",
-                "description": "Τελευταία ενημέρωση"
-            },
-            {
-                "id": "deleteButton",
-                "description": "Διαγραφη"
-            },
-            {
-                "id": "saveButton",
-                "description": "Αποθηκευση"
-            }
-        ]
-    },
-    {
-        "feature": "paymentMethodList",
-        "labels": [
-            {
-                "id": "header",
-                "description": "Τρόποι πληρωμής"
-            },
-            {
-                "id": "headerDescription",
-                "description": "Περιγραφή"
-            },
-            {
-                "id": "newRecord",
-                "description": "Νεα εγγραφη"
-            }
-        ]
-    },
-    {
-        "feature": "paymentMethodForm",
-        "labels": [
-            {
-                "id": "header",
-                "description": "Τρόπος πληρωμής"
-            },
-            {
-                "id": "description",
-                "description": "Περιγραφή"
-            },
-            {
-                "id": "isCash",
-                "description": "Μετρητά"
-            },
-            {
-                "id": "isActive",
-                "description": "Ενεργός"
-            },
-            {
-                "id": "post",
-                "description": "Αρχική καταχώριση"
-            },
-            {
-                "id": "put",
-                "description": "Τελευταία ενημέρωση"
-            },
-            {
-                "id": "deleteButton",
-                "description": "Διαγραφη"
-            },
-            {
-                "id": "saveButton",
-                "description": "Αποθηκευση"
-            }
-        ]
-    },
-    {
-        "feature": "codeList",
-        "labels": [
-            {
-                "id": "header",
-                "description": "Παραστατικά"
-            },
-            {
-                "id": "headerDescription",
-                "description": "Περιγραφή"
-            },
-            {
-                "id": "headerBatch",
-                "description": "Σειρά"
-            },
-            {
-                "id": "headerLastDate",
-                "description": "Τελευταία ημερομηνία"
-            },
-            {
-                "id": "headerLastNo",
-                "description": "Τελευταίο Νο"
-            },
-            {
-                "id": "headerTable8_1",
-                "description": "Πίνακας 8.1"
-            },
-            {
-                "id": "headerTable8_8",
-                "description": "Πίνακας 8.8"
-            },
-            {
-                "id": "headerTable8_9",
-                "description": "Πίνακας 8.9"
-            },
-            {
-                "id": "newRecord",
-                "description": "Νεα εγγραφη"
-            }
-        ]
-    },
-    {
-        "feature": "codeForm",
-        "labels": [
-            {
-                "id": "header",
-                "description": "Παραστατικό"
-            },
-            {
-                "id": "description",
-                "description": "Περιγραφή"
-            },
-            {
-                "id": "batch",
-                "description": "Σειρά"
-            },
-            {
-                "id": "lastDate",
-                "description": "Τελευταία ημερομηνία"
-            },
-            {
-                "id": "lastNo",
-                "description": "Τελευταίο Νο"
-            },
-            {
-                "id": "customers",
-                "description": "Πελάτες"
-            },
-            {
-                "id": "suppliers",
-                "description": "Προμηθευτές"
-            },
-            {
-                "id": "isMyData",
-                "description": "Ενημερώνει myData"
-            },
-            {
-                "id": "table8_1",
-                "description": "Πίνακας 8.1"
-            },
-            {
-                "id": "table8_8",
-                "description": "Πίνακας 8.8"
-            },
-            {
-                "id": "table8_9",
-                "description": "Πίνακας 8.9"
-            },
-            {
-                "id": "isActive",
-                "description": "Ενεργό"
-            },
-            {
-                "id": "post",
-                "description": "Αρχική καταχώριση"
-            },
-            {
-                "id": "put",
-                "description": "Τελευταία ενημέρωση"
-            },
-            {
-                "id": "deleteButton",
-                "description": "Διαγραφη"
-            },
-            {
-                "id": "saveButton",
-                "description": "Αποθηκευση"
-            }
-        ]
-    },
-    {
-        "feature": "billing-parameters",
-        "labels": [
-            {
-                "id": "header",
-                "description": "Ρυθμίσεις"
-            },
-            {
-                "id": "aadeDemoUrl",
-                "description": "Δοκιμαστικό url"
-            },
-            {
-                "id": "aadeDemoUsername",
-                "description": "Δοκιμαστικό όνομα χρήστη"
-            },
-            {
-                "id": "aadeDemoApiKey",
-                "description": "Δοκιμαστικό κλειδί"
-            },
-            {
-                "id": "aadeLiveUrl",
-                "description": "Κανονικό url"
-            },
-            {
-                "id": "aadeLiveUsername",
-                "description": "Κανονικό όνομα χρήστη"
-            },
-            {
-                "id": "aadeLiveApiKey",
-                "description": "Κανονικό κλειδί"
-            },
-            {
-                "id": "isAadeLive",
-                "description": "Κανονική λειτουργία"
-            },
-            {
-                "id": "saveButton",
-                "description": "Αποθηκευση"
-            }
-        ]
-    },
-    {
-        "feature": "crewSpecialtyList",
-        "labels": [
-            {
-                "id": "header",
-                "description": "Ειδικότητες πληρωμάτων"
-            },
-            {
-                "id": "headerIsActive",
-                "description": "Ενεργός"
-            },
-            {
-                "id": "headerDescription",
-                "description": "Περιγραφή"
-            },
-            {
-                "id": "newRecord",
-                "description": "Νεα εγγραφη"
-            }
-        ]
-    },
-    {
-        "feature": "crewSpecialtyForm",
-        "labels": [
-            {
-                "id": "header",
-                "description": "Ειδικότητα πληρώματος"
-            },
-            {
-                "id": "description",
-                "description": "Περιγραφή"
-            },
-            {
-                "id": "isActive",
-                "description": "Ενεργός"
-            },
-            {
-                "id": "post",
-                "description": "Αρχική καταχώριση"
-            },
-            {
-                "id": "put",
-                "description": "Τελευταία ενημέρωση"
-            },
-            {
-                "id": "deleteButton",
-                "description": "Διαγραφη"
-            },
-            {
-                "id": "saveButton",
-                "description": "Αποθηκευση"
             }
         ]
     }

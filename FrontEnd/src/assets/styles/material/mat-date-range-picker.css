@@ -10,3 +10,6 @@
     color: var(--color-text) !important;
     transition: color var(--theme-delay) !important;
 }
+.mat-end-date {
+    margin: 0 0 0 0 !important;
+}

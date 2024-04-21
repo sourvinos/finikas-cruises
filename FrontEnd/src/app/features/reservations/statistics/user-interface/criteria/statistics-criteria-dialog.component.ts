@@ -1,8 +1,11 @@
 import { Component, Inject, NgZone } from '@angular/core'
+import { DateAdapter } from '@angular/material/core'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog'
 // Custom
 import { DateHelperService } from 'src/app/shared/services/date-helper.service'
+import { InteractionService } from 'src/app/shared/services/interaction.service'
+import { LocalStorageService } from 'src/app/shared/services/local-storage.service'
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
 import { SimpleEntity } from 'src/app/shared/classes/simple-entity'
 
@@ -22,7 +25,7 @@ export class StatisticsCriteriaDialogComponent {
 
     //#endregion
 
-    constructor(@Inject(MAT_DIALOG_DATA) public data: any, private dateHelperService: DateHelperService, private dialogRef: MatDialogRef<StatisticsCriteriaDialogComponent>, private formBuilder: FormBuilder, private messageLabelService: MessageLabelService, private ngZone: NgZone) {
+    constructor(@Inject(MAT_DIALOG_DATA) public data: any, private dateAdapter: DateAdapter<any>, private dateHelperService: DateHelperService, private dialogRef: MatDialogRef<StatisticsCriteriaDialogComponent>, private formBuilder: FormBuilder, private interactionService: InteractionService, private localStorageService: LocalStorageService, private messageLabelService: MessageLabelService, private ngZone: NgZone) {
         this.feature = data[0]
     }
 
@@ -30,6 +33,7 @@ export class StatisticsCriteriaDialogComponent {
 
     ngOnInit(): void {
         this.initForm()
+        this.subscribeToInteractionService()
     }
 
     //#endregion
@@ -72,6 +76,16 @@ export class StatisticsCriteriaDialogComponent {
         this.form = this.formBuilder.group({
             fromDate: ['', [Validators.required]],
             toDate: ['', [Validators.required]],
+        })
+    }
+
+    private setLocale(): void {
+        this.dateAdapter.setLocale(this.localStorageService.getLanguage())
+    }
+
+    private subscribeToInteractionService(): void {
+        this.interactionService.refreshDateAdapter.subscribe(() => {
+            this.setLocale()
         })
     }
 

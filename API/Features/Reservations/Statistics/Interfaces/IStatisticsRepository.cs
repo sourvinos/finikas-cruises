@@ -9,12 +9,10 @@ namespace API.Features.Reservations.Statistics {
         IEnumerable<StatisticsVM> Get(StatisticsCriteriaVM criteria);
         IEnumerable<StatisticsVM> GetPerCustomer(StatisticsCriteriaVM criteria);
         IEnumerable<StatisticsVM> GetPerDestination(StatisticsCriteriaVM criteria);
-        // IEnumerable<StatisticsVM> GetPerPort(int year);
-        // IEnumerable<StatisticsVM> GetPerShip(int year);
-        // IEnumerable<StatisticsVM> GetPerDriver(int year);
-        // IEnumerable<StatisticsVM> GetPerCustomer(int year);
-        // IEnumerable<StatisticsVM> GetPerUser(StatisticsCriteriaVM criteria);
-        // IEnumerable<StatisticsNationalityVM> GetPerNationality(int year);
+        IEnumerable<StatisticsVM> GetPerDriver(StatisticsCriteriaVM criteria);
+        IEnumerable<StatisticsNationalityVM> GetPerNationality(StatisticsCriteriaVM criteria);
+        IEnumerable<StatisticsVM> GetPerPort(StatisticsCriteriaVM criteria);
+        IEnumerable<StatisticsVM> GetPerShip(StatisticsCriteriaVM criteria);
 
     }
 

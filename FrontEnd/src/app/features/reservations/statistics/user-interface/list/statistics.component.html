@@ -5,57 +5,45 @@
         <div id="header">
             <home-button-and-title [feature]="feature" [featureIcon]="featureIcon" [icon]="icon" [parentUrl]="parentUrl"></home-button-and-title>
             <div id="header-right">
-                <div (click)="onShowCriteriaDialog()" class="pill">
-                    <mat-icon class="material-icons-outlined">functions</mat-icon>
-                </div>
+                <button (click)="onShowCriteriaDialog()" class="fab fab-with-no-background transparent" mat-icon-button>
+                    <mat-icon class="material-icons-outlined">filter_alt</mat-icon>
+                </button>
             </div>
         </div>
 
         <div id="grid-wrapper">
-            <p-tabView>
-                <p-tabPanel>
-                    <ng-template pTemplate="header">
-                        {{ getLabel('ytd') }}
-                    </ng-template>
-                    <!-- <table [array]="ytd"></table> -->
-                </p-tabPanel>
-                <p-tabPanel>
-                    <ng-template pTemplate="header">
-                        {{ getLabel('destinations') }}
-                    </ng-template>
-                    <table [array]="destinations"></table>
-                </p-tabPanel>
-                <p-tabPanel>
-                    <ng-template pTemplate="header">
-                        {{ getLabel('customers') }}
-                    </ng-template>
-                    <table [array]="customers"></table>
-                </p-tabPanel>
-                <p-tabPanel>
-                    <ng-template pTemplate="header">
-                        {{ getLabel('drivers') }}
-                    </ng-template>
-                    <!-- <table [array]="drivers"></table> -->
-                </p-tabPanel>
-                <p-tabPanel>
-                    <ng-template pTemplate="header">
-                        {{ getLabel('ports') }}
-                    </ng-template>
-                    <!-- <table [array]="ports"></table> -->
-                </p-tabPanel>
-                <p-tabPanel>
-                    <ng-template pTemplate="header">
-                        {{ getLabel('ships') }}
-                    </ng-template>
-                    <!-- <table [array]="ships"></table> -->
-                </p-tabPanel>
-                <p-tabPanel>
-                    <ng-template pTemplate="header">
-                        {{ getLabel('nationalities') }}
-                    </ng-template>
-                    <!-- <table-nationalities [array]="nationalities"></table-nationalities> -->
-                </p-tabPanel>
-            </p-tabView>
+            <mat-tab-group mat-stretch-tabs="false">
+                <mat-tab label="{{ getLabel('destinations') }}">
+                    <div id="destinations-tab">
+                        <table [array]="destinations"></table>
+                    </div>
+                </mat-tab>
+                <mat-tab label="{{ getLabel('customers') }}">
+                    <div id="destinations-tab">
+                        <table [array]="customers"></table>
+                    </div>
+                </mat-tab>
+                <mat-tab label="{{ getLabel('drivers') }}">
+                    <div id="destinations-tab">
+                        <table [array]="drivers"></table>
+                    </div>
+                </mat-tab>
+                <mat-tab label="{{ getLabel('ports') }}">
+                    <div id="destinations-tab">
+                        <table [array]="ports"></table>
+                    </div>
+                </mat-tab>
+                <mat-tab label="{{ getLabel('nationalities') }}">
+                    <div id="destinations-tab">
+                        <table [array]="nationalities"></table>
+                    </div>
+                </mat-tab>
+                <mat-tab class="align-right" label="{{ getLabel('ytd') }}">
+                    <div id="ytd-tab">
+                        <table [array]="ytd"></table>
+                    </div>
+                </mat-tab>
+            </mat-tab-group>
         </div>
 
     </div>

@@ -38,6 +38,11 @@
 
 .mat-calendar-body-cell-content {
     color: var(--color-text) !important;
+    width: 76% !important;
+}
+
+.mat-calendar-body-selected {
+    color: var(--color-button-text) !important;
 }
 
 /* Today */
@@ -49,5 +54,3 @@
 .mat-calendar-body-selected.mat-calendar-body-today {
     box-shadow: none !important;
 }
-
-

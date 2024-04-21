@@ -1,6 +1,6 @@
-import { StatisticsVM } from './statistics-vm'
+import { StatisticVM } from './statistics-vm'
 
-export interface StatisticsNationalitiesVM extends StatisticsVM {
+export interface StatisticNationalitiesVM extends StatisticVM {
 
     code: string
 

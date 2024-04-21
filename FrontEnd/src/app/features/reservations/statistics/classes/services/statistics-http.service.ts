@@ -3,12 +3,12 @@ import { Injectable } from '@angular/core'
 import { Observable } from 'rxjs'
 // Custom
 import { HttpDataService } from 'src/app/shared/services/http-data.service'
-import { environment } from 'src/environments/environment'
 import { StatisticsCriteriaVM } from '../view-models/criteria/statistics-criteria-vm'
+import { environment } from 'src/environments/environment'
 
 @Injectable({ providedIn: 'root' })
 
-export class StatisticsService extends HttpDataService {
+export class StatisticsHttpService extends HttpDataService {
 
     constructor(httpClient: HttpClient) {
         super(httpClient, environment.apiUrl + '/statistics')
