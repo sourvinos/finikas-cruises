@@ -2325,6 +2325,10 @@
                 "description": "Navires"
             },
             {
+                "id": "users",
+                "description": "Utilisateurs"
+            },
+            {
                 "id": "nationalities",
                 "description": "Nationalités"
             },

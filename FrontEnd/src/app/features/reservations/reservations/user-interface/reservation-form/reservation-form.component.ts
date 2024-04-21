@@ -90,6 +90,7 @@ export class ReservationFormComponent {
         this.doPostInitTasks()
         this.setTabTitle()
         this.setIsRepeatedEntry()
+        this.updateListHeight()
     }
 
     ngAfterViewInit(): void {
@@ -652,6 +653,10 @@ export class ReservationFormComponent {
     private updateTabVisibility(): void {
         this.isTabReservationVisible = true
         this.isTabPassengersVisible = false
+    }
+
+    private updateListHeight(): void {
+        document.getElementById('form-wrapper').style.height = document.getElementById('outer-content').offsetHeight + 'px'
     }
 
     private resetForm(): void {

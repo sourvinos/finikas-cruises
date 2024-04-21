@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core'
 // Custom
 import { HelperService } from 'src/app/shared/services/helper.service'
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
-import { StatisticsNationalitiesVM } from '../classes/view-models/statistics-nationalities-vm'
+import { StatisticsNationalitiesVM } from '../../classes/view-models/list/statistics-nationalities-vm'
 import { environment } from 'src/environments/environment'
 
 @Component({

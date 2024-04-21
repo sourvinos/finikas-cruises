@@ -26,11 +26,11 @@
     </ng-template>
     <ng-template pTemplate="footer">
         <tr style="height: 32px;">
-            <td class=""><span>{{ totals.description }}</span></td>
-            <td class="right "><span class="monotype with-right-padding">{{ formatNumberToLocale(totals.pax) }}</span></td>
-            <td class="right "><span class="monotype with-right-padding">{{ formatNumberToLocale(totals.actualPax) }}</span></td>
-            <td class="right "><span class="monotype with-right-padding">{{ totals.percentage }}</span></td>
-            <td class="right "><span class="monotype with-right-padding">{{ formatNumberToLocale(totals.noShow) }}</span></td>
+            <td class=""><span>{{ totals ? totals.description : '' }}</span></td>
+            <td class="right "><span class="monotype with-right-padding">{{ totals? formatNumberToLocale(totals.pax) : 0 }}</span></td>
+            <td class="right "><span class="monotype with-right-padding">{{ totals ? formatNumberToLocale(totals.actualPax) : 0 }}</span></td>
+            <td class="right "><span class="monotype with-right-padding">{{ totals ? totals.percentage : 0 }}</span></td>
+            <td class="right "><span class="monotype with-right-padding">{{ totals ? formatNumberToLocale(totals.noShow) : 0 }}</span></td>
         </tr>
     </ng-template>
 </p-table>

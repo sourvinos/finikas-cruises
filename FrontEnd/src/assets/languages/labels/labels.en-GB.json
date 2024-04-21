@@ -2325,6 +2325,10 @@
                 "description": "Nationalities"
             },
             {
+                "id": "users",
+                "description": "Users"
+            },
+            {
                 "id": "description",
                 "description": "Description"
             },

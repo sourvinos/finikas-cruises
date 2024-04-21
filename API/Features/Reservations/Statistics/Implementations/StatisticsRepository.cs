@@ -18,11 +18,11 @@ namespace API.Features.Reservations.Statistics {
 
         public StatisticsRepository(AppDbContext appDbContext, IHttpContextAccessor httpContext, IOptions<TestingEnvironment> settings, UserManager<UserExtended> userManager) : base(appDbContext, httpContext, settings, userManager) { }
 
-        public IEnumerable<StatisticsVM> Get(int year) {
+        public IEnumerable<StatisticsVM> Get(StatisticsCriteriaVM criteria) {
             var x = context.Reservations
                 .AsNoTracking()
                 .Include(x => x.Passengers)
-                .Where(x => x.Date >= new DateTime(year, 1, 1) && x.Date <= new DateTime(year, DateHelpers.GetLocalDateTime().Month, DateHelpers.GetLocalDateTime().Day))
+                .Where(x => x.Date >= Convert.ToDateTime(criteria.FromDate) && x.Date <= Convert.ToDateTime(criteria.ToDate))
                 .GroupBy(x => new { x.Date.Year })
                 .Select(x => new StatisticsVM {
                     Pax = x.Sum(x => x.TotalPax),
@@ -36,12 +36,12 @@ namespace API.Features.Reservations.Statistics {
             return x;
         }
 
-        public IEnumerable<StatisticsVM> GetPerDestination(int year) {
+        public IEnumerable<StatisticsVM> GetPerCustomer(StatisticsCriteriaVM criteria) {
             var x = context.Reservations
                 .AsNoTracking()
                 .Include(x => x.Passengers)
-                .Where(x => x.Date >= new DateTime(year, 1, 1) && x.Date <= new DateTime(year, DateHelpers.GetLocalDateTime().Month, DateHelpers.GetLocalDateTime().Day))
-                .GroupBy(x => new { x.Date.Year, x.Destination.Id, x.Destination.Description })
+                .Where(x => x.Date >= Convert.ToDateTime(criteria.FromDate) && x.Date <= Convert.ToDateTime(criteria.ToDate))
+                .GroupBy(x => new { x.Date.Year, x.Customer.Id, x.Customer.Description })
                 .OrderBy(x => x.Key.Description)
                 .Select(x => new StatisticsVM {
                     Id = x.Key.Id,
@@ -57,12 +57,12 @@ namespace API.Features.Reservations.Statistics {
             return x;
         }
 
-        public IEnumerable<StatisticsVM> GetPerCustomer(int year) {
+        public IEnumerable<StatisticsVM> GetPerDestination(StatisticsCriteriaVM criteria) {
             var x = context.Reservations
                 .AsNoTracking()
                 .Include(x => x.Passengers)
-                .Where(x => x.Date >= new DateTime(year, 1, 1) && x.Date <= new DateTime(year, DateHelpers.GetLocalDateTime().Month, DateHelpers.GetLocalDateTime().Day))
-                .GroupBy(x => new { x.Customer.Id, x.Customer.Description })
+                .Where(x => x.Date >= Convert.ToDateTime(criteria.FromDate) && x.Date <= Convert.ToDateTime(criteria.ToDate))
+                .GroupBy(x => new { x.Destination.Id, x.Destination.Description })
                 .OrderBy(x => x.Key.Description)
                 .Select(x => new StatisticsVM {
                     Id = x.Key.Id,
@@ -141,18 +141,22 @@ namespace API.Features.Reservations.Statistics {
             return x;
         }
 
-        public IEnumerable<StatisticsUserVM> GetPerUser(int year) {
+        public IEnumerable<StatisticsVM> GetPerUser(int year) {
             var x = context.Reservations
                 .AsNoTracking()
+                .Include(x => x.Passengers)
                 .Where(x => x.Date >= new DateTime(year, 1, 1) && x.Date <= new DateTime(year, DateHelpers.GetLocalDateTime().Month, DateHelpers.GetLocalDateTime().Day))
                 .GroupBy(x => new { x.Date.Year, x.PostUser })
-                .Select(x => new StatisticsUserVM {
-                    PostUser = x.Key.PostUser,
-                    Reservations = x.Count()
-                }).OrderByDescending(x => x.Reservations).ToList();
-            x.Add(new StatisticsUserVM {
-                PostUser = "",
-                Reservations = x.Count
+                .Select(x => new StatisticsVM {
+                    Id = 0,
+                    Description = x.Key.PostUser,
+                    Pax = x.Sum(x => x.TotalPax),
+                    ActualPax = x.Sum(x => x.Passengers.Where(x => x.IsBoarded == true).Count()),
+                }).OrderByDescending(x => x.ActualPax).ToList();
+            x.Add(new StatisticsVM {
+                Description = "",
+                Pax = x.Sum(x => x.Pax),
+                ActualPax = x.Sum(x => x.ActualPax)
             });
             return x;
         }

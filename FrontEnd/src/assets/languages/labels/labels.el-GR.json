@@ -2325,6 +2325,10 @@
                 "description": "Εθνικότητες"
             },
             {
+                "id": "users",
+                "description": "Χρήστες"
+            },
+            {
                 "id": "description",
                 "description": "Περιγραφή"
             },

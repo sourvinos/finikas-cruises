@@ -2325,6 +2325,10 @@
                 "description": "Schiffe"
             },
             {
+                "id": "users",
+                "description": "Benutzer"
+            },
+            {
                 "id": "nationalities",
                 "description": "Nationalitäten"
             },

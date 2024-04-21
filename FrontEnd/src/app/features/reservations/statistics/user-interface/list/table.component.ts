@@ -1,8 +1,8 @@
-import { Component, Input } from '@angular/core'
+import { Component, Input, SimpleChanges } from '@angular/core'
 // Custom
 import { HelperService } from 'src/app/shared/services/helper.service'
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
-import { StatisticsVM } from '../classes/view-models/statistics-vm'
+import { StatisticsVM } from '../../classes/view-models/list/statistics-vm'
 
 @Component({
     selector: 'table',
@@ -25,7 +25,17 @@ export class TableComponent {
 
     //#region lifecycle hooks
 
-    ngOnInit(): void {
+    // ngOnInit(): void {
+    //     this.getTotals()
+    //     this.removeTotalsFromArray()
+    //     this.calculatePercentagePerRow()
+    //     this.calculateNoShowPerRow()
+    //     this.calculateTotalsPercentage()
+    //     this.calculateTotalsNoShow()
+    // }
+
+    ngOnChanges(changes: SimpleChanges): void {
+        console.log('changes' + changes)
         this.getTotals()
         this.removeTotalsFromArray()
         this.calculatePercentagePerRow()
@@ -51,11 +61,15 @@ export class TableComponent {
     }
 
     public calculateTotalsPercentage(): void {
-        this.totals.percentage = (100 * this.totals.actualPax / this.totals.actualPax).toFixed(2)
+        if (this.totals) {
+            this.totals.percentage = (100 * this.totals.actualPax / this.totals.actualPax).toFixed(2)
+        }
     }
 
     public calculateTotalsNoShow(): void {
-        this.totals.noShow = this.totals.pax - this.totals.actualPax
+        if (this.totals) {
+            this.totals.noShow = this.totals.pax - this.totals.actualPax
+        }
     }
 
     public getLabel(id: string): string {
@@ -67,7 +81,9 @@ export class TableComponent {
     }
 
     public formatNumberToLocale(value: number): any {
-        return this.helperService.formatNumberToLocale(value)
+        if (value) {
+            return this.helperService.formatNumberToLocale(value)
+        }
     }
 
     //#endregion
@@ -75,7 +91,9 @@ export class TableComponent {
     //#region private methods
 
     private getTotals(): void {
-        this.totals = this.array[this.array.length - 1]
+        if (this.array) {
+            this.totals = this.array[this.array.length - 1]
+        }
     }
 
     private removeTotalsFromArray(): void {

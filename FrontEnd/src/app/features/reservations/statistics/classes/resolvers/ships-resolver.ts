@@ -12,11 +12,11 @@ export class ShipsResolver {
 
     constructor(private sessionStorageService: SessionStorageService, private statisticsService: StatisticsService) { }
 
-    resolve(): Observable<ListResolved> {
-        return this.statisticsService.getStatistics(this.sessionStorageService.getItem('selectedYear'), 'ships').pipe(
-            map((statistics) => new ListResolved(statistics)),
-            catchError((err: any) => of(new ListResolved(null, err)))
-        )
-    }
+    // resolve(): Observable<ListResolved> {
+    //     return this.statisticsService.getStatistics(this.sessionStorageService.getItem('selectedYear'), 'ships').pipe(
+    //         map((statistics) => new ListResolved(statistics)),
+    //         catchError((err: any) => of(new ListResolved(null, err)))
+    //     )
+    // }
 
 }

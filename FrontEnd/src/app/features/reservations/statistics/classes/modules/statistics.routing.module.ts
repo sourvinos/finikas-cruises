@@ -8,21 +8,12 @@ import { DriversResolver } from '../resolvers/drivers-resolver'
 import { NationalitiesResolver } from '../resolvers/nationalities-resolver'
 import { PortsResolver } from '../resolvers/ports-resolver'
 import { ShipsResolver } from '../resolvers/ships-resolver'
-import { StatisticsComponent } from '../../user-interface/statistics.component'
+import { StatisticsComponent } from '../../user-interface/list/statistics.component'
+import { UsersResolver } from '../resolvers/users-resolver'
 import { YTDResolver as YTDResolver } from '../resolvers/ytd-resolver'
 
 const routes: Routes = [
-    {
-        path: '', component: StatisticsComponent, canActivate: [AuthGuardService], resolve: {
-            ytd: YTDResolver,
-            customers: CustomersResolver,
-            destinations: DestinationsResolver,
-            drivers: DriversResolver,
-            ports: PortsResolver,
-            ships: ShipsResolver,
-            nationalities: NationalitiesResolver
-        }, runGuardsAndResolvers: 'always'
-    }
+    { path: '', component: StatisticsComponent, canActivate: [AuthGuardService], runGuardsAndResolvers: 'always' }
 ]
 
 @NgModule({

@@ -6,7 +6,7 @@ import Dexie from 'dexie'
 export class DexieService extends Dexie {
 
     constructor() {
-        super('DexieDB')
+        super('FinikasCruises')
         this.version(1).stores({
             coachRoutes: 'id, abbreviation, isActive',
             customers: 'id, description, isActive',

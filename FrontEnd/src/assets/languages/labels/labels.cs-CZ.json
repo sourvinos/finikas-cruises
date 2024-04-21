@@ -2325,6 +2325,10 @@
                 "description": "Lodě"
             },
             {
+                "id": "users",
+                "description": "Uživatelé"
+            },
+            {
                 "id": "nationalities",
                 "description": "Národnosti"
             },
