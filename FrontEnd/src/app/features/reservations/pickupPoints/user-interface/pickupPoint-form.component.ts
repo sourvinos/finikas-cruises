@@ -229,7 +229,21 @@ export class PickupPointFormComponent {
     private saveRecord(pickupPoint: PickupPointWriteDto): void {
         this.pickupPointService.save(pickupPoint).subscribe({
             next: (response) => {
-                this.dexieService.update('pickupPoints', { 'id': parseInt(response.id), 'description': pickupPoint.description, 'exactPoint': pickupPoint.exactPoint, 'time': pickupPoint.time, 'isActive': pickupPoint.isActive })
+                this.dexieService.update('pickupPoints', {
+                    'exactPoint': response.body.exactPoint,
+                    'time': response.body.time,
+                    'destination': {
+                        'id': response.body.destination.id,
+                        'description': response.body.destination.description
+                    },
+                    'port': {
+                        'id': response.body.port.id,
+                        'description': response.body.port.description
+                    },
+                    'isActive': response.body.isActive,
+                    'id': response.body.id,
+                    'description': response.body.description,
+                })
                 this.helperService.doPostSaveFormTasks(this.messageDialogService.success(), 'ok', this.parentUrl, false)
             },
             error: (errorFromInterceptor) => {

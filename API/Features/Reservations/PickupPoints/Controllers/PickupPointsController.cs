@@ -59,14 +59,14 @@ namespace API.Features.Reservations.PickupPoints {
         [HttpPost]
         [Authorize(Roles = "admin")]
         [ServiceFilter(typeof(ModelValidationAttribute))]
-        public Response Post([FromBody] PickupPointWriteDto pickupPoint) {
+        public ResponseWithBody Post([FromBody] PickupPointWriteDto pickupPoint) {
             var x = pickupPointValidation.IsValid(null, pickupPoint);
             if (x == 200) {
                 var z = pickupPointRepo.Create(mapper.Map<PickupPointWriteDto, PickupPoint>((PickupPointWriteDto)pickupPointRepo.AttachMetadataToPostDto(pickupPoint)));
-                return new Response {
+                return new ResponseWithBody {
                     Code = 200,
                     Icon = Icons.Success.ToString(),
-                    Id = z.Id.ToString(),
+                    Body = mapper.Map<PickupPoint, PickupPointAutoCompleteVM>(pickupPointRepo.GetByIdAsync(z.Id, true).Result),
                     Message = ApiMessages.OK()
                 };
             } else {
@@ -79,16 +79,16 @@ namespace API.Features.Reservations.PickupPoints {
         [HttpPut]
         [Authorize(Roles = "admin")]
         [ServiceFilter(typeof(ModelValidationAttribute))]
-        public async Task<Response> Put([FromBody] PickupPointWriteDto pickupPoint) {
+        public async Task<ResponseWithBody> Put([FromBody] PickupPointWriteDto pickupPoint) {
             var x = await pickupPointRepo.GetByIdAsync(pickupPoint.Id, false);
             if (x != null) {
                 var z = pickupPointValidation.IsValid(x, pickupPoint);
                 if (z == 200) {
                     pickupPointRepo.Update(mapper.Map<PickupPointWriteDto, PickupPoint>((PickupPointWriteDto)pickupPointRepo.AttachMetadataToPutDto(x, pickupPoint)));
-                    return new Response {
+                    return new ResponseWithBody {
                         Code = 200,
                         Icon = Icons.Success.ToString(),
-                        Id = x.Id.ToString(),
+                        Body = mapper.Map<PickupPoint, PickupPointAutoCompleteVM>(pickupPointRepo.GetByIdAsync(x.Id, true).Result),
                         Message = ApiMessages.OK()
                     };
                 } else {
