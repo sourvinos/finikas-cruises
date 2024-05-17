@@ -861,11 +861,11 @@
                 "description": "Envoyer la carte d'embarquement par e-mail"
             },
             {
-                "id": "toggle-button-general",
+                "id": "tab1",
                 "description": "Général"
             },
             {
-                "id": "toggle-button-passengers",
+                "id": "tab2",
                 "description": "Passagers"
             },
             {

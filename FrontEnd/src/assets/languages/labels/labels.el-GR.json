@@ -861,12 +861,12 @@
                 "description": "Αποστολή κάρτας επιβίβασης στο email"
             },
             {
-                "id": "toggle-button-general",
-                "description": "Γενικα"
+                "id": "tab1",
+                "description": "Γενικά"
             },
             {
-                "id": "toggle-button-passengers",
-                "description": "Επιβατες"
+                "id": "tab2",
+                "description": "Επιβάτες"
             },
             {
                 "id": "deleteButton",

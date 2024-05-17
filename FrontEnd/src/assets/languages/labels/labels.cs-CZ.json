@@ -861,11 +861,11 @@
                 "description": "Odeslání palubní vstupenky na e-mail"
             },
             {
-                "id": "toggle-button-general",
+                "id": "tab1",
                 "description": "Obecné"
             },
             {
-                "id": "toggle-button-passengers",
+                "id": "tab2",
                 "description": "Pasažéři"
             },
             {

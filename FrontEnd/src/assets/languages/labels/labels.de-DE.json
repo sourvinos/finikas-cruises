@@ -861,11 +861,11 @@
                 "description": "Bordkarte per E-Mail versenden"
             },
             {
-                "id": "toggle-button-general",
+                "id": "tab1",
                 "description": "Allgemein"
             },
             {
-                "id": "toggle-button-passengers",
+                "id": "tab2",
                 "description": "Passagiere"
             },
             {

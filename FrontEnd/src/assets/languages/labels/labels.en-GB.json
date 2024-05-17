@@ -861,11 +861,11 @@
                 "description": "Send boarding pass to email"
             },
             {
-                "id": "toggle-button-general",
-                "description": " General"
+                "id": "tab1",
+                "description": "General"
             },
             {
-                "id": "toggle-button-passengers",
+                "id": "tab2",
                 "description": "Passengers"
             },
             {
