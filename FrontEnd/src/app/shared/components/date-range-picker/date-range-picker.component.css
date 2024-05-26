@@ -1,0 +1,11 @@
+:host {
+    width: 100% !important;
+}
+
+.mat-date-range-input-container {
+    justify-content: flex-start !important;
+}
+
+.mat-date-range-input-wrapper {
+    max-width: 100% !important;
+}

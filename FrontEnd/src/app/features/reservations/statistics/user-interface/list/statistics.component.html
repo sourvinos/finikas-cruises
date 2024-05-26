@@ -5,6 +5,7 @@
         <div id="header">
             <home-button-and-title [feature]="feature" [featureIcon]="featureIcon" [icon]="icon" [parentUrl]="parentUrl"></home-button-and-title>
             <div id="header-right">
+                <span id="criteria-caption">{{ getCriteria() }}</span>
                 <button (click)="onShowCriteriaDialog()" class="fab fab-with-no-background transparent" mat-icon-button>
                     <mat-icon class="material-icons-outlined">filter_alt</mat-icon>
                 </button>
@@ -14,32 +15,32 @@
         <div id="grid-wrapper">
             <mat-tab-group mat-stretch-tabs="false">
                 <mat-tab label="{{ getLabel('destinations') }}">
-                    <div id="destinations-tab">
+                    <div>
                         <table [array]="destinations"></table>
                     </div>
                 </mat-tab>
                 <mat-tab label="{{ getLabel('customers') }}">
-                    <div id="destinations-tab">
+                    <div>
                         <table [array]="customers"></table>
                     </div>
                 </mat-tab>
                 <mat-tab label="{{ getLabel('drivers') }}">
-                    <div id="destinations-tab">
+                    <div>
                         <table [array]="drivers"></table>
                     </div>
                 </mat-tab>
                 <mat-tab label="{{ getLabel('ports') }}">
-                    <div id="destinations-tab">
+                    <div>
                         <table [array]="ports"></table>
                     </div>
                 </mat-tab>
                 <mat-tab label="{{ getLabel('nationalities') }}">
-                    <div id="destinations-tab">
+                    <div>
                         <table [array]="nationalities"></table>
                     </div>
                 </mat-tab>
-                <mat-tab class="align-right" label="{{ getLabel('ytd') }}">
-                    <div id="ytd-tab">
+                <mat-tab label="{{ getLabel('ytd') }}">
+                    <div>
                         <table [array]="ytd"></table>
                     </div>
                 </mat-tab>

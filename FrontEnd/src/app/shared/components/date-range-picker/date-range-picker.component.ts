@@ -1,13 +1,19 @@
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { Component, EventEmitter, Input, Output } from '@angular/core'
+import { DateAdapter } from '@angular/material/core'
 // Custom
 import { DateHelperService } from '../../services/date-helper.service'
+import { InputTabStopDirective } from '../../directives/input-tabstop.directive'
+import { InteractionService } from '../../services/interaction.service'
+import { LocalStorageService } from '../../services/local-storage.service'
+import { MatDatepickerInputEvent } from '@angular/material/datepicker'
 import { MessageInputHintService } from '../../services/message-input-hint.service'
 import { MessageLabelService } from '../../services/message-label.service'
 
 @Component({
     selector: 'date-range-picker',
-    templateUrl: './date-range-picker.component.html'
+    templateUrl: './date-range-picker.component.html',
+    styleUrls: ['./date-range-picker.component.css']
 })
 
 export class DateRangePickerComponent {
@@ -21,22 +27,25 @@ export class DateRangePickerComponent {
 
     public feature = 'date-range-picker'
     public form: FormGroup
+    public input: InputTabStopDirective
 
     //#endregion
 
-    constructor(private dateHelperService: DateHelperService, private formBuilder: FormBuilder, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService) { }
+    constructor(private dateAdapter: DateAdapter<any>, private dateHelperService: DateHelperService, private formBuilder: FormBuilder, private interactionService: InteractionService, private localStorageService: LocalStorageService, private messageHintService: MessageInputHintService, private messageLabelService: MessageLabelService) { }
 
     //#region lifecycle hooks
 
     ngOnInit(): void {
         this.initForm()
+        this.subscribeToInteractionService()
     }
 
     //#endregion
 
     //#region public methods
 
-    public emitFormValues(): void {
+    public emitFormValues(event: MatDatepickerInputEvent<Date>): void {
+        this.form.patchValue({ date: this.dateHelperService.formatISODateToLocale(this.dateHelperService.formatDateToIso(new Date(event.value))) })
         this.outputValues.emit(this.form)
     }
 
@@ -53,13 +62,7 @@ export class DateRangePickerComponent {
             fromDate: this.dateHelperService.formatDateToIso(new Date()),
             toDate: this.dateHelperService.formatDateToIso(new Date())
         })
-    }
-
-    public patchFormWithSelectedDates(fromDate: any, toDate: any): void {
-        this.form.patchValue({
-            fromDate: fromDate.value != null ? this.dateHelperService.formatDateToIso(new Date(fromDate.value)) : '',
-            toDate: toDate.value != null ? this.dateHelperService.formatDateToIso(new Date(toDate.value)) : ''
-        })
+        this.outputValues.emit(this.form)
     }
 
     //#endregion
@@ -70,6 +73,16 @@ export class DateRangePickerComponent {
         this.form = this.formBuilder.group({
             fromDate: [this.parentDateRange[0], [Validators.required]],
             toDate: [this.parentDateRange[1], [Validators.required]]
+        })
+    }
+
+    private setLocale(): void {
+        this.dateAdapter.setLocale(this.localStorageService.getLanguage())
+    }
+
+    private subscribeToInteractionService(): void {
+        this.interactionService.refreshDateAdapter.subscribe(() => {
+            this.setLocale()
         })
     }
 

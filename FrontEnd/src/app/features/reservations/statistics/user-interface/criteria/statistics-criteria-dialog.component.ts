@@ -33,6 +33,7 @@ export class StatisticsCriteriaDialogComponent {
 
     ngOnInit(): void {
         this.initForm()
+        this.setLocale()
         this.subscribeToInteractionService()
     }
 
@@ -64,6 +65,7 @@ export class StatisticsCriteriaDialogComponent {
 
     public onSearch(): void {
         this.ngZone.run(() => {
+            this.interactionService.updateDateRange(this.form.value)
             this.dialogRef.close(this.form.value)
         })
     }
@@ -75,7 +77,7 @@ export class StatisticsCriteriaDialogComponent {
     private initForm(): void {
         this.form = this.formBuilder.group({
             fromDate: ['', [Validators.required]],
-            toDate: ['', [Validators.required]],
+            toDate: ['', [Validators.required]]
         })
     }
 

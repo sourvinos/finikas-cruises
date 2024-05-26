@@ -1,15 +1,16 @@
-import { Router } from '@angular/router'
 import { Component } from '@angular/core'
 import { MatDialog } from '@angular/material/dialog'
+import { Router } from '@angular/router'
 // Custom
+import { DateHelperService } from 'src/app/shared/services/date-helper.service'
 import { HelperService } from 'src/app/shared/services/helper.service'
 import { InteractionService } from 'src/app/shared/services/interaction.service'
 import { MessageLabelService } from 'src/app/shared/services/message-label.service'
+import { StatisticNationalitiesVM } from '../../classes/view-models/list/statistics-nationalities-vm'
+import { StatisticVM } from '../../classes/view-models/list/statistics-vm'
 import { StatisticsCriteriaDialogComponent } from './../criteria/statistics-criteria-dialog.component'
 import { StatisticsCriteriaVM } from '../../classes/view-models/criteria/statistics-criteria-vm'
-import { StatisticNationalitiesVM } from '../../classes/view-models/list/statistics-nationalities-vm'
 import { StatisticsHttpService } from '../../classes/services/statistics-http.service'
-import { StatisticVM } from '../../classes/view-models/list/statistics-vm'
 
 @Component({
     selector: 'statistics',
@@ -32,21 +33,29 @@ export class StatisticsComponent {
     public featureIcon = 'statistics'
     public icon = 'arrow_back'
     public parentUrl = '/home'
+    private criteria: StatisticsCriteriaVM
 
     //#endregion
 
-    constructor(private helperService: HelperService, private interactionService: InteractionService, private messageLabelService: MessageLabelService, private router: Router, private statisticsService: StatisticsHttpService, public dialog: MatDialog) { }
+    constructor(private dateHelperService: DateHelperService, private helperService: HelperService, private interactionService: InteractionService, private messageLabelService: MessageLabelService, private router: Router, private statisticsService: StatisticsHttpService, public dialog: MatDialog) { }
 
     //#region lifecycle hooks
 
     ngOnInit(): void {
         this.setTabTitle()
         this.subscribeToInteractionService()
+        this.onSelectedTabChange()
     }
 
     //#endregion
 
     //#region public methods
+
+    public getCriteria(): string {
+        if (this.criteria) {
+            return this.criteria.fromDate + ' - ' + this.criteria.toDate
+        }
+    }
 
     public getLabel(id: string): string {
         return this.messageLabelService.getDescription(this.feature, id)
@@ -77,6 +86,14 @@ export class StatisticsComponent {
         })
     }
 
+    public onSelectedTabChange(): void {
+        setTimeout(() => {
+            const z = document.getElementById('wrapper') as HTMLElement
+            const x = document.getElementById('content') as HTMLElement
+            x.style.height = z.offsetHeight - 123.77 + 'px'
+        }, 500)
+    }
+
     //#endregion
 
     //#region private methods
@@ -98,8 +115,14 @@ export class StatisticsComponent {
     }
 
     private subscribeToInteractionService(): void {
-        this.interactionService.refreshTabTitle.subscribe(() => {
-            this.setTabTitle()
+        this.interactionService.refreshTabTitle.subscribe(() => { this.setTabTitle() })
+        this.interactionService.emitDateRange.subscribe((response) => {
+            if (response) {
+                this.criteria = {
+                    fromDate: this.dateHelperService.formatISODateToLocale(response.fromDate),
+                    toDate: this.dateHelperService.formatISODateToLocale(response.toDate)
+                }
+            }
         })
     }
 
